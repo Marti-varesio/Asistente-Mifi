@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MIFI BIENES</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#F2F4EE; --surface:#FFFFFF; --surface-alt:#E7EAE0; --surface-alt-2:#EEF1E7;
+    --ink:#161F1A; --ink-2:#47524B; --ink-muted:#7C877E;
+    --border:#DBDFD1; --border-strong:#C7CDBB;
+    --accent:#1F5C4D; --accent-ink:#FFFFFF; --accent-soft:#E1ECE5; --accent-soft-ink:#1B4A3E;
+    --gold:#9C6F26; --gold-soft:#F4E9D3; --gold-ink:#5A3F14;
+    --good:#0b7d0b; --warning-ink:#8a5a04; --warning-bg:#fdeecb; --serious-ink:#a03d1f; --serious-bg:#fbe1d6; --critical-ink:#b5211f; --critical-bg:#fadedd;
+    --good-bg:#dcf3dc;
+    --cat-1:#2a78d6; --cat-2:#c95a1e; --cat-3:#178f61; --cat-4:#b17e00; --cat-5:#c1487f; --cat-6:#1f7a1f; --cat-7:#4a3aa7; --cat-8:#b5342f;
+    --shadow: 0 1px 2px rgba(22,31,26,0.06), 0 8px 20px -12px rgba(22,31,26,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#10130E; --surface:#171C16; --surface-alt:#1E241C; --surface-alt-2:#1A1F18;
+      --ink:#ECEEE6; --ink-2:#B9C0B0; --ink-muted:#7E8A7C;
+      --border:#2B3327; --border-strong:#394A3B;
+      --accent:#4EAF8F; --accent-ink:#07130E; --accent-soft:#1B2F27; --accent-soft-ink:#8FD9BE;
+      --gold:#E0B15E; --gold-soft:#2E2617; --gold-ink:#EAC98A;
+      --good:#3fc23f; --warning-ink:#f5c064; --warning-bg:#332a13; --serious-ink:#f3906a; --serious-bg:#3a2318; --critical-ink:#f16e6c; --critical-bg:#3a1817;
+      --good-bg:#153016;
+      --cat-1:#3987e5; --cat-2:#e3703a; --cat-3:#2bb587; --cat-4:#d9a520; --cat-5:#d97aa0; --cat-6:#3fae3f; --cat-7:#9085e9; --cat-8:#e66767;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#10130E; --surface:#171C16; --surface-alt:#1E241C; --surface-alt-2:#1A1F18;
+    --ink:#ECEEE6; --ink-2:#B9C0B0; --ink-muted:#7E8A7C;
+    --border:#2B3327; --border-strong:#394A3B;
+    --accent:#4EAF8F; --accent-ink:#07130E; --accent-soft:#1B2F27; --accent-soft-ink:#8FD9BE;
+    --gold:#E0B15E; --gold-soft:#2E2617; --gold-ink:#EAC98A;
+    --good:#3fc23f; --warning-ink:#f5c064; --warning-bg:#332a13; --serious-ink:#f3906a; --serious-bg:#3a2318; --critical-ink:#f16e6c; --critical-bg:#3a1817;
+    --good-bg:#153016;
+    --cat-1:#3987e5; --cat-2:#e3703a; --cat-3:#2bb587; --cat-4:#d9a520; --cat-5:#d97aa0; --cat-6:#3fae3f; --cat-7:#9085e9; --cat-8:#e66767;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Public Sans', system-ui, -apple-system, sans-serif;
+    font-size:15px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1480px; margin:0 auto; padding:28px 28px 64px;}
+
+  .topbar{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:22px; padding-bottom:18px; border-bottom:1px solid var(--border);}
+  .brand-eyebrow{font-size:.72rem; letter-spacing:.11em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 6px;}
+  h1{font-family:'Spectral',Georgia,serif; font-weight:600; font-size:1.85rem; margin:0; letter-spacing:-0.01em; text-wrap:balance; color:var(--ink);}
+  .subtitle{margin:6px 0 0; color:var(--ink-2); font-size:.92rem; max-width:60ch;}
+  .meta-col{text-align:right; font-size:.78rem; color:var(--ink-muted); line-height:1.6;}
+  .meta-col b{color:var(--ink-2); font-weight:600;}
+
+  .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:20px;}
+  .search-box{position:relative; flex:1 1 260px; min-width:220px;}
+  .search-box input{
+    width:100%; padding:10px 14px 10px 36px; border-radius:9px; border:1px solid var(--border-strong);
+    background:var(--surface); color:var(--ink); font-family:inherit; font-size:.9rem;
+  }
+  .search-box input:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .search-box svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--ink-muted); pointer-events:none;}
+  select{
+    padding:9px 32px 9px 12px; border-radius:9px; border:1px solid var(--border-strong);
+    background:var(--surface) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="%237C877E" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>') no-repeat right 12px center;
+    color:var(--ink); font-family:inherit; font-size:.85rem; appearance:none; cursor:pointer;
+  }
+  select:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .reset-btn{
+    padding:9px 14px; border-radius:9px; border:1px solid var(--border-strong); background:var(--surface);
+    color:var(--ink-2); font-family:inherit; font-size:.85rem; cursor:pointer; font-weight:500;
+  }
+  .reset-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .count-pill{font-size:.8rem; color:var(--ink-muted); font-variant-numeric:tabular-nums; white-space:nowrap; padding:0 4px;}
+  .price-range{display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--border-strong); border-radius:9px; padding:0 6px 0 12px; height:38px;}
+  .price-range .pr-label{font-size:.72rem; color:var(--ink-muted); white-space:nowrap;}
+  .price-range input{
+    width:96px; padding:7px 8px; border-radius:6px; border:1px solid var(--border-strong);
+    background:var(--surface-alt-2); color:var(--ink); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.78rem;
+  }
+  .price-range input:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .price-range .pr-sep{color:var(--ink-muted); font-size:.8rem;}
+  .price-range input::-webkit-outer-spin-button, .price-range input::-webkit-inner-spin-button{opacity:.5;}
+
+  .msf{position:relative;}
+  .msf-btn{
+    padding:9px 30px 9px 12px; border-radius:9px; border:1px solid var(--border-strong);
+    background:var(--surface) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="%237C877E" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>') no-repeat right 12px center;
+    color:var(--ink); font-family:inherit; font-size:.85rem; cursor:pointer; text-align:left;
+    max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .msf-btn:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .msf.open .msf-btn{border-color:var(--accent);}
+  .msf-panel{
+    position:absolute; top:calc(100% + 6px); left:0; z-index:30; min-width:230px; max-width:320px;
+    background:var(--surface); border:1px solid var(--border-strong); border-radius:10px; box-shadow:var(--shadow); padding:8px;
+  }
+  .msf-panel[hidden]{display:none;}
+  .msf-panel-actions{display:flex; gap:6px; padding-bottom:7px; margin-bottom:7px; border-bottom:1px solid var(--border);}
+  .msf-panel-actions button{
+    flex:1; padding:5px 8px; border-radius:6px; border:1px solid var(--border-strong); background:var(--surface-alt-2);
+    color:var(--ink-2); font-family:inherit; font-size:.72rem; cursor:pointer; font-weight:500;
+  }
+  .msf-panel-actions button:hover{border-color:var(--accent); color:var(--accent);}
+  .msf-options{max-height:230px; overflow-y:auto; display:flex; flex-direction:column; gap:1px;}
+  .msf-opt{display:flex; align-items:center; gap:8px; padding:6px 7px; border-radius:6px; font-size:.82rem; color:var(--ink-2); cursor:pointer; user-select:none;}
+  .msf-opt:hover{background:var(--surface-alt-2);}
+  .msf-opt input{accent-color:var(--accent); width:14px; height:14px; flex:none; cursor:pointer;}
+  .msf-opt span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+  .stats{display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:22px; box-shadow:var(--shadow);}
+  .stat{background:var(--surface); padding:16px 14px;}
+  .stat .label{font-size:.66rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted); font-weight:600; margin:0 0 8px;}
+  .stat .value{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:1.2rem; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
+  .stat .value.accent{color:var(--accent);}
+  .stat .value.gold{color:var(--gold);}
+  .stat .sub{font-size:.7rem; color:var(--ink-muted); margin-top:4px;}
+  @media (max-width:1180px){ .stats{grid-template-columns:repeat(4,1fr);} }
+  @media (max-width:640px){ .stats{grid-template-columns:repeat(2,1fr);} }
+
+  .charts{display:grid; grid-template-columns:1.15fr 1fr; gap:16px; margin-bottom:22px;}
+  @media (max-width:900px){ .charts{grid-template-columns:1fr;} }
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; box-shadow:var(--shadow);}
+  .card h2{font-family:'Spectral',Georgia,serif; font-size:1.02rem; font-weight:600; margin:0 0 3px;}
+  .card .card-sub{font-size:.76rem; color:var(--ink-muted); margin:0 0 14px;}
+  .bar-row{display:grid; grid-template-columns:170px 1fr 74px; align-items:center; gap:10px; margin-bottom:9px;}
+  .bar-row:last-child{margin-bottom:0;}
+  .bar-row.callout{padding-top:9px; margin-top:4px; border-top:1px dashed var(--border);}
+  .bar-row .cat-label{font-size:.8rem; color:var(--ink-2); display:flex; align-items:center; gap:7px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .cat-dot{width:9px; height:9px; border-radius:50%; flex:none;}
+  .bar-track{background:var(--surface-alt); border-radius:5px; height:15px; position:relative; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:5px; min-width:4px;}
+  .bar-row .bar-value{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.78rem; color:var(--ink-2); text-align:right; font-variant-numeric:tabular-nums;}
+  .ced-block{margin-bottom:12px;}
+  .ced-block:last-child{margin-bottom:0;}
+  .ced-block .bar-row{margin-bottom:4px;}
+  .ced-total{font-size:.71rem; color:var(--ink-muted); padding-left:180px; font-variant-numeric:tabular-nums;}
+  .ced-total b{color:var(--ink-2); font-weight:600; font-family:'JetBrains Mono',ui-monospace,monospace;}
+  @media (max-width:900px){ .ced-total{padding-left:0; margin-top:2px;} }
+
+  .table-card{background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); overflow:hidden;}
+  .table-head-row{display:flex; align-items:center; justify-content:space-between; padding:16px 20px 12px;}
+  .table-head-row h2{font-family:'Spectral',Georgia,serif; font-size:1.05rem; font-weight:600; margin:0;}
+  .table-scroll{overflow-x:hidden; overflow-y:auto; max-height:700px; border-top:1px solid var(--border);}
+  table{width:100%; table-layout:fixed; border-collapse:collapse; font-size:.86rem;}
+  colgroup .c-finca{width:6%;}
+  colgroup .c-corr{width:10%;}
+  colgroup .c-cedente{width:11%;}
+  colgroup .c-vendido{width:11%;}
+  colgroup .c-estado{width:8.5%;}
+  colgroup .c-vs{width:8%;}
+  colgroup .c-merc{width:8%;}
+  colgroup .c-vlibros{width:8%;}
+  colgroup .c-desc{width:7.5%;}
+  colgroup .c-ea{width:8%;}
+  colgroup .c-fa{width:7%;}
+  colgroup .c-link{width:7%;}
+  thead th{
+    position:sticky; top:0; background:var(--surface-alt); z-index:1;
+    text-align:left; padding:11px 10px; font-size:.71rem; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--ink-muted); font-weight:600; border-bottom:1px solid var(--border); white-space:normal; line-height:1.3; cursor:pointer;
+    user-select:none; overflow-wrap:anywhere; word-break:break-word;
+  }
+  thead th:hover{color:var(--accent);}
+  thead th .arrow{opacity:0.45; font-size:.7em; margin-left:3px;}
+  thead th.active .arrow{opacity:1; color:var(--accent);}
+  tbody td{padding:10px 10px; border-bottom:1px solid var(--border); vertical-align:middle; color:var(--ink-2); overflow-wrap:break-word; word-break:break-word;}
+  tbody tr:hover{background:var(--surface-alt-2);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.finca{font-family:'JetBrains Mono',ui-monospace,monospace; color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums;}
+  td.num{font-family:'JetBrains Mono',ui-monospace,monospace; text-align:right; font-variant-numeric:tabular-nums; color:var(--ink);}
+  td.mono{font-family:'JetBrains Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; color:var(--ink-2);}
+  td.mono.fecha{white-space:nowrap;}
+  td.corr{color:var(--ink-2);}
+  .pill{display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:20px; font-size:.72rem; font-weight:600;}
+  .pill .dot{width:6px; height:6px; border-radius:50%; flex:none;}
+  .pill-libre{background:var(--good-bg); color:var(--good);}
+  .pill-ocupada{background:var(--warning-bg); color:var(--warning-ink);}
+  .pill-inspeccionar{background:var(--serious-bg); color:var(--serious-ink);}
+  .pill-alquilada{background:var(--accent-soft); color:var(--accent-soft-ink);}
+  .pill-vendida{background:var(--gold-soft); color:var(--gold-ink);}
+  .pill-demanda{background:var(--critical-bg); color:var(--critical-ink);}
+  .pill-sindato{background:var(--surface-alt); color:var(--ink-muted);}
+  .tag-vendida{font-size:.68rem; color:var(--gold-ink); background:var(--gold-soft); padding:2px 7px; border-radius:5px; font-weight:600; margin-left:5px; white-space:nowrap;}
+  .avaluo-flag{font-size:.72rem;}
+  .avaluo-vencido{color:var(--critical-ink);}
+  .avaluo-proximo{color:var(--warning-ink);}
+  .avaluo-ok{color:var(--ink-muted);}
+  .avaluo-vigente{color:var(--good);}
+  .avaluo-est{opacity:.85; font-style:italic;}
+  .link-btn{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:var(--accent-soft); color:var(--accent-soft-ink); text-decoration:none;}
+  .link-btn:hover{background:var(--accent); color:var(--accent-ink);}
+  .no-link{color:var(--ink-muted); font-size:.72rem;}
+  .empty-row td{text-align:center; padding:36px; color:var(--ink-muted);}
+
+  /* ===== Edición discreta por fila ===== */
+  .row-actions{display:inline-flex; align-items:center; gap:6px;}
+  .edit-btn{
+    width:26px; height:26px; border-radius:7px; border:1px solid var(--border-strong); background:var(--surface);
+    color:var(--ink-muted); cursor:pointer; font-size:.82rem; display:inline-flex; align-items:center; justify-content:center;
+    opacity:0; transition:opacity .12s ease, color .12s ease, border-color .12s ease; flex:none;
+  }
+  .edit-btn:hover{color:var(--accent); border-color:var(--accent);}
+  tbody tr:hover .edit-btn, tbody tr:focus-within .edit-btn, .edit-btn:focus-visible{opacity:1;}
+  .edit-btn[disabled]{display:none;}
+  .edit-dot{display:none;}
+  tbody tr.row-edited td.finca::after{content:'●'; color:var(--accent); font-size:.5rem; vertical-align:super; margin-left:4px;}
+
+  .mifi-modal-backdrop{position:fixed; inset:0; background:rgba(16,19,14,.42); z-index:90; display:flex; align-items:center; justify-content:center; padding:20px;}
+  .mifi-modal-backdrop[hidden]{display:none;}
+  .mifi-modal{background:var(--surface); border-radius:14px; box-shadow:var(--shadow); width:100%; max-width:460px; max-height:calc(100vh - 40px); overflow-y:auto; border:1px solid var(--border);}
+  .mifi-modal-head{padding:16px 20px 12px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .mifi-modal-head h3{font-family:'Spectral',Georgia,serif; font-size:1.05rem; font-weight:600; margin:0;}
+  .mifi-modal-head p{margin:3px 0 0; font-size:.78rem; color:var(--ink-muted);}
+  .mifi-modal-close{width:26px; height:26px; border-radius:7px; border:none; background:transparent; color:var(--ink-muted); cursor:pointer; font-size:.95rem; flex:none;}
+  .mifi-modal-close:hover{background:var(--surface-alt-2); color:var(--ink);}
+  .mifi-modal-body{padding:16px 20px;}
+  .mifi-field{margin-bottom:13px;}
+  .mifi-field label{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-muted); font-weight:600; margin-bottom:5px;}
+  .mifi-field input, .mifi-field select{
+    width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-strong);
+    background:var(--surface); color:var(--ink); font-family:inherit; font-size:.86rem;
+  }
+  .mifi-field select{
+    padding:8px 32px 8px 10px; appearance:none; cursor:pointer;
+    background:var(--surface) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="%237C877E" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>') no-repeat right 12px center;
+  }
+  .mifi-field input:focus, .mifi-field select:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .mifi-field-row{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .mifi-desc-preview{font-size:.76rem; color:var(--ink-muted); margin-top:4px;}
+  .mifi-add-cedente{display:flex; gap:6px; margin-top:6px;}
+  .mifi-add-cedente[hidden]{display:none;}
+  .mifi-add-cedente input{flex:1;}
+  .mifi-add-cedente button{padding:8px 10px; border-radius:8px; border:1px solid var(--border-strong); background:var(--surface-alt-2); color:var(--ink-2); cursor:pointer; font-size:.78rem; flex:none;}
+  .mifi-locked{background:var(--surface-alt-2); border-radius:10px; padding:12px 14px; margin-top:4px; margin-bottom:14px;}
+  .mifi-locked-title{font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-muted); font-weight:600; margin:0 0 8px;}
+  .mifi-locked-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; font-size:.8rem; color:var(--ink-2);}
+  .mifi-locked-grid b{color:var(--ink); font-weight:600;}
+  .mifi-locked-note{font-size:.7rem; color:var(--ink-muted); margin:8px 0 0; font-style:italic;}
+  .mifi-modal-foot{display:flex; justify-content:flex-end; gap:8px; padding:14px 20px 18px;}
+  .mifi-btn{padding:9px 16px; border-radius:9px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); font-family:inherit; font-size:.84rem; cursor:pointer; font-weight:500;}
+  .mifi-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .mifi-btn-primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .mifi-btn-primary:hover{opacity:.92; color:var(--accent-ink);}
+  .mifi-btn-primary[disabled]{opacity:.55; cursor:default;}
+  .mifi-save-note{font-size:.74rem; color:var(--ink-muted); align-self:center; margin-right:auto;}
+  .mifi-toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:9px 16px; border-radius:9px; font-size:.82rem; box-shadow:var(--shadow); z-index:110; opacity:0; pointer-events:none; transition:opacity .2s ease;}
+  .mifi-toast.show{opacity:1;}
+
+  /* ===== Puerta de acceso GitHub ===== */
+  .gh-gate{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:28px;}
+  .gh-gate[hidden]{display:none;}
+  .gh-gate-card{max-width:480px; width:100%; background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); padding:28px 30px 26px;}
+  .gh-gate-card .subtitle{margin-bottom:18px;}
+  .gh-connect-btn{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:9px; border:1px solid var(--ink); background:var(--ink); color:var(--bg); font-family:inherit; font-size:.88rem; font-weight:600; cursor:pointer;}
+  .gh-connect-btn:hover{opacity:.88;}
+  .gh-gate-note{font-size:.78rem; color:var(--ink-muted); margin-top:14px; line-height:1.5;}
+  .gh-gate-error{background:var(--serious-bg); color:var(--serious-ink); border-radius:9px; padding:10px 12px; font-size:.82rem; margin-bottom:14px;}
+  .gh-badge{display:inline-flex; align-items:center; gap:6px; font-size:.76rem; padding:3px 9px; border-radius:20px; font-weight:600; cursor:pointer; border:none; font-family:inherit;}
+  .gh-badge-write{background:var(--good-bg); color:var(--good);}
+  .gh-badge-read{background:var(--surface-alt); color:var(--ink-2);}
+  .gh-badge:hover{opacity:.85;}
+
+  /* ===== Modal de conexión con GitHub ===== */
+  .mifi-field-hint{font-size:.74rem; color:var(--ink-muted); margin:5px 0 0; line-height:1.5;}
+  .mifi-field-hint a{color:var(--accent);}
+  .mifi-token-input{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.78rem;}
+
+  footer{margin-top:20px; font-size:.74rem; color:var(--ink-muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  footer a{color:var(--accent);}
+
+  /* ===== Descarga a Excel ===== */
+  .table-head-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+  .xlsx-btn{display:inline-flex; align-items:center; gap:6px; padding:7px 13px; border-radius:9px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); font-family:inherit; font-size:.8rem; font-weight:500; cursor:pointer; white-space:nowrap;}
+  .xlsx-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .xlsx-btn:disabled{opacity:.5; cursor:not-allowed;}
+  .xlsx-btn svg{width:15px; height:15px;}
+  @media (max-width:520px){ .table-head-row{flex-wrap:wrap; gap:8px;} }
+
+  /* ===== Selector de columnas ===== */
+  .colsel{position:relative;}
+  .colsel-panel{position:fixed; z-index:30; width:270px; background:var(--surface); border:1px solid var(--border-strong); border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.14); padding:10px;}
+  .colsel-panel[hidden]{display:none;}
+  .colsel-title{font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-muted); font-weight:600; margin:0 0 6px;}
+  .colsel-presets{display:flex; flex-wrap:wrap; gap:6px; padding-bottom:8px; margin-bottom:6px; border-bottom:1px solid var(--border);}
+  .colsel-presets button{font-family:inherit; font-size:.74rem; padding:4px 9px; border-radius:6px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); cursor:pointer;}
+  .colsel-presets button:hover{border-color:var(--accent); color:var(--accent);}
+  .colsel-list{max-height:320px; overflow-y:auto; display:flex; flex-direction:column; gap:1px;}
+  .colsel-opt{display:flex; align-items:center; gap:8px; padding:5px 7px; border-radius:6px; font-size:.82rem; color:var(--ink-2); cursor:pointer; user-select:none;}
+  .colsel-opt:hover{background:var(--surface-alt-2);}
+  .colsel-opt input{accent-color:var(--accent); width:14px; height:14px; flex:none; cursor:pointer;}
+  .colsel-opt.locked{opacity:.6; cursor:default;}
+  .colsel-note{font-size:.72rem; color:var(--ink-muted); margin:8px 2px 0; line-height:1.45;}
+
+  /* ===== Acceso por usuario, pestañas, historial y usuarios ===== */
+  [hidden]{display:none !important;}
+  .login-card .mifi-field input{padding:11px 12px; font-size:.95rem;}
+  .login-btn{width:100%; padding:11px; font-size:.95rem; margin-top:4px;}
+  .login-info{background:var(--accent-soft); color:var(--accent-soft-ink); border-radius:9px; padding:10px 12px; font-size:.82rem; margin-bottom:14px;}
+  .tabs{display:flex; gap:4px; flex-wrap:wrap; border-bottom:1px solid var(--border); margin:-6px 0 20px;}
+  .tab{padding:10px 16px; border:none; background:none; font-family:inherit; font-size:.9rem; font-weight:600; color:var(--ink-muted); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px;}
+  .tab:hover{color:var(--ink);}
+  .tab.active{color:var(--accent); border-bottom-color:var(--accent);}
+  .tab-count{font-size:.7rem; background:var(--surface-alt); color:var(--ink-2); padding:1px 7px; border-radius:10px; margin-left:4px; font-weight:600; font-variant-numeric:tabular-nums;}
+  .user-box{display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap; margin-bottom:6px;}
+  .user-chip{display:inline-flex; gap:6px; align-items:center; font-size:.78rem; padding:3px 10px; border-radius:20px; background:var(--accent-soft); color:var(--accent-soft-ink); font-weight:600;}
+  .user-chip.read{background:var(--surface-alt); color:var(--ink-2);}
+  .link-like{background:none; border:none; padding:0; color:var(--accent); font-family:inherit; font-size:.76rem; cursor:pointer; text-decoration:underline; text-underline-offset:2px;}
+  .link-like:hover{opacity:.8;}
+  .date-range{display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--border-strong); border-radius:9px; padding:0 8px 0 12px; height:38px;}
+  .date-range .pr-label{font-size:.72rem; color:var(--ink-muted);}
+  .date-range input{padding:5px 6px; border-radius:6px; border:1px solid var(--border-strong); background:var(--surface-alt-2); color:var(--ink); font-family:inherit; font-size:.78rem;}
+  .hist-table thead th, .users-table thead th, .acc-table thead th{cursor:default;}
+  .hist-table thead th:hover, .users-table thead th:hover, .acc-table thead th:hover{color:var(--ink-muted);}
+  .hist-old{color:var(--ink-muted);}
+  .hist-new{color:var(--ink); font-weight:600;}
+  .hist-arrow{color:var(--ink-muted); text-align:center; padding-left:0 !important; padding-right:0 !important;}
+  .hist-empty{color:var(--ink-muted); font-style:italic; font-weight:400;}
+  .hist-note{font-size:.74rem; color:var(--ink-muted); margin:10px 2px 0;}
+  .hist-when{white-space:nowrap; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.78rem;}
+  .hist-nota{font-size:.76rem; color:var(--ink-muted);}
+  .finca-link{font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:600; color:var(--accent); background:none; border:none; padding:0; cursor:pointer; font-size:inherit; text-align:left;}
+  .finca-link:hover{text-decoration:underline;}
+  .mini-btn{padding:4px 9px; border-radius:6px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); font-family:inherit; font-size:.74rem; cursor:pointer; white-space:nowrap;}
+  .mini-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .mini-btn.danger:hover{border-color:var(--critical-ink); color:var(--critical-ink);}
+  .mini-btn[disabled]{opacity:.45; cursor:default;}
+  .filter-chip{display:inline-flex; align-items:center; gap:6px; font-size:.78rem; padding:6px 10px; border-radius:20px; background:var(--accent-soft); color:var(--accent-soft-ink); font-weight:600;}
+  .filter-chip button{border:none; background:none; color:inherit; cursor:pointer; padding:0; font-size:.85rem;}
+  .admin-grid{display:grid; grid-template-columns:320px 1fr; gap:16px; margin-bottom:16px; align-items:start;}
+  @media (max-width:900px){ .admin-grid{grid-template-columns:1fr;} }
+  .role-select{padding:5px 28px 5px 8px; font-size:.8rem; max-width:100%;}
+  .pill-inactive{background:var(--critical-bg); color:var(--critical-ink);}
+  .pill-active{background:var(--good-bg); color:var(--good);}
+  .user-flags{display:flex; gap:4px; flex-wrap:wrap; margin-top:3px;}
+  .flag{font-size:.66rem; padding:1px 6px; border-radius:5px; background:var(--warning-bg); color:var(--warning-ink); font-weight:600;}
+  .user-actions{display:flex; gap:6px; flex-wrap:wrap;}
+  .cred-box{background:var(--surface-alt-2); border-radius:10px; padding:14px; display:grid; grid-template-columns:auto 1fr; gap:8px 14px; align-items:center;}
+  .cred-box b{font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-muted);}
+  .cred-box span{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:1rem; color:var(--ink); user-select:all;}
+  .warn-note{background:var(--warning-bg); color:var(--warning-ink); border-radius:9px; padding:10px 12px; font-size:.8rem; margin-top:12px; line-height:1.45;}
+  .idle-count{font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:700; color:var(--critical-ink);}
+  .mifi-modal-backdrop.top{z-index:120;}
+  .roles-legend{font-size:.76rem; color:var(--ink-muted); line-height:1.6; margin:14px 0 0; padding-top:12px; border-top:1px solid var(--border);}
+  .roles-legend b{color:var(--ink-2);}
+  .pw-rules{font-size:.74rem; color:var(--ink-muted); margin:-4px 0 10px;}
+  .modal-text{font-size:.88rem; color:var(--ink-2); margin:0; line-height:1.5;}
+  .edit-meta{font-size:.76rem; color:var(--ink-muted); margin:0 0 12px;}
+  .mifi-save-note.err{color:var(--critical-ink);}
+</style>
+
+<div class="gh-gate" id="loginGate" hidden>
+  <form class="gh-gate-card login-card" id="loginForm" autocomplete="on" novalidate>
+    <p class="brand-eyebrow">MiFi · Cartera de propiedades</p>
+    <h1>MIFI BIENES</h1>
+    <p class="subtitle">Acceso restringido. Ingrese con su usuario y contraseña personal.</p>
+    <p class="gh-gate-error" id="loginMsg" hidden></p>
+    <div class="mifi-field">
+      <label for="loginUser">Usuario</label>
+      <input id="loginUser" name="username" autocomplete="username" autocapitalize="none" spellcheck="false">
+    </div>
+    <div class="mifi-field">
+      <label for="loginPass">Contraseña</label>
+      <input id="loginPass" name="password" type="password" autocomplete="current-password">
+    </div>
+    <button type="submit" class="mifi-btn mifi-btn-primary login-btn" id="loginBtn">Acceder</button>
+    <p class="gh-gate-note">Por seguridad, la sesión se cierra tras 10 minutos de inactividad. Cada ingreso y cada edición quedan registrados con su usuario, fecha y hora.</p>
+  </form>
+</div>
+
+<div class="wrap" id="dashboardWrap" hidden>
+
+  <div class="topbar">
+    <div>
+      <p class="brand-eyebrow">MiFi · Cartera de propiedades</p>
+      <h1>MIFI BIENES</h1>
+      <p class="subtitle">Fincas reposeídas, cedidas y adjudicadas a nivel nacional — buscador y resumen en vivo por provincia, corregimiento, cedente y estado. Elige qué columnas mostrar con “Columnas” y descarga la tabla en Excel con “Descargar Excel”.</p>
+    </div>
+    <div class="meta-col">
+      <div class="user-box">
+        <span class="user-chip" id="userChip"></span>
+        <button type="button" class="link-like" id="chgPwBtn">Cambiar contraseña</button>
+        <button type="button" class="link-like" id="logoutBtn">Cerrar sesión</button>
+      </div>
+      <div><b id="genDate"></b></div>
+      <div id="syncNote">Fuente: base de datos MIFI (Google Sheets)</div>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button type="button" class="tab active" data-view="fincas">Fincas</button>
+    <button type="button" class="tab" data-view="historial">Historial de ediciones <span class="tab-count" id="histCount">0</span></button>
+    <button type="button" class="tab" data-view="usuarios" id="tabUsuarios" hidden>Usuarios y accesos</button>
+  </nav>
+
+  <section id="viewFincas">
+  <div class="controls">
+
+    <div class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="searchInput" type="text" placeholder="Buscar por finca, tipo, corregimiento, cedente o vendido a…">
+    </div>
+    <div class="msf" id="filterTipo">
+      <button type="button" class="msf-btn">Tipo: todos</button>
+      <div class="msf-panel" hidden>
+        <div class="msf-panel-actions">
+          <button type="button" data-act="all">Todos</button>
+          <button type="button" data-act="none">Ninguno</button>
+        </div>
+        <div class="msf-options"></div>
+      </div>
+    </div>
+    <div class="msf" id="filterProv">
+      <button type="button" class="msf-btn">Provincia: todas</button>
+      <div class="msf-panel" hidden>
+        <div class="msf-panel-actions">
+          <button type="button" data-act="all">Todas</button>
+          <button type="button" data-act="none">Ninguna</button>
+        </div>
+        <div class="msf-options"></div>
+      </div>
+    </div>
+    <div class="msf" id="filterEstado">
+      <button type="button" class="msf-btn">Estado: todos</button>
+      <div class="msf-panel" hidden>
+        <div class="msf-panel-actions">
+          <button type="button" data-act="all">Todos</button>
+          <button type="button" data-act="none">Ninguno</button>
+        </div>
+        <div class="msf-options"></div>
+      </div>
+    </div>
+    <div class="msf" id="filterCedente">
+      <button type="button" class="msf-btn">Cedente: todos</button>
+      <div class="msf-panel" hidden>
+        <div class="msf-panel-actions">
+          <button type="button" data-act="all">Todos</button>
+          <button type="button" data-act="none">Ninguno</button>
+        </div>
+        <div class="msf-options"></div>
+      </div>
+    </div>
+    <div class="msf" id="filterCorr">
+      <button type="button" class="msf-btn">Corregimiento: todos</button>
+      <div class="msf-panel" hidden>
+        <div class="msf-panel-actions">
+          <button type="button" data-act="all">Todos</button>
+          <button type="button" data-act="none">Ninguno</button>
+        </div>
+        <div class="msf-options"></div>
+      </div>
+    </div>
+    <div class="price-range" title="Filtrar por rango de precio (Valor sugerido)">
+      <span class="pr-label">Precio (VS)</span>
+      <input id="filterPriceMin" type="number" inputmode="numeric" placeholder="Mín." min="0" step="1000">
+      <span class="pr-sep">–</span>
+      <input id="filterPriceMax" type="number" inputmode="numeric" placeholder="Máx." min="0" step="1000">
+    </div>
+    <button class="reset-btn" id="resetBtn">Limpiar filtros</button>
+    <span class="count-pill" id="countPill"></span>
+  </div>
+
+  <div class="stats" id="statsRow"></div>
+
+  <div class="charts">
+    <div class="card">
+      <h2>Estado del inmueble</h2>
+      <p class="card-sub">Distribución por estado actual registrado</p>
+      <div id="chartEstado"></div>
+    </div>
+    <div class="card">
+      <h2>Cedente / entidad</h2>
+      <p class="card-sub">Fincas por institución cedente o hipotecaria</p>
+      <div id="chartCedente"></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-head-row">
+      <h2>Detalle de fincas</h2>
+      <div class="table-head-actions">
+        <span class="count-pill" id="tableCountPill"></span>
+        <div class="colsel" id="colSel">
+          <button type="button" class="xlsx-btn" id="colSelBtn" title="Elegir qué columnas se ven en la tabla y se incluyen en el Excel">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="5" r="2" fill="var(--surface)" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="12" r="2" fill="var(--surface)" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="19" r="2" fill="var(--surface)" stroke="currentColor" stroke-width="2"/></svg>
+            <span id="colSelLabel">Columnas</span>
+          </button>
+          <div class="colsel-panel" id="colSelPanel" hidden>
+            <p class="colsel-title">Columnas visibles</p>
+            <div class="colsel-presets">
+              <button type="button" data-preset="default">Predeterminadas</button>
+              <button type="button" data-preset="all">Todas</button>
+              <button type="button" data-preset="external" title="Oculta datos internos: cedente, vendido a, valor en libros, venta rápida, descuento, observación y PDF">Para compartir</button>
+            </div>
+            <div class="colsel-list" id="colSelList"></div>
+            <p class="colsel-note">El Excel descargado incluye solo las columnas marcadas, en este mismo orden, y solo las fincas filtradas.</p>
+          </div>
+        </div>
+        <button type="button" class="xlsx-btn" id="exportXlsxBtn" title="Descargar las fincas que se muestran en la tabla (con filtros y orden actuales) como archivo Excel">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Descargar Excel
+        </button>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <colgroup id="tableCols"></colgroup>
+        <thead>
+          <tr id="tableHeadRow"></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  </section>
+
+  <section id="viewHistorial" hidden>
+    <div class="controls">
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="histSearch" type="text" placeholder="Buscar por finca, usuario, campo o valor…">
+      </div>
+      <span class="filter-chip" id="histFincaChip" hidden><span id="histFincaChipTxt"></span><button type="button" id="histFincaChipX" aria-label="Quitar filtro de finca">✕</button></span>
+      <select id="histUser"><option value="">Usuario: todos</option></select>
+      <select id="histField"><option value="">Campo: todos</option></select>
+      <div class="date-range">
+        <span class="pr-label">Desde</span><input type="date" id="histFrom">
+        <span class="pr-label">Hasta</span><input type="date" id="histTo">
+      </div>
+      <button class="reset-btn" id="histReset" type="button">Limpiar filtros</button>
+    </div>
+    <div class="table-card">
+      <div class="table-head-row">
+        <h2>Historial de ediciones</h2>
+        <div class="table-head-actions">
+          <span class="count-pill" id="histCountPill"></span>
+          <button type="button" class="xlsx-btn" id="histExportBtn" title="Descargar el historial filtrado como archivo Excel">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Descargar Excel
+          </button>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table class="hist-table">
+          <colgroup id="histCols"></colgroup>
+          <thead><tr id="histHeadRow"></tr></thead>
+          <tbody id="histBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="hist-note">El historial no se puede borrar ni modificar desde el dashboard. La fecha y hora las registra el servidor (hora de Panamá), no la computadora de quien edita.</p>
+  </section>
+
+  <section id="viewUsuarios" hidden>
+    <div class="admin-grid">
+      <div class="card">
+        <h2>Nuevo usuario</h2>
+        <p class="card-sub">Se genera una contraseña temporal. La persona deberá cambiarla en su primer ingreso.</p>
+        <form id="newUserForm" novalidate>
+          <div class="mifi-field"><label for="nuNombre">Nombre completo</label><input id="nuNombre" placeholder="ej. Juan Pérez"></div>
+          <div class="mifi-field"><label for="nuUsuario">Usuario (para ingresar)</label><input id="nuUsuario" placeholder="ej. jperez" autocapitalize="none" spellcheck="false"></div>
+          <div class="mifi-field"><label for="nuRol">Rol</label>
+            <select id="nuRol">
+              <option value="lector">Solo lectura</option>
+              <option value="editor">Edición</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <button class="mifi-btn mifi-btn-primary" type="submit" id="nuBtn">Crear usuario</button>
+          <p class="mifi-save-note" id="nuNote" style="margin-top:10px"></p>
+        </form>
+        <p class="roles-legend"><b>Solo lectura:</b> ve fincas e historial.<br><b>Edición:</b> además puede editar fincas.<br><b>Administrador:</b> además administra usuarios y puede revertir cambios.</p>
+      </div>
+      <div class="table-card">
+        <div class="table-head-row"><h2>Usuarios</h2><div class="table-head-actions"><span class="count-pill" id="usersCountPill"></span><button type="button" class="xlsx-btn" id="usersReload">Actualizar</button></div></div>
+        <div class="table-scroll" style="max-height:460px">
+          <table class="users-table">
+            <colgroup><col style="width:24%"><col style="width:14%"><col style="width:18%"><col style="width:12%"><col style="width:16%"><col style="width:16%"></colgroup>
+            <thead><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Estado</th><th>Último ingreso</th><th>Acciones</th></tr></thead>
+            <tbody id="usersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-head-row"><h2>Registro de accesos</h2><span class="count-pill">Últimos 300 eventos · ingresos, salidas, intentos fallidos y cambios de usuarios</span></div>
+      <div class="table-scroll" style="max-height:420px">
+        <table class="acc-table">
+          <colgroup><col style="width:20%"><col style="width:16%"><col style="width:22%"><col style="width:42%"></colgroup>
+          <thead><tr><th>Fecha y hora</th><th>Usuario</th><th>Evento</th><th>Detalle</th></tr></thead>
+          <tbody id="accBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="footNote">Datos únicamente de los registros cargados. Si un dato no existe, se muestra “Dato no disponible”. Pasa el cursor sobre una fila y haz clic en ✎ para editar (usuarios con permiso de edición). Cada cambio queda registrado en “Historial de ediciones”.</span>
+    <span id="footDate"></span>
+  </footer>
+</div>
+
+<div class="mifi-modal-backdrop" id="editBackdrop" hidden>
+  <div class="mifi-modal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="mifi-modal-head">
+      <div>
+        <h3 id="editModalTitle">Editar finca</h3>
+        <p id="editModalSub"></p>
+      </div>
+      <button type="button" class="mifi-modal-close" id="editClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="mifi-modal-body">
+      <div class="mifi-field">
+        <label for="editEstado">Estado</label>
+        <select id="editEstado">
+          <option value="">Sin dato</option>
+          <option value="LIBRE">Libre</option>
+          <option value="OCUPADA">Ocupada</option>
+          <option value="POR INSPECCIONAR">Por inspeccionar</option>
+          <option value="ALQUILADA">Alquilada</option>
+          <option value="VENDIDA">Vendida</option>
+          <option value="DEMANDA">Demanda</option>
+          <option value="NO OCUPADA">No ocupada</option>
+        </select>
+      </div>
+      <div class="mifi-field">
+        <label for="editCedente">Cedida / Hipotecada por</label>
+        <select id="editCedente"></select>
+        <div class="mifi-add-cedente" id="addCedenteRow" hidden>
+          <input type="text" id="newCedenteInput" placeholder="Nombre del nuevo cedente">
+          <button type="button" id="newCedenteConfirm">Agregar</button>
+        </div>
+      </div>
+      <div class="mifi-field">
+        <label for="editVendidoA">Vendido a</label>
+        <input type="text" id="editVendidoA" list="vendidoAList" placeholder="Nombre del comprador (si aplica)">
+        <datalist id="vendidoAList"></datalist>
+      </div>
+      <div class="mifi-field-row">
+        <div class="mifi-field">
+          <label for="editVs">Valor sugerido (VS)</label>
+          <input type="number" id="editVs" inputmode="numeric" step="any">
+        </div>
+        <div class="mifi-field">
+          <label for="editVentaR">Venta rápida</label>
+          <input type="number" id="editVentaR" inputmode="numeric" step="any">
+        </div>
+      </div>
+      <div class="mifi-field">
+        <label for="editVlibros">Valor en libros</label>
+        <input type="number" id="editVlibros" inputmode="numeric" step="any">
+      </div>
+      <p class="mifi-desc-preview" id="editDescPreview"></p>
+
+      <div class="mifi-locked">
+        <p class="mifi-locked-title">Datos de origen (Excel / avalúo — no editables aquí)</p>
+        <div class="mifi-locked-grid" id="editLockedGrid"></div>
+        <p class="mifi-locked-note">Estos datos solo los modifica el administrador directamente en la hoja de Google.</p>
+      </div>
+    </div>
+    <div class="mifi-modal-foot">
+      <span class="mifi-save-note" id="editSaveNote"></span>
+      <button type="button" class="mifi-btn" id="editCancel">Cancelar</button>
+      <button type="button" class="mifi-btn mifi-btn-primary" id="editSave">Guardar cambios</button>
+    </div>
+  </div>
+</div>
+<div class="mifi-toast" id="mifiToast"></div>
+
+<div class="mifi-modal-backdrop top" id="idleBackdrop" hidden>
+  <div class="mifi-modal" role="alertdialog" aria-modal="true" aria-labelledby="idleTitle">
+    <div class="mifi-modal-head"><div><h3 id="idleTitle">¿Sigue ahí?</h3></div></div>
+    <div class="mifi-modal-body">
+      <p class="modal-text">Por seguridad, su sesión se cerrará en <span class="idle-count" id="idleCount">60</span> segundos por inactividad.</p>
+    </div>
+    <div class="mifi-modal-foot">
+      <button type="button" class="mifi-btn" id="idleLogout">Cerrar sesión</button>
+      <button type="button" class="mifi-btn mifi-btn-primary" id="idleStay">Seguir conectado</button>
+    </div>
+  </div>
+</div>
+
+<div class="mifi-modal-backdrop" id="pwBackdrop" hidden>
+  <form class="mifi-modal" role="dialog" aria-modal="true" aria-labelledby="pwTitle" id="pwForm" novalidate>
+    <div class="mifi-modal-head">
+      <div><h3 id="pwTitle">Cambiar contraseña</h3><p id="pwSub"></p></div>
+      <button type="button" class="mifi-modal-close" id="pwClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="mifi-modal-body">
+      <div class="mifi-field"><label for="pwActual">Contraseña actual</label><input type="password" id="pwActual" autocomplete="current-password"></div>
+      <div class="mifi-field"><label for="pwNueva">Nueva contraseña</label><input type="password" id="pwNueva" autocomplete="new-password"></div>
+      <p class="pw-rules">Mínimo 10 caracteres, con letras y números. Es personal: no la comparta.</p>
+      <div class="mifi-field"><label for="pwConfirm">Repetir nueva contraseña</label><input type="password" id="pwConfirm" autocomplete="new-password"></div>
+    </div>
+    <div class="mifi-modal-foot">
+      <span class="mifi-save-note" id="pwNote"></span>
+      <button type="button" class="mifi-btn" id="pwCancel">Cancelar</button>
+      <button type="button" class="mifi-btn" id="pwLogout" hidden>Cerrar sesión</button>
+      <button type="submit" class="mifi-btn mifi-btn-primary" id="pwSave">Guardar contraseña</button>
+    </div>
+  </form>
+</div>
+
+<div class="mifi-modal-backdrop" id="credBackdrop" hidden>
+  <div class="mifi-modal" role="dialog" aria-modal="true" aria-labelledby="credTitle">
+    <div class="mifi-modal-head">
+      <div><h3 id="credTitle">Credenciales de acceso</h3><p id="credSub"></p></div>
+      <button type="button" class="mifi-modal-close" id="credClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="mifi-modal-body">
+      <div class="cred-box"><b>Usuario</b><span id="credUser"></span><b>Contraseña</b><span id="credPass"></span></div>
+      <p class="warn-note">Copie y entregue esta contraseña en privado. <b>No se volverá a mostrar.</b> La persona deberá cambiarla en su primer ingreso.</p>
+    </div>
+    <div class="mifi-modal-foot">
+      <span class="mifi-save-note" id="credNote"></span>
+      <button type="button" class="mifi-btn" id="credCopy">Copiar</button>
+      <button type="button" class="mifi-btn mifi-btn-primary" id="credOk">Listo</button>
+    </div>
+  </div>
+</div>
+
+<div class="mifi-modal-backdrop" id="confirmBackdrop" hidden>
+  <div class="mifi-modal" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="mifi-modal-head"><div><h3 id="confirmTitle"></h3></div></div>
+    <div class="mifi-modal-body"><p class="modal-text" id="confirmText"></p></div>
+    <div class="mifi-modal-foot">
+      <button type="button" class="mifi-btn" id="confirmCancel">Cancelar</button>
+      <button type="button" class="mifi-btn mifi-btn-primary" id="confirmOk">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ⚠️ CONFIGURACIÓN: dirección de la aplicación web de Google Apps Script (termina en /exec).
+const API_URL = 'https://script.google.com/macros/s/AKfycbxTMdB6HI52_0H2_PRmx40J7e1ETBZTmQuNMe6Yf2Npyl3RZvKtEpsvXvAb_wzrZzT4/exec';
+
+const IDLE_LIMIT_MS = 10 * 60 * 1000;  // cierre de sesión por inactividad
+const IDLE_WARN_MS = 60 * 1000;        // aviso previo
+const POLL_MS = 60 * 1000;             // consulta de cambios hechos por otros usuarios
+const SS_KEY = 'mifi_sess_v2';
+
+/* =====================================================================
+   DATOS DESDE GOOGLE SHEETS (vía Google Apps Script)
+   - La página NO contiene datos: se descargan solo después de un ingreso válido.
+   - Cada usuario tiene su propia contraseña (verificada en el servidor).
+   - Roles: admin (todo + usuarios + revertir), editor (edita), lector (solo ve).
+   - Cada edición queda en la pestaña "Historial" de la hoja con usuario, fecha
+     y hora del servidor, valor anterior y valor nuevo.
+   ===================================================================== */
+let DATA = [];
+let HISTORY = [];
+let OVERRIDES = {fincas:{}, customCedentes:[]}; // solo cedentes agregados en esta sesión
+let SESSION = null;   // {token, user:{usuario,nombre,rol,rolLabel,debeCambiar}}
+let ACCESS = null;    // 'write' | 'read'
+let REV = null;
+
+const ROLE_LABELS = {admin:'Administrador', editor:'Edición', lector:'Solo lectura'};
+const FIELD_LABELS = {estado:'Estado', cedente:'Cedida / Hipotecada', vendidoA:'Vendido a', vs:'Valor sugerido', ventaR:'Venta rápida', vlibros:'Valor en libros'};
+
+function computeDescRatio(vs, ventaR){
+  if(vs===null||vs===undefined||ventaR===null||ventaR===undefined||ventaR===0) return null;
+  return vs/ventaR;
+}
+function mergedRow(d){ return d.upd ? Object.assign({}, d, {_edited:true}) : d; }
+function getMergedData(){ return DATA.map(mergedRow); }
+window.mifiLiveRows = getMergedData;
+
+function allCedentes(rows){
+  const set = new Set(rows.map(d=>d.cedente).filter(Boolean));
+  (OVERRIDES.customCedentes||[]).forEach(c=>set.add(c));
+  return [...set].sort((a,b)=>a.localeCompare(b,'es'));
+}
+
+function onLiveDataChanged(){
+  populateFilters(getMergedData());
+  applyFilters();
+  if(typeof renderHistory==='function') renderHistory();
+}
+
+/* ---------- Comunicación con el servidor ---------- */
+async function api(action, payload){
+  if(API_URL.indexOf('__API')===0 || API_URL.indexOf('PEGAR')===0){
+    return {ok:false, error:'Falta configurar la dirección del servidor (API_URL) en este archivo.'};
+  }
+  const body = Object.assign({action}, payload||{});
+  if(SESSION && action!=='login') body.token = SESSION.token;
+  let res;
+  try{
+    const r = await fetch(API_URL, {method:'POST', body: JSON.stringify(body)});
+    res = await r.json();
+  }catch(e){
+    return {ok:false, net:true, error:'No se pudo conectar con el servidor. Revise su conexión a internet.'};
+  }
+  if(!res) return {ok:false, error:'Respuesta vacía del servidor.'};
+  if(!res.ok && res.code==='SESSION' && SESSION){ endSession('Su sesión expiró. Ingrese nuevamente.', false); }
+  else if(!res.ok && res.code==='MUST_CHANGE' && SESSION){ SESSION.user.debeCambiar = true; openPwModal(true); }
+  return res;
+}
+
+function saveSessionLocal(){ try{ sessionStorage.setItem(SS_KEY, JSON.stringify(SESSION)); }catch(e){} }
+
+function applyUser(user){
+  SESSION.user = user;
+  ACCESS = (user.rol==='admin' || user.rol==='editor') ? 'write' : 'read';
+  saveSessionLocal();
+  const chip = document.getElementById('userChip');
+  chip.className = 'user-chip' + (ACCESS==='read' ? ' read' : '');
+  chip.textContent = (ACCESS==='read' ? '👁 ' : '✎ ') + user.nombre + ' · ' + (user.rolLabel || ROLE_LABELS[user.rol] || user.rol);
+  document.getElementById('tabUsuarios').hidden = user.rol!=='admin';
+  if(user.rol!=='admin' && currentView==='usuarios') switchView('fincas');
+}
+
+function startSession(res){
+  SESSION = {token: res.token, user: res.user};
+  applyUser(res.user);
+  document.getElementById('loginGate').hidden = true;
+  document.getElementById('dashboardWrap').hidden = false;
+  lastActivity = Date.now();
+  if(res.user.debeCambiar){ openPwModal(true); return; }
+  if(res.fincas) loadPayload(res); else refreshData();
+}
+
+function loadPayload(res){
+  if(!SESSION) return;
+  if(res.user) applyUser(res.user);
+  DATA = (res.fincas || []);
+  HISTORY = (res.historial || []);
+  REV = res.rev;
+  onLiveDataChanged();
+  const t = new Date().toLocaleTimeString('es-PA',{hour:'2-digit', minute:'2-digit'});
+  document.getElementById('syncNote').textContent = 'Datos actualizados a las ' + t + ' · Google Sheets';
+  document.getElementById('footDate').textContent = 'Última sincronización: ' + t;
+}
+
+async function refreshData(){
+  const r = await api('data');
+  if(r.ok) loadPayload(r);
+  else if(!r.code) toast(r.error || 'No se pudieron cargar los datos.');
+  return r;
+}
+
+function showLogin(msg, kind){
+  document.getElementById('dashboardWrap').hidden = true;
+  document.getElementById('loginGate').hidden = false;
+  const el = document.getElementById('loginMsg');
+  if(msg){ el.textContent = msg; el.className = kind==='info' ? 'login-info' : 'gh-gate-error'; el.hidden = false; }
+  else el.hidden = true;
+  const u = document.getElementById('loginUser');
+  setTimeout(()=>{ (u.value ? document.getElementById('loginPass') : u).focus(); }, 30);
+}
+
+function endSession(msg, callServer, motivo){
+  const tok = SESSION && SESSION.token;
+  SESSION = null; ACCESS = null; DATA = []; HISTORY = []; REV = null;
+  OVERRIDES = {fincas:{}, customCedentes:[]};
+  try{ sessionStorage.removeItem(SS_KEY); }catch(e){}
+  document.querySelectorAll('.mifi-modal-backdrop').forEach(b=>{ b.hidden = true; });
+  idleWarnOpen = false;
+  ['tableBody','histBody','usersBody','accBody','statsRow','chartEstado','chartCedente'].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.innerHTML = '';
+  });
+  document.getElementById('userChip').textContent = '';
+  switchView('fincas');
+  showLogin(msg, 'info');
+  if(callServer && tok && API_URL.indexOf('__API')!==0){
+    try{ fetch(API_URL, {method:'POST', body: JSON.stringify({action:'logout', token: tok, motivo: motivo||'manual'}), keepalive:true}); }catch(e){}
+  }
+}
+
+async function saveFincaEdits(id, patch){
+  if(ACCESS!=='write') return {ok:false, reason:'Su usuario es de solo lectura.'};
+  const r = await api('edit', {id, patch});
+  if(!r.ok) return {ok:false, reason: r.error || 'error'};
+  const i = DATA.findIndex(d=>d._id===id);
+  if(i>=0 && r.fila) DATA[i] = r.fila;
+  onLiveDataChanged();
+  if(r.cambios>0) refreshData();
+  return {ok:true, cambios: r.cambios};
+}
+
+async function addCustomCedente(name){
+  name = String(name||'').trim();
+  if(!name || ACCESS!=='write') return {ok:false};
+  if(!OVERRIDES.customCedentes.includes(name)) OVERRIDES.customCedentes.push(name);
+  return {ok:true};
+}
+
+const CAT_COLORS = {
+  "POR ASIGNAR":"var(--cat-1)",
+  "BNP":"var(--cat-2)",
+  "FIDEMICRO":"var(--cat-3)",
+  "MIFINANCIERA S.A.":"var(--cat-4)",
+  "ESPERANZA PITTY":"var(--cat-5)",
+  "MARIO ARAUZ":"var(--cat-6)",
+  "FAMILIA URANGA":"var(--cat-7)",
+  "JUNTA DIRECTIVA":"var(--cat-8)"
+};
+const CAT_OTHER = "var(--ink-muted)";
+
+const ESTADO_META = {
+  'LIBRE': {label:'Libre', cls:'pill-libre', dot:'var(--good)'},
+  'OCUPADA': {label:'Ocupada', cls:'pill-ocupada', dot:'var(--warning-ink)'},
+  'POR INSPECCIONAR': {label:'Por inspeccionar', cls:'pill-inspeccionar', dot:'var(--serious-ink)'},
+  'ALQUILADA': {label:'Alquilada', cls:'pill-alquilada', dot:'var(--accent)'},
+  'VENDIDA': {label:'Vendida', cls:'pill-vendida', dot:'var(--gold)'},
+  'DEMANDA': {label:'Demanda', cls:'pill-demanda', dot:'var(--critical-ink)'},
+  'NO OCUPADA': {label:'No ocupada', cls:'pill-sindato', dot:'var(--ink-muted)'},
+  'INVADIDA': {label:'Invadida', cls:'pill-demanda', dot:'var(--critical-ink)'}
+};
+
+const money = n => (n===null||n===undefined) ? 'Dato no disponible' : '$' + Math.round(n).toLocaleString('es-PA');
+const pct = n => (n===null||n===undefined) ? '—' : Math.round(n*100) + '%';
+const fecha = f => f ? f : 'Dato no disponible';
+
+function normEstadoKey(raw){
+  if(!raw) return '__SINDATO';
+  return raw.trim().toUpperCase();
+}
+function estadoPill(estado){
+  const key = normEstadoKey(estado);
+  if(key==='__SINDATO') return '<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>Sin dato</span>';
+  const meta = ESTADO_META[key];
+  if(meta) return `<span class="pill ${meta.cls}"><span class="dot" style="background:${meta.dot}"></span>${meta.label}</span>`;
+  return `<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>${estado.trim()}</span>`;
+}
+function estadoBucket(d){
+  const key = normEstadoKey(d.estado);
+  if(key==='LIBRE'||key==='OCUPADA'||key==='POR INSPECCIONAR') return key;
+  return 'SIN DATO';
+}
+function isEnProceso(d){
+  if(!d.lanz) return false;
+  const L = d.lanz.toUpperCase();
+  if(L.includes('FINALIZ')) return false;
+  if(L.includes('ARRENDAMIENTO')) return false;
+  return true;
+}
+const AVALUO_VIGENCIA_ANIOS = 2;
+const AVALUO_ALERTA_DIAS = 90; // ventana de "próximo a vencer" antes del vencimiento
+
+function computeEa(d){
+  // Si el registro ya trae un estatus de avalúo explícito, se respeta tal cual.
+  if(d.ea) return {text:d.ea, estimated:false};
+  // Si no hay estatus pero sí fecha de avalúo, se calcula: cada avalúo vence a los 2 años de su fecha.
+  if(d.fa){
+    const partes = d.fa.split('-').map(Number);
+    const fechaAvaluo = new Date(partes[0], (partes[1]||1)-1, partes[2]||1);
+    if(!isNaN(fechaAvaluo.getTime())){
+      const vencimiento = new Date(fechaAvaluo.getFullYear()+AVALUO_VIGENCIA_ANIOS, fechaAvaluo.getMonth(), fechaAvaluo.getDate());
+      const diasRestantes = Math.round((vencimiento - new Date())/86400000);
+      if(diasRestantes < 0) return {text:'Vencido', estimated:true};
+      if(diasRestantes <= AVALUO_ALERTA_DIAS) return {text:'Próximo a vencer', estimated:true};
+      return {text:'Vigente', estimated:true};
+    }
+  }
+  return {text:null, estimated:false};
+}
+function avaluoFlag(eaInfo){
+  const ea = eaInfo.text;
+  const title = eaInfo.estimated ? ' title="Calculado: la vigencia de un avalúo es de 2 años desde su fecha (dato original no disponible)"' : '';
+  const estCls = eaInfo.estimated ? ' avaluo-est' : '';
+  if(!ea) return '<span class="avaluo-flag avaluo-ok">Sin dato</span>';
+  if(/vigente/i.test(ea)) return `<span class="avaluo-flag avaluo-vigente${estCls}"${title}>● Vigente</span>`;
+  if(/vencido/i.test(ea)) return `<span class="avaluo-flag avaluo-vencido${estCls}"${title}>● Vencido</span>`;
+  if(/próximo|proximo/i.test(ea)) return `<span class="avaluo-flag avaluo-proximo${estCls}"${title}>● Próximo a vencer</span>`;
+  return `<span class="avaluo-flag avaluo-ok${estCls}"${title}>${ea}</span>`;
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function keyOrSinDato(v){
+  return (v===null || v===undefined || v==='') ? '__SINDATO' : v;
+}
+
+function buildSimpleEntries(rows, getValue){
+  const map = new Map();
+  rows.forEach(d=>{
+    const key = keyOrSinDato(getValue(d));
+    if(!map.has(key)) map.set(key, key==='__SINDATO' ? 'Sin dato' : String(key));
+  });
+  return [...map.entries()].map(([key,label])=>({key,label})).sort((a,b)=>a.label.localeCompare(b.label,'es'));
+}
+
+function buildEstadoEntries(rows){
+  const map = new Map();
+  rows.forEach(d=>{
+    const key = normEstadoKey(d.estado);
+    if(!map.has(key)){
+      const label = (ESTADO_META[key] && ESTADO_META[key].label) || (key==='__SINDATO' ? 'Sin dato' : (d.estado||'').trim());
+      map.set(key, label);
+    }
+  });
+  const list = [...map.entries()].map(([key,label])=>({key,label})).sort((a,b)=>a.label.localeCompare(b.label,'es'));
+  list.push({key:'__EN_PROCESO', label:'En proceso de venta'});
+  return list;
+}
+
+// Filtro desplegable de selección múltiple (estilo Excel: todo marcado = sin filtro).
+function createMultiFilter(id, label, allWord){
+  const root = document.getElementById(id);
+  const btn = root.querySelector('.msf-btn');
+  const panel = root.querySelector('.msf-panel');
+  const optionsEl = root.querySelector('.msf-options');
+  let entries = [];
+  let selected = new Set();
+
+  function render(){
+    optionsEl.innerHTML = entries.map(e=>`
+      <label class="msf-opt">
+        <input type="checkbox" data-key="${esc(e.key)}"${selected.has(e.key)?' checked':''}>
+        <span title="${esc(e.label)}">${esc(e.label)}</span>
+      </label>`).join('');
+    optionsEl.querySelectorAll('input[type="checkbox"]').forEach(cb=>{
+      cb.addEventListener('change', ()=>{
+        const key = cb.dataset.key;
+        if(cb.checked) selected.add(key); else selected.delete(key);
+        updateLabel();
+        applyFilters();
+      });
+    });
+  }
+
+  function updateLabel(){
+    const total = entries.length;
+    if(total===0){ btn.textContent = `${label}: —`; return; }
+    if(selected.size===0){ btn.textContent = `${label}: ninguna`; return; }
+    if(selected.size===total){ btn.textContent = `${label}: ${allWord}`; return; }
+    if(selected.size<=2){
+      const chosen = entries.filter(e=>selected.has(e.key)).map(e=>e.label);
+      btn.textContent = `${label}: ${chosen.join(', ')}`;
+      return;
+    }
+    btn.textContent = `${label}: ${selected.size} de ${total}`;
+  }
+
+  function setEntries(list){
+    const prevAll = new Set(entries.map(e=>e.key));
+    const prevSel = selected;
+    entries = list;
+    selected = new Set(list.map(e=>e.key).filter(k=>!prevAll.has(k) || prevSel.has(k)));
+    render();
+    updateLabel();
+  }
+
+  function selectAll(){
+    selected = new Set(entries.map(e=>e.key));
+    optionsEl.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=true);
+    updateLabel();
+  }
+  function selectNone(){
+    selected = new Set();
+    optionsEl.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=false);
+    updateLabel();
+  }
+
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    const willOpen = panel.hidden;
+    document.querySelectorAll('.msf-panel').forEach(p=>{ p.hidden=true; });
+    document.querySelectorAll('.msf').forEach(m=>m.classList.remove('open'));
+    if(willOpen){ panel.hidden = false; root.classList.add('open'); }
+  });
+  panel.addEventListener('click', e=>e.stopPropagation());
+  root.querySelector('[data-act="all"]').addEventListener('click', (e)=>{ e.stopPropagation(); selectAll(); applyFilters(); });
+  root.querySelector('[data-act="none"]').addEventListener('click', (e)=>{ e.stopPropagation(); selectNone(); applyFilters(); });
+
+  return {
+    setEntries,
+    has: (key) => selected.has(key),
+    reset: () => selectAll(),
+  };
+}
+
+document.addEventListener('click', ()=>{
+  document.querySelectorAll('.msf-panel').forEach(p=>{ p.hidden = true; });
+  document.querySelectorAll('.msf').forEach(m=>m.classList.remove('open'));
+});
+
+const msfTipo = createMultiFilter('filterTipo', 'Tipo', 'todos');
+const msfProv = createMultiFilter('filterProv', 'Provincia', 'todas');
+const msfEstado = createMultiFilter('filterEstado', 'Estado', 'todos');
+const msfCedente = createMultiFilter('filterCedente', 'Cedente', 'todos');
+const msfCorr = createMultiFilter('filterCorr', 'Corregimiento', 'todos');
+
+let sortKey='finca', sortDir=1;
+
+function populateFilters(rows){
+  rows = rows || getMergedData();
+  msfTipo.setEntries(buildSimpleEntries(rows, d=>d.tipo));
+  msfProv.setEntries(buildSimpleEntries(rows, d=>d.prov));
+  msfEstado.setEntries(buildEstadoEntries(rows));
+  const cedenteEntries = buildSimpleEntries(rows, d=>d.cedente);
+  const knownCedenteKeys = new Set(cedenteEntries.map(e=>e.key));
+  (OVERRIDES.customCedentes||[]).forEach(c=>{ if(!knownCedenteKeys.has(c)) cedenteEntries.push({key:c, label:c}); });
+  cedenteEntries.sort((a,b)=> a.key==='__SINDATO' ? 1 : b.key==='__SINDATO' ? -1 : a.label.localeCompare(b.label,'es'));
+  msfCedente.setEntries(cedenteEntries);
+  msfCorr.setEntries(buildSimpleEntries(rows, d=>d.corr));
+}
+
+function renderStats(rows){
+  const total = rows.length;
+  const sumOf = key => { const v = rows.filter(d=>d[key]!==null && d[key]!==undefined); return {sum:v.reduce((a,d)=>a+d[key],0), n:v.length}; };
+  const merc = sumOf('merc');
+  const ventaR = sumOf('ventaR');
+  const vlibros = sumOf('vlibros');
+  const vs = sumOf('vs');
+  const descArr = rows.filter(d=>d.desc!==null && d.desc!==undefined);
+  const avgDesc = descArr.length ? descArr.reduce((a,d)=>a+d.desc,0)/descArr.length : null;
+  const libres = rows.filter(d=>normEstadoKey(d.estado)==='LIBRE').length;
+
+  const tiles = [
+    {label:'N° de fincas', value: total.toLocaleString('es-PA'), sub:'en la cartera', cls:''},
+    {label:'Valor de avalúo', value: '$'+Math.round(merc.sum).toLocaleString('es-PA'), sub: merc.n+' de '+total+' con dato', cls:'gold'},
+    {label:'Venta rápida', value: '$'+Math.round(ventaR.sum).toLocaleString('es-PA'), sub: ventaR.n+' de '+total+' con dato', cls:''},
+    {label:'Valor en libros', value: '$'+Math.round(vlibros.sum).toLocaleString('es-PA'), sub: vlibros.n+' de '+total+' con dato', cls:''},
+    {label:'Valor sugerido', value: '$'+Math.round(vs.sum).toLocaleString('es-PA'), sub: vs.n+' de '+total+' con dato', cls:'accent'},
+    {label:'Descuento prom.', value: avgDesc!==null ? Math.round(avgDesc*100)+'%' : '—', sub: descArr.length+' con dato', cls:''},
+    {label:'Libres', value: libres.toLocaleString('es-PA'), sub:'disponibles', cls:'accent'},
+  ];
+  document.getElementById('statsRow').innerHTML = tiles.map(t=>
+    `<div class="stat"><p class="label">${t.label}</p><div class="value ${t.cls}">${t.value}</div><div class="sub">${t.sub}</div></div>`
+  ).join('');
+}
+
+function renderCharts(rows){
+  const estadoCounts = {LIBRE:0, OCUPADA:0, 'POR INSPECCIONAR':0, 'SIN DATO':0};
+  rows.forEach(d=>{ estadoCounts[estadoBucket(d)]++; });
+  const estadoColors = {LIBRE:'var(--good)', OCUPADA:'var(--warning-ink)', 'POR INSPECCIONAR':'var(--serious-ink)', 'SIN DATO':'var(--ink-muted)'};
+  const estadoLabels = {LIBRE:'Libre', OCUPADA:'Ocupada', 'POR INSPECCIONAR':'Por inspeccionar', 'SIN DATO':'Sin dato'};
+  const maxEstado = Math.max(1, ...Object.values(estadoCounts));
+  const enProceso = rows.filter(isEnProceso).length;
+
+  let html = Object.entries(estadoCounts).map(([k,v])=>`
+    <div class="bar-row">
+      <span class="cat-label"><span class="cat-dot" style="background:${estadoColors[k]}"></span>${estadoLabels[k]}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(v/maxEstado*100).toFixed(1)}%; background:${estadoColors[k]}"></div></div>
+      <span class="bar-value">${v}</span>
+    </div>`).join('');
+  html += `
+    <div class="bar-row callout">
+      <span class="cat-label"><span class="cat-dot" style="background:var(--accent)"></span>En proceso de venta</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(enProceso/Math.max(1,rows.length)*100).toFixed(1)}%; background:var(--accent)"></div></div>
+      <span class="bar-value">${enProceso}</span>
+    </div>`;
+  document.getElementById('chartEstado').innerHTML = html;
+
+  const cedCounts = {};
+  rows.forEach(d=>{ cedCounts[d.cedente] = (cedCounts[d.cedente]||0)+1; });
+  const cedSorted = Object.entries(cedCounts).sort((a,b)=>b[1]-a[1]);
+  const maxCed = Math.max(1, ...Object.values(cedCounts));
+  document.getElementById('chartCedente').innerHTML = cedSorted.map(([k,v])=>{
+    const propsCed = rows.filter(d=>d.cedente===k);
+    const conMerc = propsCed.filter(d=>d.merc!==null && d.merc!==undefined);
+    const totalMerc = conMerc.reduce((a,d)=>a+d.merc,0);
+    const totalTxt = conMerc.length
+      ? `<b>${money(totalMerc)}</b>${conMerc.length<propsCed.length ? ' · '+conMerc.length+' de '+propsCed.length+' con dato' : ''}`
+      : 'Dato no disponible';
+    return `
+    <div class="ced-block">
+      <div class="bar-row">
+        <span class="cat-label" title="${k}"><span class="cat-dot" style="background:${CAT_COLORS[k]||CAT_OTHER}"></span>${k}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${(v/maxCed*100).toFixed(1)}%; background:${CAT_COLORS[k]||CAT_OTHER}"></div></div>
+        <span class="bar-value">${v}</span>
+      </div>
+      <div class="ced-total">Valor total (avalúo): ${totalTxt}</div>
+    </div>`;
+  }).join('') || '<p style="color:var(--ink-muted); font-size:.85rem;">Sin resultados</p>';
+}
+
+/* ===== COLUMNAS CONFIGURABLES (tabla + Excel) =====
+   w = peso relativo del ancho. def = visible por defecto. ext = visible en "Para compartir".
+   'enlace' es siempre la última columna (también lleva el botón ✎); si se oculta solo desaparece el 🔗. */
+const FIELDS = [
+  {key:'finca',    label:'N° Finca',            w:6,   def:true, ext:true, locked:true, td:d=>`<td class="finca">${d.finca}</td>`},
+  {key:'tipo',     label:'Tipo',                w:10, def:true, ext:true,  td:d=>`<td>${d.tipo ? esc(d.tipo) : '—'}</td>`},
+  {key:'prov',     label:'Provincia',           w:8.5, def:false,ext:true,  td:d=>`<td>${d.prov ? esc(d.prov) : '—'}</td>`},
+  {key:'corr',     label:'Corregimiento',       w:9.5,  def:true, ext:true,  td:d=>`<td class="corr" title="${d.corr||''}">${d.corr||'—'}</td>`},
+  {key:'cedente',  label:'Cedida / Hipotecada', w:9.5,  def:true, ext:false, td:d=>`<td>${d.cedente}</td>`},
+  {key:'vendidoA', label:'Vendido a',           w:9.5,  def:true, ext:false, td:d=>`<td>${d.vendidoA || '—'}${d.obs==='VENDIDA' ? '<span class="tag-vendida">Vendida</span>' : ''}</td>`},
+  {key:'estado',   label:'Estado',              w:8.5, def:true, ext:true,  td:d=>`<td>${estadoPill(d.estado)}</td>`},
+  {key:'vs',       label:'Valor sugerido',      w:8,   def:true, ext:true,  td:d=>`<td class="num">${money(d.vs)}</td>`},
+  {key:'merc',     label:'Valor de avalúo',     w:8,   def:true, ext:true,  td:d=>`<td class="num">${money(d.merc)}</td>`},
+  {key:'vlibros',  label:'Valor en libros',     w:8,   def:true, ext:false, td:d=>`<td class="num">${money(d.vlibros)}</td>`},
+  {key:'ventaR',   label:'Venta rápida',        w:8,   def:false,ext:false, td:d=>`<td class="num">${money(d.ventaR)}</td>`},
+  {key:'desc',     label:'Desc.',               w:7.5, def:true, ext:false, td:d=>`<td class="num">${pct(d.desc)}</td>`},
+  {key:'ea',       label:'Avalúo',              w:8,   def:true, ext:true,  td:d=>`<td>${avaluoFlag(computeEa(d))}</td>`},
+  {key:'fa',       label:'Fecha de avalúo',     w:7,   def:true, ext:true,  td:d=>`<td class="mono fecha">${fecha(d.fa)}</td>`},
+  {key:'obs',      label:'Observación',         w:12,  def:false,ext:false, td:d=>`<td>${d.obs ? esc(d.obs) : '—'}</td>`},
+  {key:'enlace',   label:'PDF de valoración',   w:7,   def:true, ext:false, head:'PDF', nosort:true},
+];
+const COLS_STORE_KEY = 'mifi_cols_v1';
+let VISIBLE_COLS = (function(){
+  const dflt = new Set(FIELDS.filter(f=>f.def).map(f=>f.key));
+  try{
+    const saved = JSON.parse(localStorage.getItem(COLS_STORE_KEY)||'null');
+    if(Array.isArray(saved)){ const s = new Set(saved.filter(k=>FIELDS.some(f=>f.key===k))); s.add('finca'); return s; }
+  }catch(e){}
+  return dflt;
+})();
+function colVisible(key){ return VISIBLE_COLS.has(key); }
+function saveCols(){ try{ localStorage.setItem(COLS_STORE_KEY, JSON.stringify([...VISIBLE_COLS])); }catch(e){} }
+function tableFields(){ return FIELDS.filter(f=>f.key!=='enlace' && colVisible(f.key)); }
+
+function renderHead(){
+  const fs = tableFields();
+  const linkOn = colVisible('enlace');
+  const linkW = linkOn ? 7 : 4;
+  const total = fs.reduce((a,f)=>a+f.w,0) + linkW;
+  document.getElementById('tableCols').innerHTML =
+    fs.map(f=>`<col style="width:${(f.w/total*100).toFixed(3)}%">`).join('') + `<col style="width:${(linkW/total*100).toFixed(3)}%">`;
+  document.getElementById('tableHeadRow').innerHTML =
+    fs.map(f=>{
+      const act = sortKey===f.key;
+      return `<th data-key="${f.key}"${act?' class="active"':''}>${esc(f.head||f.label)}<span class="arrow">${act ? (sortDir===1?'↑':'↓') : '↕'}</span></th>`;
+    }).join('') + `<th title="Abrir PDF de valoración">${linkOn?'PDF':''}</th>`;
+  const n = FIELDS.filter(f=>colVisible(f.key)).length;
+  document.getElementById('colSelLabel').textContent = `Columnas (${n}/${FIELDS.length})`;
+}
+
+function renderColSelList(){
+  document.getElementById('colSelList').innerHTML = FIELDS.map(f=>`
+    <label class="colsel-opt${f.locked?' locked':''}">
+      <input type="checkbox" data-col="${f.key}"${colVisible(f.key)?' checked':''}${f.locked?' disabled':''}>
+      <span>${esc(f.label)}</span>
+    </label>`).join('');
+}
+
+function setVisibleCols(keys){
+  VISIBLE_COLS = new Set(keys); VISIBLE_COLS.add('finca');
+  if(!VISIBLE_COLS.has(sortKey) && sortKey!=='finca'){ sortKey='finca'; sortDir=1; }
+  saveCols(); renderColSelList(); renderHead(); applyFilters();
+}
+
+(function initColSel(){
+  const btn = document.getElementById('colSelBtn');
+  const panel = document.getElementById('colSelPanel');
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    const willOpen = panel.hidden;
+    document.querySelectorAll('.msf-panel').forEach(p=>{ p.hidden=true; });
+    document.querySelectorAll('.msf').forEach(m=>m.classList.remove('open'));
+    panel.hidden = !willOpen;
+    if(willOpen) placePanel();
+  });
+  function placePanel(){
+    const r = btn.getBoundingClientRect();
+    panel.style.right = Math.max(8, window.innerWidth - r.right) + 'px';
+    panel.style.top = (r.bottom + 6) + 'px';
+    panel.style.maxHeight = Math.max(200, window.innerHeight - r.bottom - 16) + 'px';
+    panel.style.overflowY = 'auto';
+  }
+  window.addEventListener('scroll', ()=>{ if(!panel.hidden) placePanel(); }, true);
+  window.addEventListener('resize', ()=>{ if(!panel.hidden) placePanel(); });
+  panel.addEventListener('click', e=>{
+    e.stopPropagation();
+    const pb = e.target.closest('[data-preset]');
+    if(!pb) return;
+    const p = pb.dataset.preset;
+    setVisibleCols(FIELDS.filter(f=> p==='all' ? true : p==='external' ? f.ext : f.def).map(f=>f.key));
+  });
+  panel.addEventListener('change', e=>{
+    const cb = e.target.closest('input[data-col]');
+    if(!cb) return;
+    const s = new Set(VISIBLE_COLS);
+    if(cb.checked) s.add(cb.dataset.col); else s.delete(cb.dataset.col);
+    setVisibleCols([...s]);
+  });
+  document.addEventListener('click', ()=>{ panel.hidden = true; });
+  document.getElementById('tableHeadRow').addEventListener('click', e=>{
+    const th = e.target.closest('th[data-key]');
+    if(!th) return;
+    const key = th.dataset.key;
+    if(sortKey===key){ sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+    renderHead();
+    applyFilters();
+  });
+  renderColSelList();
+  renderHead();
+})();
+
+let LAST_TABLE_ROWS = [];
+function renderTable(rows){
+  const sorted = [...rows].sort((a,b)=>{
+    let av=a[sortKey], bv=b[sortKey];
+    if(av===null||av===undefined) av = (typeof bv==='number') ? -Infinity : '';
+    if(bv===null||bv===undefined) bv = (typeof av==='number') ? -Infinity : '';
+    if(typeof av==='string') av=av.toLowerCase();
+    if(typeof bv==='string') bv=bv.toLowerCase();
+    if(av<bv) return -1*sortDir;
+    if(av>bv) return 1*sortDir;
+    return 0;
+  });
+
+  LAST_TABLE_ROWS = sorted;
+  const xb = document.getElementById('exportXlsxBtn'); if(xb) xb.disabled = sorted.length===0;
+  document.getElementById('tableCountPill').textContent = `Mostrando ${sorted.length} de ${DATA.length}`;
+  document.getElementById('countPill').textContent = `${sorted.length} finca${sorted.length===1?'':'s'}`;
+
+  if(sorted.length===0){
+    document.getElementById('tableBody').innerHTML = '<tr class="empty-row"><td colspan="' + (tableFields().length+1) + '">No hay fincas que coincidan con la búsqueda.</td></tr>';
+    return;
+  }
+
+  const fs = tableFields();
+  document.getElementById('tableBody').innerHTML = sorted.map(d=>{
+    const link = !colVisible('enlace') ? '' : d.enlace ? `<a class="link-btn" href="${d.enlace}" target="_blank" rel="noopener" title="Abrir PDF de valoración en OneDrive">🔗</a>` : '<span class="no-link">—</span>';
+    const editDisabled = ACCESS!=='write' ? ' disabled' : '';
+    const editBtn = `<button type="button" class="edit-btn" data-edit-id="${esc(d._id)}" title="Editar finca ${esc(String(d.finca))}"${editDisabled}>✎</button>`;
+    return `<tr class="${d._edited?'row-edited':''}" data-id="${esc(d._id)}">
+      ${fs.map(f=>f.td(d)).join('')}
+      <td><span class="row-actions">${link}${editBtn}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function applyFilters(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const rawMin = document.getElementById('filterPriceMin').value;
+  const rawMax = document.getElementById('filterPriceMax').value;
+  const fPriceMin = rawMin!=='' ? parseFloat(rawMin) : null;
+  const fPriceMax = rawMax!=='' ? parseFloat(rawMax) : null;
+
+  let rows = getMergedData().filter(d=>{
+    if(!msfTipo.has(keyOrSinDato(d.tipo))) return false;
+    if(!msfProv.has(keyOrSinDato(d.prov))) return false;
+    const estKey = normEstadoKey(d.estado);
+    const matchesEstado = msfEstado.has(estKey);
+    const matchesProceso = isEnProceso(d) && msfEstado.has('__EN_PROCESO');
+    if(!matchesEstado && !matchesProceso) return false;
+    if(!msfCedente.has(keyOrSinDato(d.cedente))) return false;
+    if(!msfCorr.has(keyOrSinDato(d.corr))) return false;
+    if(fPriceMin!==null || fPriceMax!==null){
+      if(d.vs===null || d.vs===undefined) return false;
+      if(fPriceMin!==null && d.vs < fPriceMin) return false;
+      if(fPriceMax!==null && d.vs > fPriceMax) return false;
+    }
+    if(q){
+      const hay = [d.finca, d.tipo, d.corr, d.cedente, d.vendidoA, d.prov].filter(Boolean).join(' ').toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  renderStats(rows);
+  renderCharts(rows);
+  renderTable(rows);
+}
+
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('filterPriceMin').addEventListener('input', applyFilters);
+document.getElementById('filterPriceMax').addEventListener('input', applyFilters);
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('searchInput').value='';
+  msfTipo.reset();
+  msfProv.reset();
+  msfEstado.reset();
+  msfCedente.reset();
+  msfCorr.reset();
+  document.getElementById('filterPriceMin').value='';
+  document.getElementById('filterPriceMax').value='';
+  applyFilters();
+});
+
+const now = new Date();
+const dateStr = now.toLocaleDateString('es-PA',{day:'2-digit',month:'long',year:'numeric'});
+document.getElementById('genDate').textContent = dateStr;
+document.getElementById('footDate').textContent = 'Última actualización: ' + dateStr;
+
+populateFilters();
+applyFilters();
+
+function toast(msg){
+  const t = document.getElementById('mifiToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ======================= Modal de edición discreta ======================= */
+(function(){
+  const backdrop = document.getElementById('editBackdrop');
+  const selEstado = document.getElementById('editEstado');
+  const selCedente = document.getElementById('editCedente');
+  const addCedenteRow = document.getElementById('addCedenteRow');
+  const newCedenteInput = document.getElementById('newCedenteInput');
+  const inpVendidoA = document.getElementById('editVendidoA');
+  const dlVendidoA = document.getElementById('vendidoAList');
+  const inpVs = document.getElementById('editVs');
+  const inpVentaR = document.getElementById('editVentaR');
+  const inpVlibros = document.getElementById('editVlibros');
+  const descPreview = document.getElementById('editDescPreview');
+  const lockedGrid = document.getElementById('editLockedGrid');
+  const modalSub = document.getElementById('editModalSub');
+  const saveNote = document.getElementById('editSaveNote');
+  const btnSave = document.getElementById('editSave');
+  const ADD_NEW_VALUE = '__add_new__';
+  let editingId = null;
+  let initialForm = null;
+  function fillEstadoOptions(raw){
+    let html = '<option value="">Sin dato</option>' + Object.keys(ESTADO_META).map(k=>`<option value="${esc(k)}">${esc(ESTADO_META[k].label)}</option>`).join('');
+    const nk = normEstadoKey(raw);
+    let val = '';
+    if(raw && ESTADO_META[nk]) val = nk;
+    else if(raw && nk!=='__SINDATO'){ html += `<option value="${esc(raw)}">${esc(raw)} (valor actual)</option>`; val = raw; }
+    selEstado.innerHTML = html; selEstado.value = val;
+  }
+  function formValues(){
+    return {estado: selEstado.value, cedente: selCedente.value, vendidoA: inpVendidoA.value.trim(), vs: inpVs.value, ventaR: inpVentaR.value, vlibros: inpVlibros.value};
+  }
+
+  function fillCedenteOptions(currentValue){
+    const rows = getMergedData();
+    const options = allCedentes(rows);
+    selCedente.innerHTML = options.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')
+      + `<option value="${ADD_NEW_VALUE}">+ Agregar nuevo cedente…</option>`;
+    selCedente.value = options.includes(currentValue) ? currentValue : (currentValue || options[0] || '');
+    if(!options.includes(currentValue) && currentValue){
+      // Cedente actual no está en la lista (dato suelto del Excel) — lo agregamos como opción temporal.
+      const opt = document.createElement('option');
+      opt.value = currentValue; opt.textContent = currentValue;
+      selCedente.insertBefore(opt, selCedente.lastElementChild);
+      selCedente.value = currentValue;
+    }
+    addCedenteRow.hidden = true;
+  }
+
+  function fillVendidoAList(){
+    const rows = getMergedData();
+    const names = [...new Set(rows.map(d=>d.vendidoA).filter(Boolean))];
+    dlVendidoA.innerHTML = names.map(n=>`<option value="${esc(n)}">`).join('');
+  }
+
+  function updateDescPreview(){
+    const vs = inpVs.value!=='' ? parseFloat(inpVs.value) : null;
+    const ventaR = inpVentaR.value!=='' ? parseFloat(inpVentaR.value) : null;
+    const ratio = computeDescRatio(vs, ventaR);
+    descPreview.textContent = 'Descuento (valor sugerido / venta rápida): ' + (ratio!==null ? pct(ratio) : '—') + ' — se calcula solo, no se edita.';
+  }
+
+  function openEditor(id){
+    const d = getMergedData().find(r=>r._id===id);
+    if(!d) return;
+    editingId = id;
+    document.getElementById('editModalTitle').textContent = 'Editar finca ' + d.finca;
+    modalSub.textContent = (d.corr||'sin corregimiento') + ', ' + (d.prov||'sin provincia') + (d.upd ? ' · Última edición: ' + d.upd + (d.updBy ? ' por ' + d.updBy : '') : '');
+    fillEstadoOptions(d.estado);
+    fillCedenteOptions(d.cedente || '');
+    fillVendidoAList();
+    inpVendidoA.value = d.vendidoA || '';
+    inpVs.value = (d.vs===null||d.vs===undefined) ? '' : d.vs;
+    inpVentaR.value = (d.ventaR===null||d.ventaR===undefined) ? '' : d.ventaR;
+    inpVlibros.value = (d.vlibros===null||d.vlibros===undefined) ? '' : d.vlibros;
+    updateDescPreview();
+    lockedGrid.innerHTML = `
+      <div>N° de finca</div><div><b>${esc(String(d.finca))}</b></div>
+      <div>Corregimiento</div><div><b>${esc(d.corr||'—')}</b></div>
+      <div>Provincia</div><div><b>${esc(d.prov||'—')}</b></div>
+      <div>Valor de avalúo</div><div><b>${money(d.merc)}</b></div>
+      <div>Fecha de avalúo</div><div><b>${fecha(d.fa)}</b></div>
+      <div>Estado de avalúo</div><div><b>${esc(d.ea||'—')}</b></div>
+      <div>PDF de valoración</div><div>${d.enlace ? `<a href="${d.enlace}" target="_blank" rel="noopener">Abrir PDF</a>` : '—'}</div>
+    `;
+    lockedGrid.insertAdjacentHTML('beforeend', `<div>Historial</div><div><a href="#" data-hist-id="${esc(d._id)}">Ver cambios de esta finca</a></div>`);
+    initialForm = formValues();
+    saveNote.className = 'mifi-save-note';
+    saveNote.textContent = ACCESS==='write' ? '' : 'Su usuario es de solo lectura.';
+    btnSave.disabled = ACCESS!=='write';
+    backdrop.hidden = false;
+  }
+  function closeEditor(){ backdrop.hidden = true; editingId = null; }
+
+  document.getElementById('tableBody').addEventListener('click', e=>{
+    const btn = e.target.closest('.edit-btn');
+    if(!btn || btn.hasAttribute('disabled')) return;
+    openEditor(btn.dataset.editId);
+  });
+  document.getElementById('editClose').addEventListener('click', closeEditor);
+  document.getElementById('editCancel').addEventListener('click', closeEditor);
+  backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeEditor(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !backdrop.hidden) closeEditor(); });
+
+  selCedente.addEventListener('change', ()=>{
+    if(selCedente.value===ADD_NEW_VALUE){
+      addCedenteRow.hidden = false;
+      newCedenteInput.focus();
+    } else {
+      addCedenteRow.hidden = true;
+    }
+  });
+  document.getElementById('newCedenteConfirm').addEventListener('click', async ()=>{
+    const name = newCedenteInput.value.trim();
+    if(!name) return;
+    await addCustomCedente(name);
+    fillCedenteOptions(name);
+    selCedente.value = name;
+    addCedenteRow.hidden = true;
+    newCedenteInput.value = '';
+  });
+
+  inpVs.addEventListener('input', updateDescPreview);
+  inpVentaR.addEventListener('input', updateDescPreview);
+  lockedGrid.addEventListener('click', e=>{
+    const a = e.target.closest('[data-hist-id]'); if(!a) return;
+    e.preventDefault(); const id = a.dataset.histId; closeEditor(); showFincaHistory(id);
+  });
+
+  btnSave.addEventListener('click', async ()=>{
+    if(!editingId || ACCESS!=='write') return;
+    if(selCedente.value===ADD_NEW_VALUE){
+      saveNote.textContent = 'Confirma el nombre del nuevo cedente antes de guardar.';
+      newCedenteInput.focus();
+      return;
+    }
+    const cur = formValues();
+    const NUMS = {vs:1, ventaR:1, vlibros:1};
+    const patch = {};
+    Object.keys(cur).forEach(k=>{
+      if(cur[k]===initialForm[k]) return;
+      patch[k] = NUMS[k] ? (cur[k]==='' ? null : parseFloat(cur[k])) : (cur[k] || null);
+    });
+    if(!Object.keys(patch).length){ saveNote.className = 'mifi-save-note'; saveNote.textContent = 'No hay cambios que guardar.'; return; }
+    btnSave.disabled = true;
+    saveNote.className = 'mifi-save-note';
+    saveNote.textContent = 'Guardando…';
+    const res = await saveFincaEdits(editingId, patch);
+    if(res.ok){
+      toast(res.cambios ? ('Guardado · ' + res.cambios + (res.cambios===1 ? ' cambio registrado' : ' cambios registrados') + ' en el historial') : 'No hubo cambios');
+      closeEditor();
+    } else {
+      saveNote.className = 'mifi-save-note err';
+      saveNote.textContent = 'No se pudo guardar: ' + (res.reason||'error');
+    }
+    btnSave.disabled = ACCESS!=='write';
+  });
+})();
+
+/* ======================= DESCARGA A EXCEL (.xlsx) =======================
+   Genera el archivo Excel directamente en el navegador, sin internet ni librerías externas.
+   Exporta exactamente las filas visibles en "Detalle de fincas" (filtros, búsqueda y orden
+   actuales), incluidas las ediciones hechas en la sesión.
+*/
+(function(){
+  const CRC_TABLE = (()=>{ const t=new Uint32Array(256); for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c = (c&1) ? (0xEDB88320 ^ (c>>>1)) : (c>>>1); t[n]=c>>>0; } return t; })();
+  function crc32(bytes){ let c=0xFFFFFFFF; for(let i=0;i<bytes.length;i++) c = CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c>>>8); return (c ^ 0xFFFFFFFF)>>>0; }
+
+  // ZIP sin compresión (método "store"), suficiente y 100% compatible con Excel.
+  function buildZip(files){
+    const enc = new TextEncoder();
+    const locals=[], centrals=[]; let offset=0;
+    const d=new Date();
+    const dosTime = (d.getHours()<<11)|(d.getMinutes()<<5)|(Math.floor(d.getSeconds()/2));
+    const dosDate = ((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate();
+    for(const f of files){
+      const name = enc.encode(f.name), data = enc.encode(f.content), crc = crc32(data);
+      const lh = new DataView(new ArrayBuffer(30));
+      lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0x0800,true); lh.setUint16(8,0,true);
+      lh.setUint16(10,dosTime,true); lh.setUint16(12,dosDate,true); lh.setUint32(14,crc,true);
+      lh.setUint32(18,data.length,true); lh.setUint32(22,data.length,true); lh.setUint16(26,name.length,true); lh.setUint16(28,0,true);
+      locals.push(new Uint8Array(lh.buffer), name, data);
+      const ch = new DataView(new ArrayBuffer(46));
+      ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true); ch.setUint16(8,0x0800,true); ch.setUint16(10,0,true);
+      ch.setUint16(12,dosTime,true); ch.setUint16(14,dosDate,true); ch.setUint32(16,crc,true);
+      ch.setUint32(20,data.length,true); ch.setUint32(24,data.length,true); ch.setUint16(28,name.length,true);
+      ch.setUint32(42,offset,true);
+      centrals.push(new Uint8Array(ch.buffer), name);
+      offset += 30 + name.length + data.length;
+    }
+    const cdSize = centrals.reduce((n,a)=>n+a.length,0);
+    const end = new DataView(new ArrayBuffer(22));
+    end.setUint32(0,0x06054b50,true); end.setUint16(8,files.length,true); end.setUint16(10,files.length,true);
+    end.setUint32(12,cdSize,true); end.setUint32(16,offset,true);
+    return new Blob([...locals, ...centrals, new Uint8Array(end.buffer)], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  }
+
+  const x = v => String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'');
+  function colName(i){ let s=''; i++; while(i>0){ const m=(i-1)%26; s=String.fromCharCode(65+m)+s; i=Math.floor((i-1)/26); } return s; }
+  function dateSerial(v){
+    if(!v) return null; const m = String(v).match(/^(\d{4})-(\d{2})-(\d{2})/); if(!m) return null;
+    return (Date.UTC(+m[1],+m[2]-1,+m[3]) - Date.UTC(1899,11,30)) / 86400000;
+  }
+  const num = v => (typeof v==='number' && isFinite(v)) ? v : null;
+
+  // Estilos: 0 normal · 1 encabezado · 2 moneda · 3 porcentaje · 4 fecha · 5 hipervínculo
+  const ALL_COLS = [
+    {k:'finca',   h:'N° Finca',              w:16, get:d=>d.finca},
+    {k:'tipo',    h:'Tipo',                  w:18, get:d=>d.tipo},
+    {k:'prov',    h:'Provincia',             w:14, get:d=>d.prov},
+    {k:'corr', h:'Corregimiento',         w:22, get:d=>d.corr},
+    {k:'cedente', h:'Cedida / Hipotecada',   w:20, get:d=>d.cedente},
+    {k:'vendidoA', h:'Vendido a',             w:20, get:d=>d.vendidoA},
+    {k:'estado', h:'Estado',                w:16, get:d=>d.estado},
+    {k:'vs', h:'Valor sugerido',        w:16, get:d=>num(d.vs),     s:2},
+    {k:'merc', h:'Valor de avalúo',       w:16, get:d=>num(d.merc),   s:2},
+    {k:'vlibros', h:'Valor en libros',       w:16, get:d=>num(d.vlibros),s:2},
+    {k:'ventaR', h:'Venta rápida',          w:16, get:d=>num(d.ventaR), s:2},
+    {k:'desc', h:'Desc.',                 w:9,  get:d=>num(d.desc),   s:3},
+    {k:'ea', h:'Estado de avalúo',      w:15, get:d=>{ try{ const e=computeEa(d); return e ? (e.estimated ? e.text+' (estimado)' : e.text) : null; }catch(err){ return d.ea; } }},
+    {k:'fa', h:'Fecha de avalúo',       w:14, get:d=>dateSerial(d.fa), s:4},
+    {k:'obs', h:'Observación',           w:24, get:d=>d.obs},
+    {k:'enlace', h:'PDF de valoración',     w:18, get:d=>d.enlace ? 'Ver PDF' : null, link:d=>d.enlace, s:5},
+  ];
+  let COLS = ALL_COLS;
+  function activeCols(){
+    const byKey = Object.fromEntries(ALL_COLS.map(c=>[c.k,c]));
+    const cols = FIELDS.filter(f=>colVisible(f.key)).map(f=>byKey[f.key]).filter(Boolean);
+    return cols.length ? cols : ALL_COLS;
+  }
+
+  function buildSheet(rows){
+    const lastCol = colName(COLS.length-1), links=[];
+    let xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+      + '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+      + '<sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>'
+      + '<cols>' + COLS.map((c,i)=>`<col min="${i+1}" max="${i+1}" width="${c.w}" customWidth="1"/>`).join('') + '</cols><sheetData>';
+    xml += '<row r="1">' + COLS.map((c,i)=>`<c r="${colName(i)}1" t="inlineStr" s="1"><is><t>${x(c.h)}</t></is></c>`).join('') + '</row>';
+    rows.forEach((d,ri)=>{
+      const r = ri+2;
+      xml += `<row r="${r}">` + COLS.map((c,i)=>{
+        const ref = colName(i)+r, v = c.get(d), st = c.s ? ` s="${c.s}"` : '';
+        if(v===null || v===undefined || v==='') return '';
+        if(c.link){ const u=c.link(d); if(u) links.push({ref, url:u}); }
+        if(typeof v==='number') return `<c r="${ref}"${st}><v>${v}</v></c>`;
+        return `<c r="${ref}" t="inlineStr"${st}><is><t xml:space="preserve">${x(v)}</t></is></c>`;
+      }).join('') + '</row>';
+    });
+    xml += '</sheetData>';
+    xml += `<autoFilter ref="A1:${lastCol}${Math.max(rows.length+1,1)}"/>`;
+    if(links.length) xml += '<hyperlinks>' + links.map((l,i)=>`<hyperlink ref="${l.ref}" r:id="rId${i+1}"/>`).join('') + '</hyperlinks>';
+    xml += '</worksheet>';
+    const rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+      + links.map((l,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${x(l.url)}" TargetMode="External"/>`).join('')
+      + '</Relationships>';
+    return {xml, rels, hasLinks: links.length>0};
+  }
+
+  function buildXlsx(rows, cols, sheetName){
+    COLS = cols || activeCols();
+    const SHEET = sheetName || 'Fincas';
+    const sh = buildSheet(rows);
+    const files = [
+      {name:'[Content_Types].xml', content:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>'},
+      {name:'_rels/.rels', content:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'},
+      {name:'xl/workbook.xml', content:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="' + SHEET + '" sheetId="1" r:id="rId1"/></sheets><definedNames><definedName name="_xlnm._FilterDatabase" localSheetId="0" hidden="1">' + SHEET + '!$A$1:$' + colName(COLS.length-1) + '$' + Math.max(rows.length+1,1) + '</definedName></definedNames></workbook>'},
+      {name:'xl/_rels/workbook.xml.rels', content:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+      {name:'xl/styles.xml', content:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        + '<numFmts count="2"><numFmt numFmtId="164" formatCode="&quot;$&quot;#,##0.00"/><numFmt numFmtId="165" formatCode="dd/mm/yyyy"/></numFmts>'
+        + '<fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font><font><u/><sz val="11"/><color rgb="FF0563C1"/><name val="Calibri"/></font></fonts>'
+        + '<fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF1F3A5F"/><bgColor indexed="64"/></patternFill></fill></fills>'
+        + '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>'
+        + '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
+        + '<cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'
+        + '<xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>'
+        + '<xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/>'
+        + '<xf numFmtId="9" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/>'
+        + '<xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/>'
+        + '<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs>'
+        + '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>'},
+      {name:'xl/worksheets/sheet1.xml', content:sh.xml},
+    ];
+    if(sh.hasLinks) files.push({name:'xl/worksheets/_rels/sheet1.xml.rels', content:sh.rels});
+    return buildZip(files);
+  }
+
+  function downloadXlsx(){
+    const rows = LAST_TABLE_ROWS || [];
+    if(!rows.length){ toast('No hay fincas en la tabla para descargar.'); return; }
+    const blob = buildXlsx(rows);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'MIFI_Fincas_' + new Date().toISOString().slice(0,10) + '.xlsx';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+    toast('Excel descargado: ' + rows.length + ' finca' + (rows.length===1?'':'s') + '.');
+  }
+  window.__mifiBuildXlsx = buildXlsx; // usado solo para pruebas
+  window.mifiBuildXlsx = buildXlsx;
+  window.mifiDownloadXlsx = function(blob, name){
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  };
+  document.getElementById('exportXlsxBtn').addEventListener('click', downloadXlsx);
+})();
+
+/* ======================= Pestañas ======================= */
+let currentView = 'fincas';
+function switchView(v){
+  currentView = v;
+  document.getElementById('viewFincas').hidden = v!=='fincas';
+  document.getElementById('viewHistorial').hidden = v!=='historial';
+  document.getElementById('viewUsuarios').hidden = v!=='usuarios';
+  document.querySelectorAll('#tabs .tab').forEach(t=>t.classList.toggle('active', t.dataset.view===v));
+  if(v==='historial') renderHistory();
+  if(v==='usuarios' && SESSION && SESSION.user.rol==='admin') loadUsers();
+}
+document.getElementById('tabs').addEventListener('click', e=>{
+  const t = e.target.closest('.tab'); if(t) switchView(t.dataset.view);
+});
+
+/* ======================= Diálogo de confirmación ======================= */
+function askConfirm(title, html, okLabel){
+  return new Promise(resolve=>{
+    const bd = document.getElementById('confirmBackdrop');
+    document.getElementById('confirmTitle').textContent = title;
+    document.getElementById('confirmText').innerHTML = html;
+    const ok = document.getElementById('confirmOk'), cancel = document.getElementById('confirmCancel');
+    ok.textContent = okLabel || 'Confirmar';
+    function done(v){ bd.hidden = true; ok.onclick = null; cancel.onclick = null; resolve(v); }
+    ok.onclick = ()=>done(true); cancel.onclick = ()=>done(false);
+    bd.hidden = false; ok.focus();
+  });
+}
+
+/* ======================= Historial de ediciones ======================= */
+const HIST_MONEY = new Set(['vs','ventaR','vlibros']);
+let HIST_FINCA = null; // {id, finca}
+let LAST_HIST_ROWS = [];
+function fmtHistPlain(clave, v){
+  if(v===null || v===undefined || v==='') return '(vacío)';
+  if(HIST_MONEY.has(clave) && typeof v==='number') return money(v);
+  if(clave==='estado'){ const m = ESTADO_META[normEstadoKey(String(v))]; return m ? m.label : String(v); }
+  return String(v);
+}
+function fmtHistVal(clave, v){
+  if(v===null || v===undefined || v==='') return '<span class="hist-empty">(vacío)</span>';
+  return esc(fmtHistPlain(clave, v));
+}
+const PANAMA_OFFSET = '-05:00';
+function histFiltered(){
+  const q = document.getElementById('histSearch').value.trim().toLowerCase();
+  const u = document.getElementById('histUser').value;
+  const f = document.getElementById('histField').value;
+  const from = document.getElementById('histFrom').value;
+  const to = document.getElementById('histTo').value;
+  const tFrom = from ? new Date(from + 'T00:00:00' + PANAMA_OFFSET).getTime() : null;
+  const tTo = to ? new Date(to + 'T23:59:59.999' + PANAMA_OFFSET).getTime() : null;
+  return HISTORY.filter(h=>{
+    if(HIST_FINCA && h.filaId!==HIST_FINCA.id) return false;
+    if(u && h.usuario!==u) return false;
+    if(f && h.clave!==f) return false;
+    if(tFrom!==null && h.ts < tFrom) return false;
+    if(tTo!==null && h.ts > tTo) return false;
+    if(q){
+      const hay = [h.finca, h.nombre, h.usuario, h.campo, fmtHistPlain(h.clave,h.anterior), fmtHistPlain(h.clave,h.nuevo), h.nota, h.fecha].join(' ').toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function fillSelectKeep(sel, first, items){
+  const cur = sel.value;
+  sel.innerHTML = `<option value="">${first}</option>` + items.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join('');
+  sel.value = items.some(([v])=>v===cur) ? cur : '';
+}
+function renderHistory(){
+  document.getElementById('histCount').textContent = HISTORY.length;
+  const users = new Map(); HISTORY.forEach(h=>users.set(h.usuario, h.nombre));
+  fillSelectKeep(document.getElementById('histUser'), 'Usuario: todos', [...users.entries()].sort((a,b)=>a[1].localeCompare(b[1],'es')));
+  fillSelectKeep(document.getElementById('histField'), 'Campo: todos', Object.entries(FIELD_LABELS));
+  const chip = document.getElementById('histFincaChip');
+  chip.hidden = !HIST_FINCA;
+  if(HIST_FINCA) document.getElementById('histFincaChipTxt').textContent = 'Finca ' + HIST_FINCA.finca;
+
+  const isAdmin = SESSION && SESSION.user.rol==='admin';
+  const cols = [['Fecha y hora',14],['Usuario',13],['N° Finca',11],['Campo',12],['Valor anterior',15],['',3],['Valor nuevo',15],['Nota',isAdmin?10:17]];
+  if(isAdmin) cols.push(['',8]);
+  const tw = cols.reduce((a,c)=>a+c[1],0);
+  document.getElementById('histCols').innerHTML = cols.map(c=>`<col style="width:${(c[1]/tw*100).toFixed(2)}%">`).join('');
+  document.getElementById('histHeadRow').innerHTML = cols.map(c=>`<th>${c[0]}</th>`).join('');
+
+  const rows = histFiltered();
+  LAST_HIST_ROWS = rows;
+  document.getElementById('histCountPill').textContent = `Mostrando ${rows.length} de ${HISTORY.length} cambios`;
+  document.getElementById('histExportBtn').disabled = rows.length===0;
+  const body = document.getElementById('histBody');
+  if(!rows.length){
+    body.innerHTML = `<tr class="empty-row"><td colspan="${cols.length}">${HISTORY.length ? 'No hay cambios que coincidan con los filtros.' : 'Todavía no hay ediciones registradas.'}</td></tr>`;
+    return;
+  }
+  body.innerHTML = rows.map(h=>`<tr>
+    <td class="hist-when">${esc(h.fecha)}</td>
+    <td>${esc(h.nombre)}</td>
+    <td><button type="button" class="finca-link" data-goto-finca="${esc(h.filaId)}" title="Ver esta finca en la tabla">${esc(String(h.finca))}</button></td>
+    <td>${esc(h.campo)}</td>
+    <td class="hist-old">${fmtHistVal(h.clave, h.anterior)}</td>
+    <td class="hist-arrow">→</td>
+    <td class="hist-new">${fmtHistVal(h.clave, h.nuevo)}</td>
+    <td class="hist-nota">${h.nota ? esc(h.nota) : ''}</td>
+    ${isAdmin ? `<td><button type="button" class="mini-btn" data-revert="${h.id}" title="Volver este campo a su valor anterior">Revertir</button></td>` : ''}
+  </tr>`).join('');
+}
+['histSearch','histUser','histField','histFrom','histTo'].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener(el.tagName==='SELECT' || el.type==='date' ? 'change' : 'input', renderHistory);
+});
+document.getElementById('histReset').addEventListener('click', ()=>{
+  ['histSearch','histUser','histField','histFrom','histTo'].forEach(id=>{ document.getElementById(id).value=''; });
+  HIST_FINCA = null; renderHistory();
+});
+document.getElementById('histFincaChipX').addEventListener('click', ()=>{ HIST_FINCA = null; renderHistory(); });
+function showFincaHistory(id){
+  const d = DATA.find(r=>r._id===id);
+  HIST_FINCA = {id, finca: d ? d.finca : id};
+  switchView('historial');
+}
+document.getElementById('histBody').addEventListener('click', async e=>{
+  const g = e.target.closest('[data-goto-finca]');
+  if(g){
+    const d = DATA.find(r=>r._id===g.dataset.gotoFinca);
+    document.getElementById('searchInput').value = d ? String(d.finca) : '';
+    switchView('fincas'); applyFilters();
+    return;
+  }
+  const rb = e.target.closest('[data-revert]');
+  if(rb){
+    const h = HISTORY.find(x=>x.id===Number(rb.dataset.revert));
+    if(!h) return;
+    const d = DATA.find(r=>r._id===h.filaId);
+    const actual = d ? d[h.clave] : null;
+    const ok = await askConfirm('Revertir cambio',
+      `<b>${esc(h.campo)}</b> de la finca <b>${esc(String(h.finca))}</b> volverá a <b>${fmtHistVal(h.clave, h.anterior)}</b>.<br>Valor actual: ${fmtHistVal(h.clave, actual)}.<br><br>La reversión también quedará registrada en el historial.`, 'Revertir');
+    if(!ok) return;
+    rb.disabled = true;
+    const r = await api('revert', {histId: h.id});
+    if(r.ok){ toast(r.aviso || 'Cambio revertido'); await refreshData(); }
+    else { toast(r.error || 'No se pudo revertir'); rb.disabled = false; }
+  }
+});
+document.getElementById('histExportBtn').addEventListener('click', ()=>{
+  const rows = LAST_HIST_ROWS; if(!rows.length) return;
+  const cols = [
+    {h:'Fecha y hora', w:20, get:h=>h.fecha},
+    {h:'Usuario', w:20, get:h=>h.nombre},
+    {h:'N° Finca', w:16, get:h=>String(h.finca)},
+    {h:'Campo', w:18, get:h=>h.campo},
+    {h:'Valor anterior', w:20, get:h=>fmtHistPlain(h.clave, h.anterior)},
+    {h:'Valor nuevo', w:20, get:h=>fmtHistPlain(h.clave, h.nuevo)},
+    {h:'Nota', w:26, get:h=>h.nota || null},
+  ];
+  window.mifiDownloadXlsx(window.mifiBuildXlsx(rows, cols, 'Historial'), 'MIFI_Historial_' + new Date().toISOString().slice(0,10) + '.xlsx');
+  toast('Excel descargado: ' + rows.length + ' cambio' + (rows.length===1?'':'s') + '.');
+});
+
+/* ======================= Usuarios y accesos (solo administrador) ======================= */
+let USERS = [];
+async function loadUsers(){
+  const r = await api('users');
+  if(!r.ok){ if(!r.code) toast(r.error || 'No se pudieron cargar los usuarios'); return; }
+  USERS = r.users || [];
+  const me = SESSION ? SESSION.user.usuario : '';
+  document.getElementById('usersCountPill').textContent = `${USERS.filter(u=>u.activo).length} activos de ${USERS.length}`;
+  document.getElementById('usersBody').innerHTML = USERS.map(u=>{
+    const self = u.usuario===me;
+    const flags = [u.bloqueado ? '<span class="flag">Bloqueado 15 min</span>' : '', u.debeCambiar ? '<span class="flag">Contraseña temporal</span>' : ''].join('');
+    return `<tr>
+      <td><b style="color:var(--ink)">${esc(u.nombre)}</b>${self ? ' <span class="hist-nota">(usted)</span>' : ''}${flags ? `<div class="user-flags">${flags}</div>` : ''}</td>
+      <td class="mono">${esc(u.usuario)}</td>
+      <td><select class="role-select" data-role-user="${esc(u.usuario)}"${self?' disabled title="No puede cambiar su propio rol"':''}>
+        ${Object.entries(ROLE_LABELS).map(([k,l])=>`<option value="${k}"${u.rol===k?' selected':''}>${l}</option>`).join('')}
+      </select></td>
+      <td><span class="pill ${u.activo?'pill-active':'pill-inactive'}">${u.activo?'Activo':'Inactivo'}</span></td>
+      <td class="mono" style="font-size:.76rem">${u.ultimo ? esc(u.ultimo) : '—'}</td>
+      <td><div class="user-actions">
+        <button type="button" class="mini-btn${u.activo?' danger':''}" data-toggle-user="${esc(u.usuario)}"${self?' disabled':''}>${u.activo?'Desactivar':'Activar'}</button>
+        <button type="button" class="mini-btn" data-reset-user="${esc(u.usuario)}">Nueva contraseña</button>
+      </div></td>
+    </tr>`;
+  }).join('') || '<tr class="empty-row"><td colspan="6">Sin usuarios.</td></tr>';
+  document.getElementById('accBody').innerHTML = (r.accesos||[]).map(a=>`<tr>
+    <td class="hist-when">${esc(a.fecha)}</td><td class="mono">${esc(a.usuario)}</td><td>${esc(a.evento)}</td><td class="hist-nota">${esc(a.detalle)}</td>
+  </tr>`).join('') || '<tr class="empty-row"><td colspan="4">Sin eventos.</td></tr>';
+}
+function showCredentials(usuario, password, sub){
+  document.getElementById('credUser').textContent = usuario;
+  document.getElementById('credPass').textContent = password;
+  document.getElementById('credSub').textContent = sub || '';
+  document.getElementById('credNote').textContent = '';
+  document.getElementById('credBackdrop').hidden = false;
+}
+document.getElementById('credOk').addEventListener('click', ()=>{ document.getElementById('credBackdrop').hidden = true; document.getElementById('credPass').textContent=''; });
+document.getElementById('credClose').addEventListener('click', ()=>{ document.getElementById('credBackdrop').hidden = true; document.getElementById('credPass').textContent=''; });
+document.getElementById('credCopy').addEventListener('click', async ()=>{
+  const txt = 'Usuario: ' + document.getElementById('credUser').textContent + '\nContraseña: ' + document.getElementById('credPass').textContent;
+  try{ await navigator.clipboard.writeText(txt); document.getElementById('credNote').textContent = 'Copiado.'; }
+  catch(e){ document.getElementById('credNote').textContent = 'Seleccione y copie manualmente.'; }
+});
+document.getElementById('usersReload').addEventListener('click', loadUsers);
+document.getElementById('newUserForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const note = document.getElementById('nuNote'), btn = document.getElementById('nuBtn');
+  const nombre = document.getElementById('nuNombre').value.trim();
+  const usuario = document.getElementById('nuUsuario').value.trim().toLowerCase();
+  const rol = document.getElementById('nuRol').value;
+  note.className = 'mifi-save-note';
+  if(!nombre || !usuario){ note.textContent = 'Complete nombre y usuario.'; note.className = 'mifi-save-note err'; return; }
+  btn.disabled = true; note.textContent = 'Creando…';
+  const r = await api('createUser', {nombre, usuario, rol});
+  btn.disabled = false;
+  if(!r.ok){ note.textContent = r.error || 'No se pudo crear.'; note.className = 'mifi-save-note err'; return; }
+  note.textContent = '';
+  document.getElementById('nuNombre').value = ''; document.getElementById('nuUsuario').value = '';
+  showCredentials(r.usuario, r.password, nombre + ' · ' + ROLE_LABELS[rol]);
+  loadUsers();
+});
+document.getElementById('usersBody').addEventListener('change', async e=>{
+  const sel = e.target.closest('[data-role-user]'); if(!sel) return;
+  const u = USERS.find(x=>x.usuario===sel.dataset.roleUser);
+  const ok = await askConfirm('Cambiar rol', `¿Cambiar el rol de <b>${esc(u?u.nombre:sel.dataset.roleUser)}</b> a <b>${ROLE_LABELS[sel.value]}</b>? Aplica de inmediato.`, 'Cambiar rol');
+  if(!ok){ sel.value = u ? u.rol : sel.value; return; }
+  const r = await api('updateUser', {usuario: sel.dataset.roleUser, rol: sel.value});
+  toast(r.ok ? 'Rol actualizado' : (r.error || 'No se pudo cambiar el rol'));
+  loadUsers();
+});
+document.getElementById('usersBody').addEventListener('click', async e=>{
+  const t = e.target.closest('[data-toggle-user]');
+  if(t && !t.disabled){
+    const u = USERS.find(x=>x.usuario===t.dataset.toggleUser); if(!u) return;
+    const ok = await askConfirm(u.activo ? 'Desactivar usuario' : 'Activar usuario',
+      u.activo ? `<b>${esc(u.nombre)}</b> perderá el acceso de inmediato, aunque tenga la página abierta. Su historial se conserva.` : `<b>${esc(u.nombre)}</b> podrá volver a ingresar con su contraseña actual.`,
+      u.activo ? 'Desactivar' : 'Activar');
+    if(!ok) return;
+    const r = await api('updateUser', {usuario: u.usuario, activo: !u.activo});
+    toast(r.ok ? (u.activo ? 'Usuario desactivado' : 'Usuario activado') : (r.error || 'No se pudo actualizar'));
+    loadUsers();
+    return;
+  }
+  const rs = e.target.closest('[data-reset-user]');
+  if(rs){
+    const u = USERS.find(x=>x.usuario===rs.dataset.resetUser); if(!u) return;
+    const ok = await askConfirm('Nueva contraseña', `Se generará una contraseña temporal nueva para <b>${esc(u.nombre)}</b>. La anterior dejará de funcionar.`, 'Generar');
+    if(!ok) return;
+    const r = await api('resetPassword', {usuario: u.usuario});
+    if(r.ok){ showCredentials(r.usuario, r.password, u.nombre + ' · contraseña restablecida'); loadUsers(); }
+    else toast(r.error || 'No se pudo restablecer');
+  }
+});
+
+/* ======================= Cambio de contraseña ======================= */
+let PW_MANDATORY = false;
+function openPwModal(mandatory){
+  PW_MANDATORY = !!mandatory;
+  document.getElementById('pwTitle').textContent = mandatory ? 'Cree su contraseña personal' : 'Cambiar contraseña';
+  document.getElementById('pwSub').textContent = mandatory ? 'Está usando una contraseña temporal. Elija una contraseña personal para continuar.' : (SESSION ? SESSION.user.nombre : '');
+  document.getElementById('pwClose').hidden = mandatory;
+  document.getElementById('pwCancel').hidden = mandatory;
+  document.getElementById('pwLogout').hidden = !mandatory;
+  ['pwActual','pwNueva','pwConfirm'].forEach(id=>{ document.getElementById(id).value=''; });
+  document.getElementById('pwNote').textContent = '';
+  document.getElementById('pwBackdrop').hidden = false;
+  setTimeout(()=>document.getElementById('pwActual').focus(), 30);
+}
+function closePwModal(){ if(!PW_MANDATORY) document.getElementById('pwBackdrop').hidden = true; }
+document.getElementById('chgPwBtn').addEventListener('click', ()=>openPwModal(false));
+document.getElementById('pwClose').addEventListener('click', closePwModal);
+document.getElementById('pwCancel').addEventListener('click', closePwModal);
+document.getElementById('pwLogout').addEventListener('click', ()=>endSession('Sesión cerrada.', true, 'manual'));
+document.getElementById('pwForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const note = document.getElementById('pwNote'), btn = document.getElementById('pwSave');
+  const actual = document.getElementById('pwActual').value;
+  const nueva = document.getElementById('pwNueva').value;
+  const conf = document.getElementById('pwConfirm').value;
+  note.className = 'mifi-save-note err';
+  if(!actual || !nueva){ note.textContent = 'Complete todos los campos.'; return; }
+  if(nueva !== conf){ note.textContent = 'Las contraseñas nuevas no coinciden.'; return; }
+  if(nueva.length < 10 || !/[A-Za-z]/.test(nueva) || !/[0-9]/.test(nueva)){ note.textContent = 'Mínimo 10 caracteres, con letras y números.'; return; }
+  btn.disabled = true; note.className = 'mifi-save-note'; note.textContent = 'Guardando…';
+  const r = await api('changePassword', {actual, nueva});
+  btn.disabled = false;
+  if(!r.ok){ note.className = 'mifi-save-note err'; note.textContent = r.error || 'No se pudo cambiar.'; return; }
+  PW_MANDATORY = false;
+  document.getElementById('pwBackdrop').hidden = true;
+  toast('Contraseña actualizada');
+  loadPayload(r);
+});
+
+/* ======================= Ingreso / salida ======================= */
+document.getElementById('loginForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  const usuario = document.getElementById('loginUser').value.trim().toLowerCase();
+  const passEl = document.getElementById('loginPass');
+  if(!usuario || !passEl.value){ showLogin('Escriba su usuario y contraseña.', 'error'); return; }
+  btn.disabled = true; btn.textContent = 'Verificando…';
+  const r = await api('login', {usuario, password: passEl.value});
+  btn.disabled = false; btn.textContent = 'Acceder';
+  passEl.value = '';
+  if(r.ok){ document.getElementById('loginMsg').hidden = true; startSession(r); }
+  else showLogin(r.error || 'No se pudo ingresar.', 'error');
+});
+document.getElementById('logoutBtn').addEventListener('click', ()=>endSession('Sesión cerrada.', true, 'manual'));
+
+/* ======================= Cierre por inactividad (10 min) ======================= */
+let lastActivity = Date.now();
+let idleWarnOpen = false;
+function markActivity(){ if(SESSION && !idleWarnOpen) lastActivity = Date.now(); }
+['mousemove','mousedown','keydown','wheel','touchstart','scroll'].forEach(ev=>{
+  document.addEventListener(ev, markActivity, {passive:true, capture:true});
+});
+function checkIdle(){
+  if(!SESSION) return;
+  const idle = Date.now() - lastActivity;
+  if(idle >= IDLE_LIMIT_MS){
+    endSession('Su sesión se cerró tras 10 minutos de inactividad. Ingrese nuevamente.', true, 'inactividad');
+    return;
+  }
+  const bd = document.getElementById('idleBackdrop');
+  if(idle >= IDLE_LIMIT_MS - IDLE_WARN_MS){
+    idleWarnOpen = true; bd.hidden = false;
+    document.getElementById('idleCount').textContent = Math.max(0, Math.ceil((IDLE_LIMIT_MS - idle)/1000));
+  } else if(idleWarnOpen){ idleWarnOpen = false; bd.hidden = true; }
+}
+setInterval(checkIdle, 1000);
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') checkIdle(); });
+document.getElementById('idleStay').addEventListener('click', ()=>{
+  idleWarnOpen = false; lastActivity = Date.now();
+  document.getElementById('idleBackdrop').hidden = true;
+  api('ping');
+});
+document.getElementById('idleLogout').addEventListener('click', ()=>endSession('Sesión cerrada.', true, 'manual'));
+
+/* Mantiene viva la sesión del servidor y trae cambios hechos por otros usuarios */
+setInterval(async ()=>{
+  if(!SESSION || SESSION.user.debeCambiar) return;
+  const r = await api('ping');
+  if(r.ok && SESSION && r.rev!==REV) refreshData();
+}, POLL_MS);
+
+async function initAuth(){
+  let saved = null;
+  try{ saved = JSON.parse(sessionStorage.getItem(SS_KEY) || 'null'); }catch(e){}
+  if(saved && saved.token && saved.user){
+    SESSION = saved;
+    const r = await api('data');
+    if(r.ok){ startSession(Object.assign({token: saved.token}, r)); return; }
+    if(r.code==='MUST_CHANGE' && SESSION){ startSession({token: saved.token, user: Object.assign({}, saved.user, {debeCambiar:true})}); return; }
+    if(r.code==='SESSION') return; // endSession() ya mostró el ingreso
+    SESSION = null;
+    try{ sessionStorage.removeItem(SS_KEY); }catch(e){}
+    if(r.net){ showLogin(r.error, 'error'); return; }
+  }
+  showLogin();
+}
+initAuth();
+</script>
+
