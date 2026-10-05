@@ -303,6 +303,22 @@
   .colsel-opt.locked{opacity:.6; cursor:default;}
   .colsel-note{font-size:.72rem; color:var(--ink-muted); margin:8px 2px 0; line-height:1.45;}
 
+  /* ===== V16: vista activas / vendidas, FRI, comprador ===== */
+  .view-switch{display:inline-flex; background:var(--surface-alt); border:1px solid var(--border-strong); border-radius:10px; padding:3px; gap:2px; flex:none;}
+  .view-switch button{border:none; background:transparent; color:var(--ink-2); font-family:inherit; font-size:.84rem; font-weight:600; padding:7px 14px; border-radius:7px; cursor:pointer; white-space:nowrap;}
+  .view-switch button:hover{color:var(--accent);}
+  .view-switch button.on{background:var(--surface); color:var(--accent); box-shadow:0 1px 2px rgba(0,0,0,.12);}
+  .view-switch .vs-n{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.74rem; color:var(--ink-muted); margin-left:4px; font-weight:500;}
+  .tag-comprador{display:inline-block; font-size:.66rem; color:var(--gold-ink); background:var(--gold-soft); padding:2px 7px; border-radius:5px; font-weight:600; margin-top:4px; white-space:nowrap;}
+  .tag-fri{display:inline-block; font-size:.7rem; color:#fff; background:var(--cat-1); padding:2px 8px; border-radius:5px; font-weight:700; letter-spacing:.03em;}
+  .tag-sit{display:inline-block; font-size:.7rem; padding:2px 8px; border-radius:5px; font-weight:600; white-space:nowrap;}
+  .tag-sit.cpp{background:var(--warning-bg); color:var(--warning-ink);}
+  .tag-sit.pagada{background:var(--good-bg); color:var(--good);}
+  .no-link.pend{font-style:italic;}
+  .stat .sub b{color:var(--ink-2); font-weight:600;}
+  .msf-panel-actions button[data-act="fri"]{flex:1.3;}
+  .mifi-field[hidden]{display:none;}
+
   /* ===== Acceso por usuario, pestañas, historial y usuarios ===== */
   [hidden]{display:none !important;}
   .login-card .mifi-field input{padding:11px 12px; font-size:.95rem;}
@@ -385,7 +401,7 @@
     <div>
       <p class="brand-eyebrow">MiFi · Cartera de propiedades</p>
       <h1>MIFI BIENES</h1>
-      <p class="subtitle">Fincas reposeídas, cedidas y adjudicadas a nivel nacional — buscador y resumen en vivo por provincia, corregimiento, cedente y estado. Elige qué columnas mostrar con “Columnas” y descarga la tabla en Excel con “Descargar Excel”.</p>
+      <p class="subtitle">Fincas reposeídas, cedidas y adjudicadas a nivel nacional — buscador y resumen en vivo por provincia, corregimiento, cedente y estado. Cambia entre “Cartera activa” y “Vendidas”, elige qué columnas mostrar con “Columnas” y descarga la tabla en Excel con “Descargar Excel”.</p>
     </div>
     <div class="meta-col">
       <div class="user-box">
@@ -407,6 +423,10 @@
   <section id="viewFincas">
   <div class="controls">
 
+    <div class="view-switch" id="viewSwitch" role="tablist" aria-label="Cartera">
+      <button type="button" class="on" data-gview="activa" title="Fincas en inventario (hoja ORIGEN del informe)">Cartera activa<span class="vs-n" id="vsnActiva"></span></button>
+      <button type="button" data-gview="vendida" title="Fincas vendidas y fuera de inventario (hoja VENDIDOS MFI del informe)">Vendidas<span class="vs-n" id="vsnVendida"></span></button>
+    </div>
     <div class="search-box">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <input id="searchInput" type="text" placeholder="Buscar por finca, tipo, corregimiento, cedente o vendido a…">
@@ -447,6 +467,7 @@
         <div class="msf-panel-actions">
           <button type="button" data-act="all">Todos</button>
           <button type="button" data-act="none">Ninguno</button>
+          <button type="button" data-act="fri" title="Mostrar únicamente las fincas cedidas a FRI">Solo FRI</button>
         </div>
         <div class="msf-options"></div>
       </div>
@@ -481,7 +502,7 @@
     </div>
     <div class="card">
       <h2>Cedente / entidad</h2>
-      <p class="card-sub">Fincas por institución cedente o hipotecaria</p>
+      <p class="card-sub">Fincas y valor en libros por institución cedente o hipotecaria</p>
       <div id="chartCedente"></div>
     </div>
   </div>
@@ -625,7 +646,7 @@
       <div class="mifi-field">
         <label for="editEstado">Estado</label>
         <select id="editEstado">
-          <option value="">Sin dato</option>
+          <option value="">Por confirmar</option>
           <option value="LIBRE">Libre</option>
           <option value="OCUPADA">Ocupada</option>
           <option value="POR INSPECCIONAR">Por inspeccionar</option>
@@ -633,6 +654,15 @@
           <option value="VENDIDA">Vendida</option>
           <option value="DEMANDA">Demanda</option>
           <option value="NO OCUPADA">No ocupada</option>
+          <option value="INVADIDA">Invadida</option>
+        </select>
+      </div>
+      <div class="mifi-field" id="editSituacionField" hidden>
+        <label for="editSituacion">Situación de venta</label>
+        <select id="editSituacion">
+          <option value="">—</option>
+          <option value="Con CPP">Con CPP</option>
+          <option value="Pagada">Pagada</option>
         </select>
       </div>
       <div class="mifi-field">
@@ -768,13 +798,14 @@ let ACCESS = null;    // 'write' | 'read'
 let REV = null;
 
 const ROLE_LABELS = {admin:'Administrador', editor:'Edición', lector:'Solo lectura'};
-const FIELD_LABELS = {estado:'Estado', cedente:'Cedida / Hipotecada', vendidoA:'Vendido a', vs:'Valor sugerido', ventaR:'Venta rápida', vlibros:'Valor en libros'};
+const FIELD_LABELS = {estado:'Estado', cedente:'Cedida / Hipotecada', vendidoA:'Vendido a', vs:'Valor sugerido', ventaR:'Venta rápida', vlibros:'Valor en libros', situacion:'Situación de venta'};
 
+// Descuento (fórmula del Informe V16): 1 − precio / venta rápida; 0 % si el precio supera la venta rápida.
 function computeDescRatio(vs, ventaR){
-  if(vs===null||vs===undefined||ventaR===null||ventaR===undefined||ventaR===0) return null;
-  return vs/ventaR;
+  if(vs===null||vs===undefined||ventaR===null||ventaR===undefined||!ventaR) return null;
+  return Math.max(0, 1 - vs/ventaR);
 }
-function mergedRow(d){ return d.upd ? Object.assign({}, d, {_edited:true}) : d; }
+function mergedRow(d){ return enrichRow(d.upd ? Object.assign({}, d, {_edited:true}) : d); }
 function getMergedData(){ return DATA.map(mergedRow); }
 window.mifiLiveRows = getMergedData;
 
@@ -899,6 +930,7 @@ async function addCustomCedente(name){
 }
 
 const CAT_COLORS = {
+  "FRI":"var(--cat-1)",
   "POR ASIGNAR":"var(--cat-1)",
   "BNP":"var(--cat-2)",
   "FIDEMICRO":"var(--cat-3)",
@@ -925,29 +957,67 @@ const money = n => (n===null||n===undefined) ? 'Dato no disponible' : '$' + Math
 const pct = n => (n===null||n===undefined) ? '—' : Math.round(n*100) + '%';
 const fecha = f => f ? f : 'Dato no disponible';
 
+const ESTADO_PENDIENTE_LABEL = 'Por confirmar'; // fincas sin "Estado actual" en el informe
+// Orden de las barras del gráfico de estado
+const ESTADO_ORDEN = ['LIBRE','OCUPADA','ALQUILADA','INVADIDA','DEMANDA','NO OCUPADA','POR INSPECCIONAR','VENDIDA','__SINDATO'];
+
 function normEstadoKey(raw){
-  if(!raw) return '__SINDATO';
-  return raw.trim().toUpperCase();
+  if(!raw || !String(raw).trim()) return '__SINDATO';
+  let k = String(raw).trim().replace(/\s+/g,' ').toUpperCase();
+  if(k==='OCUPADO') k = 'OCUPADA';
+  return k;
+}
+function estadoLabel(key, raw){
+  if(key==='__SINDATO') return ESTADO_PENDIENTE_LABEL;
+  return (ESTADO_META[key] && ESTADO_META[key].label) || String(raw||key).trim();
 }
 function estadoPill(estado){
   const key = normEstadoKey(estado);
-  if(key==='__SINDATO') return '<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>Sin dato</span>';
+  if(key==='__SINDATO') return `<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>${ESTADO_PENDIENTE_LABEL}</span>`;
   const meta = ESTADO_META[key];
   if(meta) return `<span class="pill ${meta.cls}"><span class="dot" style="background:${meta.dot}"></span>${meta.label}</span>`;
-  return `<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>${estado.trim()}</span>`;
+  return `<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>${esc(String(estado).trim())}</span>`;
 }
-function estadoBucket(d){
-  const key = normEstadoKey(d.estado);
-  if(key==='LIBRE'||key==='OCUPADA'||key==='POR INSPECCIONAR') return key;
-  return 'SIN DATO';
-}
-function isEnProceso(d){
-  if(!d.lanz) return false;
+// "En lanzamiento" = proceso legal de desalojo en curso (columna Lanzamiento del informe).
+function isEnLanzamiento(d){
+  if(!d.lanz || d.grupo==='vendida') return false;
   const L = d.lanz.toUpperCase();
   if(L.includes('FINALIZ')) return false;
   if(L.includes('ARRENDAMIENTO')) return false;
   return true;
 }
+const isEnProceso = isEnLanzamiento; // compatibilidad
+
+/* ===== V16: cartera activa / vendidas, FRI y descuento calculado =====
+   - grupo 'activa' = hoja ORIGEN (en inventario de BBRR de MiFi); 'vendida' = hoja VENDIDOS MFI.
+   - Todas las fincas "POR ASIGNAR" quedan cedidas a FRI.
+   - El descuento SIEMPRE se recalcula aquí (no se toma del Excel), así se corrige solo. */
+let GVIEW = 'activa';
+function enrichRow(d){
+  const r = Object.assign({}, d);
+  if(r.cedente==='POR ASIGNAR') r.cedente = 'FRI';
+  r.grupo = r.grupo || 'activa';
+  r.fri = r.cedente==='FRI';
+  r.desc = computeDescRatio(r.grupo==='vendida' ? r.precioVenta : r.vs, r.ventaR);
+  r.conComprador = r.grupo!=='vendida' && (!!r.vendidoA || /VENDID/i.test(r.obs||''));
+  return r;
+}
+function getViewRows(){ return getMergedData().filter(d=>(d.grupo||'activa')===GVIEW); }
+function friColOn(){ return GVIEW==='activa' && colVisible('fri'); }
+function cedenteShown(d){ return (friColOn() && d.fri) ? null : d.cedente; }
+// Descuento ponderado por venta rápida: Σ(venta rápida × descuento) / Σ venta rápida
+function weightedDesc(rows){
+  const v = rows.filter(d=>d.desc!==null && d.desc!==undefined && d.ventaR);
+  if(!v.length) return null;
+  return v.reduce((a,d)=>a+d.ventaR*d.desc,0) / v.reduce((a,d)=>a+d.ventaR,0);
+}
+function medianDesc(rows){
+  const v = rows.map(d=>d.desc).filter(x=>x!==null && x!==undefined).sort((a,b)=>a-b);
+  if(!v.length) return null;
+  const m = Math.floor(v.length/2);
+  return v.length%2 ? v[m] : (v[m-1]+v[m])/2;
+}
+const pct1 = n => (n===null||n===undefined) ? '—' : (Math.round(n*1000)/10).toLocaleString('es-PA',{minimumFractionDigits:1, maximumFractionDigits:1}) + '%';
 const AVALUO_VIGENCIA_ANIOS = 2;
 const AVALUO_ALERTA_DIAS = 90; // ventana de "próximo a vencer" antes del vencimiento
 
@@ -1000,13 +1070,11 @@ function buildEstadoEntries(rows){
   const map = new Map();
   rows.forEach(d=>{
     const key = normEstadoKey(d.estado);
-    if(!map.has(key)){
-      const label = (ESTADO_META[key] && ESTADO_META[key].label) || (key==='__SINDATO' ? 'Sin dato' : (d.estado||'').trim());
-      map.set(key, label);
-    }
+    if(!map.has(key)) map.set(key, estadoLabel(key, d.estado));
   });
   const list = [...map.entries()].map(([key,label])=>({key,label})).sort((a,b)=>a.label.localeCompare(b.label,'es'));
-  list.push({key:'__EN_PROCESO', label:'En proceso de venta'});
+  if(rows.some(d=>d.conComprador)) list.push({key:'__COMPRADOR', label:'Con comprador'});
+  if(rows.some(isEnLanzamiento)) list.push({key:'__LANZ', label:'En lanzamiento'});
   return list;
 }
 
@@ -1078,9 +1146,18 @@ function createMultiFilter(id, label, allWord){
   panel.addEventListener('click', e=>e.stopPropagation());
   root.querySelector('[data-act="all"]').addEventListener('click', (e)=>{ e.stopPropagation(); selectAll(); applyFilters(); });
   root.querySelector('[data-act="none"]').addEventListener('click', (e)=>{ e.stopPropagation(); selectNone(); applyFilters(); });
+  function selectOnly(keys){
+    const want = new Set(keys.filter(k=>entries.some(e=>e.key===k)));
+    selected = want;
+    optionsEl.querySelectorAll('input[type="checkbox"]').forEach(cb=>{ cb.checked = want.has(cb.dataset.key); });
+    updateLabel();
+  }
+  const friBtn = root.querySelector('[data-act="fri"]');
+  if(friBtn) friBtn.addEventListener('click', (e)=>{ e.stopPropagation(); selectOnly(['FRI']); applyFilters(); });
 
   return {
     setEntries,
+    selectOnly,
     has: (key) => selected.has(key),
     reset: () => selectAll(),
   };
@@ -1099,8 +1176,9 @@ const msfCorr = createMultiFilter('filterCorr', 'Corregimiento', 'todos');
 
 let sortKey='finca', sortDir=1;
 
-function populateFilters(rows){
-  rows = rows || getMergedData();
+function populateFilters(){
+  const rows = getViewRows();
+  updateViewCounts();
   msfTipo.setEntries(buildSimpleEntries(rows, d=>d.tipo));
   msfProv.setEntries(buildSimpleEntries(rows, d=>d.prov));
   msfEstado.setEntries(buildEstadoEntries(rows));
@@ -1112,72 +1190,107 @@ function populateFilters(rows){
   msfCorr.setEntries(buildSimpleEntries(rows, d=>d.corr));
 }
 
+function updateViewCounts(){
+  const all = getMergedData();
+  const na = all.filter(d=>(d.grupo||'activa')==='activa').length;
+  const nv = all.filter(d=>d.grupo==='vendida').length;
+  const a = document.getElementById('vsnActiva'), v = document.getElementById('vsnVendida');
+  if(a) a.textContent = na; if(v) v.textContent = nv;
+}
+function setGView(v){
+  if(v===GVIEW) return;
+  GVIEW = v;
+  document.querySelectorAll('#viewSwitch [data-gview]').forEach(b=>b.classList.toggle('on', b.dataset.gview===v));
+  if(!tableFields().some(f=>f.key===sortKey)){ sortKey='finca'; sortDir=1; }
+  populateFilters();
+  renderColSelList(); renderHead(); applyFilters();
+}
+document.getElementById('viewSwitch').addEventListener('click', e=>{
+  const b = e.target.closest('[data-gview]'); if(b) setGView(b.dataset.gview);
+});
+
 function renderStats(rows){
   const total = rows.length;
-  const sumOf = key => { const v = rows.filter(d=>d[key]!==null && d[key]!==undefined); return {sum:v.reduce((a,d)=>a+d[key],0), n:v.length}; };
-  const merc = sumOf('merc');
-  const ventaR = sumOf('ventaR');
-  const vlibros = sumOf('vlibros');
-  const vs = sumOf('vs');
-  const descArr = rows.filter(d=>d.desc!==null && d.desc!==undefined);
-  const avgDesc = descArr.length ? descArr.reduce((a,d)=>a+d.desc,0)/descArr.length : null;
-  const libres = rows.filter(d=>normEstadoKey(d.estado)==='LIBRE').length;
-
-  const tiles = [
-    {label:'N° de fincas', value: total.toLocaleString('es-PA'), sub:'en la cartera', cls:''},
-    {label:'Valor de avalúo', value: '$'+Math.round(merc.sum).toLocaleString('es-PA'), sub: merc.n+' de '+total+' con dato', cls:'gold'},
-    {label:'Venta rápida', value: '$'+Math.round(ventaR.sum).toLocaleString('es-PA'), sub: ventaR.n+' de '+total+' con dato', cls:''},
-    {label:'Valor en libros', value: '$'+Math.round(vlibros.sum).toLocaleString('es-PA'), sub: vlibros.n+' de '+total+' con dato', cls:''},
-    {label:'Valor sugerido', value: '$'+Math.round(vs.sum).toLocaleString('es-PA'), sub: vs.n+' de '+total+' con dato', cls:'accent'},
-    {label:'Descuento prom.', value: avgDesc!==null ? Math.round(avgDesc*100)+'%' : '—', sub: descArr.length+' con dato', cls:''},
-    {label:'Libres', value: libres.toLocaleString('es-PA'), sub:'disponibles', cls:'accent'},
-  ];
+  const sum = key => rows.reduce((a,d)=> (typeof d[key]==='number' ? a+d[key] : a), 0);
+  const usd = n => '$' + Math.round(n).toLocaleString('es-PA');
+  const wd = weightedDesc(rows), md = medianDesc(rows);
+  let tiles;
+  if(GVIEW==='vendida'){
+    const cpp = rows.filter(d=>d.situacion==='Con CPP').length;
+    const pag = rows.filter(d=>d.situacion==='Pagada').length;
+    tiles = [
+      {label:'Fincas vendidas', value: total.toLocaleString('es-PA'), sub:'fuera de inventario', cls:''},
+      {label:'Precio de venta', value: usd(sum('precioVenta')), sub:'total vendido', cls:'accent'},
+      {label:'Venta rápida', value: usd(sum('ventaR')), sub:'según avalúo', cls:''},
+      {label:'Valor en libros', value: usd(sum('vlibros')), sub:'valor contable', cls:''},
+      {label:'Valor de avalúo', value: usd(sum('merc')), sub:'valor de mercado', cls:'gold'},
+      {label:'Descuento de venta', value: pct1(wd), sub: md!==null ? 'Mediana: <b>'+pct1(md)+'</b>' : 'sobre venta rápida', cls:'', title:'Descuento ponderado: Σ(venta rápida × descuento) ÷ Σ venta rápida. Descuento de cada finca = 1 − precio de venta ÷ venta rápida (0 % si se vendió por encima).'},
+      {label:'Con CPP', value: cpp.toLocaleString('es-PA'), sub: 'pagadas: <b>'+pag+'</b>', cls:''},
+    ];
+  } else {
+    const libres = rows.filter(d=>normEstadoKey(d.estado)==='LIBRE').length;
+    tiles = [
+      {label:'N° de fincas', value: total.toLocaleString('es-PA'), sub:'en la cartera', cls:''},
+      {label:'Valor de avalúo', value: usd(sum('merc')), sub:'valor de mercado', cls:'gold'},
+      {label:'Venta rápida', value: usd(sum('ventaR')), sub:'según avalúo', cls:''},
+      {label:'Valor en libros', value: usd(sum('vlibros')), sub:'valor contable', cls:''},
+      {label:'Valor sugerido', value: usd(sum('vs')), sub:'precio de salida', cls:'accent'},
+      {label:'Descuento prom.', value: pct1(wd), sub: md!==null ? 'Mediana: <b>'+pct1(md)+'</b>' : 'sobre venta rápida', cls:'', title:'Descuento ponderado: Σ(venta rápida × descuento) ÷ Σ venta rápida. Descuento de cada finca = 1 − valor sugerido ÷ venta rápida (0 % si el sugerido es mayor).'},
+      {label:'Libres', value: libres.toLocaleString('es-PA'), sub:'disponibles', cls:'accent'},
+    ];
+  }
   document.getElementById('statsRow').innerHTML = tiles.map(t=>
-    `<div class="stat"><p class="label">${t.label}</p><div class="value ${t.cls}">${t.value}</div><div class="sub">${t.sub}</div></div>`
+    `<div class="stat"${t.title?` title="${esc(t.title)}"`:''}><p class="label">${t.label}</p><div class="value ${t.cls}">${t.value}</div><div class="sub">${t.sub}</div></div>`
   ).join('');
 }
 
-function renderCharts(rows){
-  const estadoCounts = {LIBRE:0, OCUPADA:0, 'POR INSPECCIONAR':0, 'SIN DATO':0};
-  rows.forEach(d=>{ estadoCounts[estadoBucket(d)]++; });
-  const estadoColors = {LIBRE:'var(--good)', OCUPADA:'var(--warning-ink)', 'POR INSPECCIONAR':'var(--serious-ink)', 'SIN DATO':'var(--ink-muted)'};
-  const estadoLabels = {LIBRE:'Libre', OCUPADA:'Ocupada', 'POR INSPECCIONAR':'Por inspeccionar', 'SIN DATO':'Sin dato'};
-  const maxEstado = Math.max(1, ...Object.values(estadoCounts));
-  const enProceso = rows.filter(isEnProceso).length;
+function estadoColor(key){
+  if(key==='__SINDATO') return 'var(--ink-muted)';
+  return (ESTADO_META[key] && ESTADO_META[key].dot) || 'var(--ink-muted)';
+}
 
-  let html = Object.entries(estadoCounts).map(([k,v])=>`
-    <div class="bar-row">
-      <span class="cat-label"><span class="cat-dot" style="background:${estadoColors[k]}"></span>${estadoLabels[k]}</span>
-      <div class="bar-track"><div class="bar-fill" style="width:${(v/maxEstado*100).toFixed(1)}%; background:${estadoColors[k]}"></div></div>
+function renderCharts(rows){
+  const counts = new Map(), raws = {};
+  rows.forEach(d=>{ const k = normEstadoKey(d.estado); counts.set(k,(counts.get(k)||0)+1); raws[k] = raws[k] || d.estado; });
+  const keys = [...counts.keys()].sort((a,b)=>{
+    const ia = ESTADO_ORDEN.indexOf(a), ib = ESTADO_ORDEN.indexOf(b);
+    return (ia<0?50:ia) - (ib<0?50:ib) || a.localeCompare(b);
+  });
+  const maxEstado = Math.max(1, ...counts.values());
+  const barRow = (label, color, v, max, cls) => `
+    <div class="bar-row${cls?' '+cls:''}">
+      <span class="cat-label" title="${esc(label==='Con comprador' ? 'Siguen en inventario de MiFi pero ya tienen comprador (en proceso de venta)' : label)}"><span class="cat-dot" style="background:${color}"></span>${esc(label)}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(v/Math.max(1,max)*100).toFixed(1)}%; background:${color}"></div></div>
       <span class="bar-value">${v}</span>
-    </div>`).join('');
-  html += `
-    <div class="bar-row callout">
-      <span class="cat-label"><span class="cat-dot" style="background:var(--accent)"></span>En proceso de venta</span>
-      <div class="bar-track"><div class="bar-fill" style="width:${(enProceso/Math.max(1,rows.length)*100).toFixed(1)}%; background:var(--accent)"></div></div>
-      <span class="bar-value">${enProceso}</span>
     </div>`;
-  document.getElementById('chartEstado').innerHTML = html;
+  let html = keys.map(k=>barRow(estadoLabel(k, raws[k]), estadoColor(k), counts.get(k), maxEstado)).join('');
+  if(GVIEW==='activa'){
+    const comp = rows.filter(d=>d.conComprador).length;
+    const lanz = rows.filter(isEnLanzamiento).length;
+    html += barRow('Con comprador', 'var(--gold)', comp, rows.length, 'callout');
+    html += barRow('En lanzamiento', 'var(--accent)', lanz, rows.length);
+  } else {
+    const cpp = rows.filter(d=>d.situacion==='Con CPP').length;
+    const pag = rows.filter(d=>d.situacion==='Pagada').length;
+    html += barRow('Con CPP', 'var(--warning-ink)', cpp, rows.length, 'callout');
+    html += barRow('Pagadas', 'var(--good)', pag, rows.length);
+  }
+  document.getElementById('chartEstado').innerHTML = rows.length ? html : '<p style="color:var(--ink-muted); font-size:.85rem;">Sin resultados</p>';
 
   const cedCounts = {};
-  rows.forEach(d=>{ cedCounts[d.cedente] = (cedCounts[d.cedente]||0)+1; });
+  rows.forEach(d=>{ const k = d.cedente || '—'; cedCounts[k] = (cedCounts[k]||0)+1; });
   const cedSorted = Object.entries(cedCounts).sort((a,b)=>b[1]-a[1]);
   const maxCed = Math.max(1, ...Object.values(cedCounts));
   document.getElementById('chartCedente').innerHTML = cedSorted.map(([k,v])=>{
-    const propsCed = rows.filter(d=>d.cedente===k);
-    const conMerc = propsCed.filter(d=>d.merc!==null && d.merc!==undefined);
-    const totalMerc = conMerc.reduce((a,d)=>a+d.merc,0);
-    const totalTxt = conMerc.length
-      ? `<b>${money(totalMerc)}</b>${conMerc.length<propsCed.length ? ' · '+conMerc.length+' de '+propsCed.length+' con dato' : ''}`
-      : 'Dato no disponible';
+    const totalLibros = rows.filter(d=>(d.cedente||'—')===k && typeof d.vlibros==='number').reduce((a,d)=>a+d.vlibros,0);
     return `
     <div class="ced-block">
       <div class="bar-row">
-        <span class="cat-label" title="${k}"><span class="cat-dot" style="background:${CAT_COLORS[k]||CAT_OTHER}"></span>${k}</span>
+        <span class="cat-label" title="${esc(k)}"><span class="cat-dot" style="background:${CAT_COLORS[k]||CAT_OTHER}"></span>${esc(k)}</span>
         <div class="bar-track"><div class="bar-fill" style="width:${(v/maxCed*100).toFixed(1)}%; background:${CAT_COLORS[k]||CAT_OTHER}"></div></div>
         <span class="bar-value">${v}</span>
       </div>
-      <div class="ced-total">Valor total (avalúo): ${totalTxt}</div>
+      <div class="ced-total">Valor en libros: <b>${money(totalLibros)}</b></div>
     </div>`;
   }).join('') || '<p style="color:var(--ink-muted); font-size:.85rem;">Sin resultados</p>';
 }
@@ -1186,24 +1299,30 @@ function renderCharts(rows){
    w = peso relativo del ancho. def = visible por defecto. ext = visible en "Para compartir".
    'enlace' es siempre la última columna (también lleva el botón ✎); si se oculta solo desaparece el 🔗. */
 const FIELDS = [
-  {key:'finca',    label:'N° Finca',            w:6,   def:true, ext:true, locked:true, td:d=>`<td class="finca">${d.finca}</td>`},
+  {key:'finca',    label:'N° Finca',            w:6,   def:true, ext:true, locked:true, td:d=>`<td class="finca">${esc(String(d.finca))}</td>`},
   {key:'tipo',     label:'Tipo',                w:10, def:true, ext:true,  td:d=>`<td>${d.tipo ? esc(d.tipo) : '—'}</td>`},
   {key:'prov',     label:'Provincia',           w:8.5, def:false,ext:true,  td:d=>`<td>${d.prov ? esc(d.prov) : '—'}</td>`},
-  {key:'corr',     label:'Corregimiento',       w:9.5,  def:true, ext:true,  td:d=>`<td class="corr" title="${d.corr||''}">${d.corr||'—'}</td>`},
-  {key:'cedente',  label:'Cedida / Hipotecada', w:9.5,  def:true, ext:false, td:d=>`<td>${d.cedente}</td>`},
-  {key:'vendidoA', label:'Vendido a',           w:9.5,  def:true, ext:false, td:d=>`<td>${d.vendidoA || '—'}${d.obs==='VENDIDA' ? '<span class="tag-vendida">Vendida</span>' : ''}</td>`},
-  {key:'estado',   label:'Estado',              w:8.5, def:true, ext:true,  td:d=>`<td>${estadoPill(d.estado)}</td>`},
+  {key:'corr',     label:'Corregimiento',       w:9.5,  def:true, ext:true,  td:d=>`<td class="corr" title="${esc(d.corr||'')}">${d.corr ? esc(d.corr) : '—'}</td>`},
+  {key:'cedente',  label:'Cedida / Hipotecada', w:9.5,  def:true, ext:false, td:d=>{ const c = cedenteShown(d); return `<td>${c ? esc(c) : '—'}</td>`; }},
+  {key:'fri',      label:'FRI',                 w:5,   def:false,ext:false, only:'activa', note:'Al activarla, las fincas de FRI salen de “Cedida / Hipotecada” y se muestran aquí.', td:d=>`<td>${d.fri ? '<span class="tag-fri">FRI</span>' : ''}</td>`},
+  {key:'vendidoA', label:'Vendido a',           w:9.5,  def:true, ext:false, labelV:'Comprador', td:d=>`<td>${d.vendidoA ? esc(d.vendidoA) : '—'}</td>`},
+  {key:'estado',   label:'Estado',              w:8.5, def:true, ext:true,  only:'activa', td:d=>`<td>${estadoPill(d.estado)}${d.conComprador ? '<br><span class="tag-comprador" title="Sigue en inventario de MiFi, pero ya tiene comprador o figura como vendida en el informe">Con comprador</span>' : ''}</td>`},
+  {key:'precioVenta', label:'Precio de venta',  w:8,   def:true, ext:true,  only:'vendida', td:d=>`<td class="num">${money(d.precioVenta)}</td>`},
+  {key:'situacion',label:'Situación de venta',  w:7.5, def:true, ext:false, only:'vendida', td:d=>`<td>${d.situacion ? `<span class="tag-sit ${d.situacion==='Pagada'?'pagada':'cpp'}">${esc(d.situacion)}</span>` : '—'}</td>`},
   {key:'vs',       label:'Valor sugerido',      w:8,   def:true, ext:true,  td:d=>`<td class="num">${money(d.vs)}</td>`},
   {key:'merc',     label:'Valor de avalúo',     w:8,   def:true, ext:true,  td:d=>`<td class="num">${money(d.merc)}</td>`},
   {key:'vlibros',  label:'Valor en libros',     w:8,   def:true, ext:false, td:d=>`<td class="num">${money(d.vlibros)}</td>`},
   {key:'ventaR',   label:'Venta rápida',        w:8,   def:false,ext:false, td:d=>`<td class="num">${money(d.ventaR)}</td>`},
-  {key:'desc',     label:'Desc.',               w:7.5, def:true, ext:false, td:d=>`<td class="num">${pct(d.desc)}</td>`},
-  {key:'ea',       label:'Avalúo',              w:8,   def:true, ext:true,  td:d=>`<td>${avaluoFlag(computeEa(d))}</td>`},
+  {key:'desc',     label:'Desc.',               w:7.5, def:true, ext:false, labelV:'Desc. venta', td:d=>`<td class="num" title="${GVIEW==='vendida' ? '1 − precio de venta ÷ venta rápida' : '1 − valor sugerido ÷ venta rápida (0 % si el sugerido es mayor)'}">${pct(d.desc)}</td>`},
+  {key:'ea',       label:'Avalúo',              w:8,   def:true, ext:true,  only:'activa', td:d=>`<td>${avaluoFlag(computeEa(d))}</td>`},
   {key:'fa',       label:'Fecha de avalúo',     w:7,   def:true, ext:true,  td:d=>`<td class="mono fecha">${fecha(d.fa)}</td>`},
   {key:'obs',      label:'Observación',         w:12,  def:false,ext:false, td:d=>`<td>${d.obs ? esc(d.obs) : '—'}</td>`},
   {key:'enlace',   label:'PDF de valoración',   w:7,   def:true, ext:false, head:'PDF', nosort:true},
 ];
-const COLS_STORE_KEY = 'mifi_cols_v1';
+function inView(f){ return !f.only || f.only===GVIEW; }
+function fieldLabel(f){ return (GVIEW==='vendida' && f.labelV) ? f.labelV : f.label; }
+function viewFields(){ return FIELDS.filter(inView); }
+const COLS_STORE_KEY = 'mifi_cols_v2';
 let VISIBLE_COLS = (function(){
   const dflt = new Set(FIELDS.filter(f=>f.def).map(f=>f.key));
   try{
@@ -1214,7 +1333,7 @@ let VISIBLE_COLS = (function(){
 })();
 function colVisible(key){ return VISIBLE_COLS.has(key); }
 function saveCols(){ try{ localStorage.setItem(COLS_STORE_KEY, JSON.stringify([...VISIBLE_COLS])); }catch(e){} }
-function tableFields(){ return FIELDS.filter(f=>f.key!=='enlace' && colVisible(f.key)); }
+function tableFields(){ return FIELDS.filter(f=>f.key!=='enlace' && inView(f) && colVisible(f.key)); }
 
 function renderHead(){
   const fs = tableFields();
@@ -1226,17 +1345,18 @@ function renderHead(){
   document.getElementById('tableHeadRow').innerHTML =
     fs.map(f=>{
       const act = sortKey===f.key;
-      return `<th data-key="${f.key}"${act?' class="active"':''}>${esc(f.head||f.label)}<span class="arrow">${act ? (sortDir===1?'↑':'↓') : '↕'}</span></th>`;
+      return `<th data-key="${f.key}"${act?' class="active"':''}>${esc(f.head||fieldLabel(f))}<span class="arrow">${act ? (sortDir===1?'↑':'↓') : '↕'}</span></th>`;
     }).join('') + `<th title="Abrir PDF de valoración">${linkOn?'PDF':''}</th>`;
-  const n = FIELDS.filter(f=>colVisible(f.key)).length;
-  document.getElementById('colSelLabel').textContent = `Columnas (${n}/${FIELDS.length})`;
+  const vf = viewFields();
+  const n = vf.filter(f=>colVisible(f.key)).length;
+  document.getElementById('colSelLabel').textContent = `Columnas (${n}/${vf.length})`;
 }
 
 function renderColSelList(){
-  document.getElementById('colSelList').innerHTML = FIELDS.map(f=>`
-    <label class="colsel-opt${f.locked?' locked':''}">
+  document.getElementById('colSelList').innerHTML = viewFields().map(f=>`
+    <label class="colsel-opt${f.locked?' locked':''}"${f.note?` title="${esc(f.note)}"`:''}>
       <input type="checkbox" data-col="${f.key}"${colVisible(f.key)?' checked':''}${f.locked?' disabled':''}>
-      <span>${esc(f.label)}</span>
+      <span>${esc(fieldLabel(f))}${f.key==='fri'?' <small style="color:var(--ink-muted)">(columna aparte)</small>':''}</span>
     </label>`).join('');
 }
 
@@ -1271,7 +1391,9 @@ function setVisibleCols(keys){
     const pb = e.target.closest('[data-preset]');
     if(!pb) return;
     const p = pb.dataset.preset;
-    setVisibleCols(FIELDS.filter(f=> p==='all' ? true : p==='external' ? f.ext : f.def).map(f=>f.key));
+    // Las columnas de la otra vista conservan su estado; FRI aparte nunca se activa con un preset.
+    const keep = FIELDS.filter(f=>!inView(f) && colVisible(f.key)).map(f=>f.key);
+    setVisibleCols(keep.concat(viewFields().filter(f=> f.key!=='fri' && (p==='all' ? true : p==='external' ? f.ext : f.def)).map(f=>f.key)));
   });
   panel.addEventListener('change', e=>{
     const cb = e.target.closest('input[data-col]');
@@ -1308,7 +1430,7 @@ function renderTable(rows){
 
   LAST_TABLE_ROWS = sorted;
   const xb = document.getElementById('exportXlsxBtn'); if(xb) xb.disabled = sorted.length===0;
-  document.getElementById('tableCountPill').textContent = `Mostrando ${sorted.length} de ${DATA.length}`;
+  document.getElementById('tableCountPill').textContent = `Mostrando ${sorted.length} de ${getViewRows().length}`;
   document.getElementById('countPill').textContent = `${sorted.length} finca${sorted.length===1?'':'s'}`;
 
   if(sorted.length===0){
@@ -1318,7 +1440,7 @@ function renderTable(rows){
 
   const fs = tableFields();
   document.getElementById('tableBody').innerHTML = sorted.map(d=>{
-    const link = !colVisible('enlace') ? '' : d.enlace ? `<a class="link-btn" href="${d.enlace}" target="_blank" rel="noopener" title="Abrir PDF de valoración en OneDrive">🔗</a>` : '<span class="no-link">—</span>';
+    const link = !colVisible('enlace') ? '' : d.enlace ? `<a class="link-btn" href="${esc(d.enlace)}" target="_blank" rel="noopener" title="Abrir PDF de valoración en OneDrive">🔗</a>` : '<span class="no-link pend" title="El PDF del avalúo aún no está disponible">Pendiente</span>';
     const editDisabled = ACCESS!=='write' ? ' disabled' : '';
     const editBtn = `<button type="button" class="edit-btn" data-edit-id="${esc(d._id)}" title="Editar finca ${esc(String(d.finca))}"${editDisabled}>✎</button>`;
     return `<tr class="${d._edited?'row-edited':''}" data-id="${esc(d._id)}">
@@ -1335,13 +1457,13 @@ function applyFilters(){
   const fPriceMin = rawMin!=='' ? parseFloat(rawMin) : null;
   const fPriceMax = rawMax!=='' ? parseFloat(rawMax) : null;
 
-  let rows = getMergedData().filter(d=>{
+  let rows = getViewRows().filter(d=>{
     if(!msfTipo.has(keyOrSinDato(d.tipo))) return false;
     if(!msfProv.has(keyOrSinDato(d.prov))) return false;
     const estKey = normEstadoKey(d.estado);
     const matchesEstado = msfEstado.has(estKey);
-    const matchesProceso = isEnProceso(d) && msfEstado.has('__EN_PROCESO');
-    if(!matchesEstado && !matchesProceso) return false;
+    const matchesExtra = (d.conComprador && msfEstado.has('__COMPRADOR')) || (isEnLanzamiento(d) && msfEstado.has('__LANZ'));
+    if(!matchesEstado && !matchesExtra) return false;
     if(!msfCedente.has(keyOrSinDato(d.cedente))) return false;
     if(!msfCorr.has(keyOrSinDato(d.corr))) return false;
     if(fPriceMin!==null || fPriceMax!==null){
@@ -1350,7 +1472,7 @@ function applyFilters(){
       if(fPriceMax!==null && d.vs > fPriceMax) return false;
     }
     if(q){
-      const hay = [d.finca, d.tipo, d.corr, d.cedente, d.vendidoA, d.prov].filter(Boolean).join(' ').toLowerCase();
+      const hay = [d.finca, d.tipo, d.corr, d.cedente, d.vendidoA, d.prov, d.situacion, d.obs].filter(Boolean).join(' ').toLowerCase();
       if(!hay.includes(q)) return false;
     }
     return true;
@@ -1405,6 +1527,9 @@ function toast(msg){
   const inpVentaR = document.getElementById('editVentaR');
   const inpVlibros = document.getElementById('editVlibros');
   const descPreview = document.getElementById('editDescPreview');
+  const selSituacion = document.getElementById('editSituacion');
+  const sitField = document.getElementById('editSituacionField');
+  let editingGrupo = 'activa';
   const lockedGrid = document.getElementById('editLockedGrid');
   const modalSub = document.getElementById('editModalSub');
   const saveNote = document.getElementById('editSaveNote');
@@ -1413,7 +1538,7 @@ function toast(msg){
   let editingId = null;
   let initialForm = null;
   function fillEstadoOptions(raw){
-    let html = '<option value="">Sin dato</option>' + Object.keys(ESTADO_META).map(k=>`<option value="${esc(k)}">${esc(ESTADO_META[k].label)}</option>`).join('');
+    let html = '<option value="">Por confirmar</option>' + Object.keys(ESTADO_META).map(k=>`<option value="${esc(k)}">${esc(ESTADO_META[k].label)}</option>`).join('');
     const nk = normEstadoKey(raw);
     let val = '';
     if(raw && ESTADO_META[nk]) val = nk;
@@ -1421,7 +1546,9 @@ function toast(msg){
     selEstado.innerHTML = html; selEstado.value = val;
   }
   function formValues(){
-    return {estado: selEstado.value, cedente: selCedente.value, vendidoA: inpVendidoA.value.trim(), vs: inpVs.value, ventaR: inpVentaR.value, vlibros: inpVlibros.value};
+    const o = {estado: selEstado.value, cedente: selCedente.value, vendidoA: inpVendidoA.value.trim(), vs: inpVs.value, ventaR: inpVentaR.value, vlibros: inpVlibros.value};
+    if(editingGrupo==='vendida') o.situacion = selSituacion.value;
+    return o;
   }
 
   function fillCedenteOptions(currentValue){
@@ -1449,15 +1576,24 @@ function toast(msg){
   function updateDescPreview(){
     const vs = inpVs.value!=='' ? parseFloat(inpVs.value) : null;
     const ventaR = inpVentaR.value!=='' ? parseFloat(inpVentaR.value) : null;
+    if(editingGrupo==='vendida'){
+      const d = getMergedData().find(r=>r._id===editingId);
+      const r2 = computeDescRatio(d ? d.precioVenta : null, ventaR);
+      descPreview.textContent = 'Descuento de venta (1 − precio de venta ÷ venta rápida): ' + (r2!==null ? pct(r2) : '—') + ' — se calcula solo.';
+      return;
+    }
     const ratio = computeDescRatio(vs, ventaR);
-    descPreview.textContent = 'Descuento (valor sugerido / venta rápida): ' + (ratio!==null ? pct(ratio) : '—') + ' — se calcula solo, no se edita.';
+    descPreview.textContent = 'Descuento (1 − valor sugerido ÷ venta rápida; 0 % si el sugerido es mayor): ' + (ratio!==null ? pct(ratio) : '—') + ' — se calcula solo, no se edita.';
   }
 
   function openEditor(id){
     const d = getMergedData().find(r=>r._id===id);
     if(!d) return;
     editingId = id;
-    document.getElementById('editModalTitle').textContent = 'Editar finca ' + d.finca;
+    editingGrupo = d.grupo || 'activa';
+    sitField.hidden = editingGrupo!=='vendida';
+    selSituacion.value = d.situacion || '';
+    document.getElementById('editModalTitle').textContent = 'Editar finca ' + d.finca + (editingGrupo==='vendida' ? ' (vendida)' : '');
     modalSub.textContent = (d.corr||'sin corregimiento') + ', ' + (d.prov||'sin provincia') + (d.upd ? ' · Última edición: ' + d.upd + (d.updBy ? ' por ' + d.updBy : '') : '');
     fillEstadoOptions(d.estado);
     fillCedenteOptions(d.cedente || '');
@@ -1472,9 +1608,10 @@ function toast(msg){
       <div>Corregimiento</div><div><b>${esc(d.corr||'—')}</b></div>
       <div>Provincia</div><div><b>${esc(d.prov||'—')}</b></div>
       <div>Valor de avalúo</div><div><b>${money(d.merc)}</b></div>
+      ${d.grupo==='vendida' ? `<div>Precio de venta</div><div><b>${money(d.precioVenta)}</b></div>` : ''}
       <div>Fecha de avalúo</div><div><b>${fecha(d.fa)}</b></div>
       <div>Estado de avalúo</div><div><b>${esc(d.ea||'—')}</b></div>
-      <div>PDF de valoración</div><div>${d.enlace ? `<a href="${d.enlace}" target="_blank" rel="noopener">Abrir PDF</a>` : '—'}</div>
+      <div>PDF de valoración</div><div>${d.enlace ? `<a href="${esc(d.enlace)}" target="_blank" rel="noopener">Abrir PDF</a>` : 'Pendiente'}</div>
     `;
     lockedGrid.insertAdjacentHTML('beforeend', `<div>Historial</div><div><a href="#" data-hist-id="${esc(d._id)}">Ver cambios de esta finca</a></div>`);
     initialForm = formValues();
@@ -1602,14 +1739,17 @@ function toast(msg){
     {k:'tipo',    h:'Tipo',                  w:18, get:d=>d.tipo},
     {k:'prov',    h:'Provincia',             w:14, get:d=>d.prov},
     {k:'corr', h:'Corregimiento',         w:22, get:d=>d.corr},
-    {k:'cedente', h:'Cedida / Hipotecada',   w:20, get:d=>d.cedente},
-    {k:'vendidoA', h:'Vendido a',             w:20, get:d=>d.vendidoA},
-    {k:'estado', h:'Estado',                w:16, get:d=>d.estado},
+    {k:'cedente', h:'Cedida / Hipotecada',   w:20, get:d=>cedenteShown(d)},
+    {k:'fri', h:'FRI',                   w:8,  get:d=>d.fri ? 'FRI' : null},
+    {k:'vendidoA', h:'Vendido a', hV:'Comprador', w:20, get:d=>d.vendidoA},
+    {k:'estado', h:'Estado',                w:16, get:d=>estadoLabel(normEstadoKey(d.estado), d.estado) + (d.conComprador ? ' · Con comprador' : '')},
+    {k:'precioVenta', h:'Precio de venta',  w:16, get:d=>num(d.precioVenta), s:2},
+    {k:'situacion', h:'Situación de venta', w:16, get:d=>d.situacion},
     {k:'vs', h:'Valor sugerido',        w:16, get:d=>num(d.vs),     s:2},
     {k:'merc', h:'Valor de avalúo',       w:16, get:d=>num(d.merc),   s:2},
     {k:'vlibros', h:'Valor en libros',       w:16, get:d=>num(d.vlibros),s:2},
     {k:'ventaR', h:'Venta rápida',          w:16, get:d=>num(d.ventaR), s:2},
-    {k:'desc', h:'Desc.',                 w:9,  get:d=>num(d.desc),   s:3},
+    {k:'desc', h:'Descuento', hV:'Descuento de venta', w:11, get:d=>num(d.desc),   s:3},
     {k:'ea', h:'Estado de avalúo',      w:15, get:d=>{ try{ const e=computeEa(d); return e ? (e.estimated ? e.text+' (estimado)' : e.text) : null; }catch(err){ return d.ea; } }},
     {k:'fa', h:'Fecha de avalúo',       w:14, get:d=>dateSerial(d.fa), s:4},
     {k:'obs', h:'Observación',           w:24, get:d=>d.obs},
@@ -1618,7 +1758,8 @@ function toast(msg){
   let COLS = ALL_COLS;
   function activeCols(){
     const byKey = Object.fromEntries(ALL_COLS.map(c=>[c.k,c]));
-    const cols = FIELDS.filter(f=>colVisible(f.key)).map(f=>byKey[f.key]).filter(Boolean);
+    const cols = FIELDS.filter(f=>inView(f) && colVisible(f.key)).map(f=>byKey[f.key]).filter(Boolean)
+      .map(c=>(GVIEW==='vendida' && c.hV) ? Object.assign({}, c, {h:c.hV}) : c);
     return cols.length ? cols : ALL_COLS;
   }
 
@@ -1683,7 +1824,7 @@ function toast(msg){
     const blob = buildXlsx(rows);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'MIFI_Fincas_' + new Date().toISOString().slice(0,10) + '.xlsx';
+    a.href = url; a.download = (GVIEW==='vendida' ? 'MIFI_Vendidas_' : 'MIFI_Fincas_') + new Date().toISOString().slice(0,10) + '.xlsx';
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(url), 4000);
     toast('Excel descargado: ' + rows.length + ' finca' + (rows.length===1?'':'s') + '.');
@@ -1735,7 +1876,7 @@ let LAST_HIST_ROWS = [];
 function fmtHistPlain(clave, v){
   if(v===null || v===undefined || v==='') return '(vacío)';
   if(HIST_MONEY.has(clave) && typeof v==='number') return money(v);
-  if(clave==='estado'){ const m = ESTADO_META[normEstadoKey(String(v))]; return m ? m.label : String(v); }
+  if(clave==='estado'){ const k = normEstadoKey(String(v)); return estadoLabel(k, v); }
   return String(v);
 }
 function fmtHistVal(clave, v){
@@ -1825,7 +1966,8 @@ document.getElementById('histBody').addEventListener('click', async e=>{
   if(g){
     const d = DATA.find(r=>r._id===g.dataset.gotoFinca);
     document.getElementById('searchInput').value = d ? String(d.finca) : '';
-    switchView('fincas'); applyFilters();
+    switchView('fincas');
+    if(d && (d.grupo||'activa')!==GVIEW) setGView(d.grupo||'activa'); else applyFilters();
     return;
   }
   const rb = e.target.closest('[data-revert]');
