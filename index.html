@@ -119,7 +119,7 @@
   .msf-opt input{accent-color:var(--accent); width:14px; height:14px; flex:none; cursor:pointer;}
   .msf-opt span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
-  .stats{display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:22px; box-shadow:var(--shadow);}
+  .stats{display:grid; grid-template-columns:repeat(8,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:22px; box-shadow:var(--shadow);}
   .stat{background:var(--surface); padding:16px 14px;}
   .stat .label{font-size:.66rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted); font-weight:600; margin:0 0 8px;}
   .stat .value{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:1.2rem; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
@@ -303,6 +303,11 @@
   .colsel-opt.locked{opacity:.6; cursor:default;}
   .colsel-note{font-size:.72rem; color:var(--ink-muted); margin:8px 2px 0; line-height:1.45;}
 
+  /* ===== V17: descuento con flechas, intereses ===== */
+  .desc-down{color:var(--critical-ink); font-weight:600; white-space:nowrap;}
+  .desc-up{color:var(--good); font-weight:600; white-space:nowrap;}
+  .int-pend{color:var(--ink-muted); font-size:.74rem; font-style:italic;}
+  .stat .value.pend{color:var(--ink-muted); font-size:1.05rem;}
   /* ===== V16: vista activas / vendidas, FRI, comprador ===== */
   .view-switch{display:inline-flex; background:var(--surface-alt); border:1px solid var(--border-strong); border-radius:10px; padding:3px; gap:2px; flex:none;}
   .view-switch button{border:none; background:transparent; color:var(--ink-2); font-family:inherit; font-size:.84rem; font-weight:600; padding:7px 14px; border-radius:7px; cursor:pointer; white-space:nowrap;}
@@ -318,6 +323,164 @@
   .stat .sub b{color:var(--ink-2); font-weight:600;}
   .msf-panel-actions button[data-act="fri"]{flex:1.3;}
   .mifi-field[hidden]{display:none;}
+#legalRoot .step-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:0 0 6px}
+#legalRoot .types{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:900px){#legalRoot .types{grid-template-columns:1fr 1fr}}
+#legalRoot .type{all:unset;cursor:pointer;background:var(--surface);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:2px;border-top:4px solid var(--tc)}
+#legalRoot .type:hover{border-color:var(--bds)}
+#legalRoot .type.on{outline:2px solid var(--tc);outline-offset:-1px;background:color-mix(in srgb,var(--tc) 7%,var(--surface))}
+#legalRoot .type .t{font-weight:700;font-size:15px}
+#legalRoot .type .d{font-size:12px;color:var(--ink2);min-height:32px}
+#legalRoot .type .row{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+#legalRoot .type .n{font-size:26px;font-weight:700;color:var(--tc)}
+#legalRoot .type .m{font-size:12px;color:var(--mut)}
+#legalRoot .phasebar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+#legalRoot .seg{display:inline-flex;background:var(--alt);border-radius:9px;padding:3px;gap:2px}
+#legalRoot .seg button{all:unset;cursor:pointer;padding:5px 12px;border-radius:7px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+#legalRoot .seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--sh)}
+#legalRoot .search{flex:1;min-width:200px;max-width:320px;border:1px solid var(--bd);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 10px;font:inherit;font-size:13px}
+#legalRoot select{border:1px solid var(--bd);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 8px;font:inherit;font-size:13px}
+#legalRoot .chk{font-size:12.5px;color:var(--ink2);display:flex;gap:5px;align-items:center}
+#legalRoot .board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(185px,1fr);gap:10px;overflow-x:auto;padding-bottom:8px;align-items:start}
+@media(max-width:700px){#legalRoot .board{grid-auto-flow:row;grid-auto-columns:auto}}
+#legalRoot .col{background:var(--alt2);border:1px solid var(--bd);border-radius:12px;display:flex;flex-direction:column;max-height:72vh}
+#legalRoot .col.done{opacity:.92}
+#legalRoot .colh{padding:10px 12px 8px;border-bottom:1px solid var(--bd);border-top:4px solid var(--pc);border-radius:12px 12px 0 0;background:var(--surface)}
+#legalRoot .colh .nm{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13.5px}
+#legalRoot .colh .cnt{background:color-mix(in srgb,var(--pc) 16%,transparent);color:var(--pc);border-radius:999px;padding:1px 9px;font-size:12.5px}
+#legalRoot .colh .ex{font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.3}
+#legalRoot .colh .sum{font-size:11.5px;color:var(--ink2);margin-top:4px;font-family:'JetBrains Mono',monospace}
+#legalRoot .cards{padding:8px;overflow-y:auto;display:flex;flex-direction:column;gap:7px}
+#legalRoot .empty{font-size:12px;color:var(--mut);text-align:center;padding:14px 4px}
+#legalRoot .card{all:unset;cursor:pointer;display:block;background:var(--surface);border:1px solid var(--bd);border-radius:9px;padding:8px 10px;font-size:12.5px}
+#legalRoot .card:hover{border-color:var(--pc);box-shadow:var(--sh)}
+#legalRoot .card .h{display:flex;justify-content:space-between;gap:6px;font-weight:700;font-size:13px;line-height:1.25}
+#legalRoot .card .num{color:var(--mut);font-weight:500;font-size:11.5px;white-space:nowrap}
+#legalRoot .card .l2{color:var(--ink2);margin-top:3px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+#legalRoot .card .ft{display:flex;justify-content:space-between;gap:6px;margin-top:5px;font-size:11.5px;color:var(--mut)}
+#legalRoot .amt{font-family:'JetBrains Mono',monospace;color:var(--ink);font-size:12px}
+#legalRoot .tag{display:inline-block;border-radius:5px;padding:0 6px;font-size:11px;font-weight:600;background:var(--alt);color:var(--ink2)}
+#legalRoot .tag.fase{background:var(--pb);color:var(--pi)}
+#legalRoot .warn{color:var(--wi);font-weight:600;white-space:nowrap}
+#legalRoot .soon{color:var(--bi);font-weight:600}
+#legalRoot .ov{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:10}
+#legalRoot .ov.on{display:block}
+#legalRoot .dr{position:fixed;top:0;right:0;height:100%;width:min(520px,100%);background:var(--surface);z-index:11;transform:translateX(100%);transition:transform .2s;box-shadow:-10px 0 30px rgba(0,0,0,.2);overflow-y:auto;padding:18px 20px}
+#legalRoot .dr.on{transform:none}
+#legalRoot .dr .x{all:unset;cursor:pointer;float:right;font-size:20px;color:var(--mut)}
+#legalRoot .dr h3{margin:0 0 6px;font-size:18px;padding-right:24px}
+#legalRoot .crumb{font-size:12px;color:var(--mut);margin-bottom:10px}
+#legalRoot .pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;color:var(--pc);background:color-mix(in srgb,var(--pc) 15%,transparent)}
+#legalRoot .box{background:var(--bg);border-radius:9px;padding:10px 12px;margin-top:10px}
+#legalRoot .box .hh{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--acc);margin-bottom:4px}
+#legalRoot .kv{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:12.5px}
+#legalRoot .kv span:nth-child(odd){color:var(--mut)}
+#legalRoot .ph{color:var(--mut);font-style:italic}
+#legalRoot details{margin-top:10px;font-size:12.5px;color:var(--ink2)}
+#legalRoot summary{cursor:pointer;font-weight:600;color:var(--acc)}
+#legalRoot details p{white-space:pre-wrap}
+#legalRoot{--alt:var(--surface-alt);--alt2:var(--surface-alt-2);--ink2:var(--ink-2);--mut:var(--ink-muted);--bd:var(--border);--bds:var(--border-strong);--acc:var(--accent);--accs:var(--accent-soft);--acci:var(--accent-soft-ink);
+--wi:#8a5a04;--wb:#fdeecb;--ci:#b5211f;--cb:#fadedd;--gi:#0b7d0b;--gb:#dcf3dc;--bi:#2a6fc4;--bb:#e2ecfa;--pi:#5b3fb0;--pb:#ebe6fa;--sh:0 1px 2px rgba(22,31,26,.06),0 8px 20px -12px rgba(22,31,26,.18);font-size:14px;line-height:1.45}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #legalRoot{--wi:#f0c46a;--wb:#3a2e12;--ci:#f08a7e;--cb:#3d1c19;--gi:#7fd67f;--gb:#173017;--bi:#8db8f0;--bb:#172638;--pi:#b8a6f0;--pb:#251f3a}}
+:root[data-theme="dark"] #legalRoot{--wi:#f0c46a;--wb:#3a2e12;--ci:#f08a7e;--cb:#3d1c19;--gi:#7fd67f;--gb:#173017;--bi:#8db8f0;--bb:#172638;--pi:#b8a6f0;--pb:#251f3a}
+#dashboardWrap.legal-mode .controls > :not(#viewSwitch),#dashboardWrap.legal-mode #statsRow,#dashboardWrap.legal-mode .charts,#dashboardWrap.legal-mode .table-card{display:none!important}
+#viewSwitch button#lgViewBtn.on{color:#b5211f}
+tr.row-flash td{animation:flash 2.4s ease-out}@keyframes flash{0%,35%{background:color-mix(in srgb,#f0c46a 45%,transparent)}100%{background:transparent}}
+#legalRoot .step-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:0 0 6px}
+#legalRoot .step-lbl .hint{text-transform:none;letter-spacing:0;font-weight:500}
+#legalRoot .lg-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:4px 0 16px}
+#legalRoot .lg-sub{display:inline-flex;background:var(--alt);border:1px solid var(--bds);border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+#legalRoot .lg-sub button{all:unset;cursor:pointer;padding:7px 13px;border-radius:7px;font-size:.84rem;font-weight:600;color:var(--ink2);white-space:nowrap}
+#legalRoot .lg-sub button.on{background:var(--surface);color:var(--acc);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+#legalRoot .lg-sub button.apta.on{color:var(--gi)}
+#legalRoot .vs-n{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--mut);margin-left:5px;font-weight:500}
+#legalRoot .lg-search{flex:1;min-width:200px;max-width:340px;border:1px solid var(--bd);background:var(--surface);color:var(--ink);border-radius:9px;padding:8px 11px;font:inherit;font-size:13px}
+#legalRoot .sp{flex:1}
+#legalRoot .btn{all:unset;cursor:pointer;box-sizing:border-box;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--bd);background:var(--surface);color:var(--ink);font-weight:600;font-size:13px;padding:7px 13px;border-radius:8px;white-space:nowrap}
+#legalRoot .btn:hover{border-color:var(--bds)}
+#legalRoot .btn.pri{background:var(--acc);border-color:var(--acc);color:var(--accent-ink)}
+#legalRoot .btn.pri:hover{filter:brightness(1.08)}
+#legalRoot .btn.ghost{border-color:transparent;color:var(--mut);font-weight:500}
+#legalRoot .btn.sm{padding:4px 9px;font-size:12px}
+#legalRoot .lnk{all:unset;cursor:pointer;color:var(--acc);font-weight:600}
+#legalRoot .lnk:hover{text-decoration:underline}#legalRoot .lnk.sm{font-size:11px;margin-left:6px;text-transform:none;letter-spacing:0}
+#lgToast .lnk.inv{all:unset;cursor:pointer;font-weight:700;text-decoration:underline;margin-left:6px}
+#legalRoot .intro{background:var(--surface);border:1px solid var(--bd);border-left:4px solid var(--acc);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ink2);margin-bottom:14px}
+#legalRoot .empty.big{padding:40px;font-size:14px;background:var(--surface);border:1px dashed var(--bds);border-radius:12px}
+#legalRoot .card[draggable]{cursor:grab}#legalRoot .card.drag{opacity:.4}
+#legalRoot .col.over{outline:2px dashed var(--pc,var(--acc));outline-offset:2px}
+#legalRoot .mini{font-size:10.5px;color:var(--mut);border:1px dashed var(--bds);border-radius:5px;padding:0 5px}#legalRoot .mini.ok{color:var(--gi);border-color:currentColor;border-style:solid}
+#legalRoot .aptcol{background:color-mix(in srgb,var(--gi) 6%,var(--surface));border:2px dashed color-mix(in srgb,var(--gi) 45%,transparent)}
+#legalRoot .aptcol.over{outline-color:var(--gi)}
+#legalRoot .aptin{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:22px 12px;color:var(--ink2);font-size:12.5px}
+#legalRoot .aptin .ic{width:34px;height:34px;border-radius:50%;background:var(--gb);color:var(--gi);display:grid;place-items:center;font-weight:800;font-size:17px}
+#legalRoot .aptin b{color:var(--ink);font-size:13.5px}#legalRoot .aptin small{color:var(--mut)}
+#legalRoot .apgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+#legalRoot .apcard{background:var(--surface);border:1px solid var(--bd);border-top:4px solid var(--tc);border-radius:12px;padding:12px 14px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:6px}
+#legalRoot .aph{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:12px;color:var(--mut)}
+#legalRoot .apcard h4{margin:0;font-size:15px}#legalRoot .apcard h4 small{color:var(--mut);font-weight:500}
+#legalRoot .aps{font-size:12.5px;color:var(--ink2)}
+#legalRoot .prog{height:6px;border-radius:9px;background:var(--alt);overflow:hidden;margin-top:4px}#legalRoot .prog div{height:100%;background:var(--gi);border-radius:9px;transition:width .25s}
+#legalRoot .progt{font-size:11.5px;color:var(--mut)}
+#legalRoot .ckl{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:3px;font-size:13px}
+#legalRoot .ckl label{display:flex;gap:7px;align-items:center;cursor:pointer}#legalRoot .ckl input{accent-color:var(--gi);width:15px;height:15px}
+#legalRoot .ckl input:checked+*,#legalRoot .ckl label:has(input:checked){color:var(--mut);text-decoration:line-through}
+#legalRoot .apa{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+#legalRoot .chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:600;background:var(--alt);color:var(--ink2)}
+#legalRoot .chip.ok{background:var(--gb);color:var(--gi)}#legalRoot .chip.warn{background:var(--wb);color:var(--wi)}#legalRoot .chip.blue{background:var(--bb);color:var(--bi)}#legalRoot .chip.mut{background:transparent;border:1px dashed var(--bds);color:var(--mut)}
+#legalRoot .folder{background:var(--surface);border:1px solid var(--bd);border-radius:12px;margin-bottom:12px;overflow:hidden}
+#legalRoot .fh{padding:10px 14px;font-weight:700;background:var(--alt2);border-bottom:1px solid var(--bd)}
+#legalRoot .frow{all:unset;cursor:pointer;box-sizing:border-box;width:100%;display:grid;grid-template-columns:2fr 1fr 90px 1fr;gap:10px;padding:9px 14px;border-bottom:1px solid var(--bd);font-size:13px}
+#legalRoot .frow:hover{background:var(--alt2)}#legalRoot .frow:last-child{border-bottom:0}
+#legalRoot .tblw{background:var(--surface);border:1px solid var(--bd);border-radius:12px;overflow-x:auto}
+#legalRoot .ctbl{width:100%;border-collapse:collapse;font-size:13px}#legalRoot .ctbl th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);padding:9px 12px;background:var(--alt2)}
+#legalRoot .ctbl td{padding:8px 12px;border-top:1px solid var(--bd);vertical-align:middle}#legalRoot .ctbl .note{color:var(--ink2);font-size:12px;max-width:340px}
+#legalRoot .mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+#legalRoot .mutt{color:var(--mut);font-size:12.5px}
+/* drawer */
+#legalRoot .dr{width:min(600px,100%);padding:18px 22px 0;display:flex;flex-direction:column}
+#legalRoot .dr .chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 6px}
+#legalRoot .sect{margin-top:14px}
+#legalRoot .hh{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--acc);margin-bottom:6px}
+#legalRoot .hh small{text-transform:none;letter-spacing:0;color:var(--mut);font-weight:500}
+#legalRoot .simple{background:var(--accs);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--ink)}
+#legalRoot .aptbox{background:var(--gb);border-radius:10px;padding:11px 14px}#legalRoot .aptbox .hh{color:var(--gi)}
+#legalRoot .banner{background:var(--alt);border-radius:9px;padding:8px 12px;font-size:12.5px;color:var(--ink2);margin-top:8px}
+#legalRoot .stepper{display:flex;gap:0;overflow-x:auto;padding:4px 0 2px}
+#legalRoot .stp{all:unset;cursor:pointer;flex:1;min-width:72px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:11px;color:var(--mut);position:relative;padding:0 2px}
+#legalRoot .stp:disabled{cursor:default}
+#legalRoot .stp::before{content:'';position:absolute;top:7px;left:-50%;width:100%;height:2px;background:var(--bd);z-index:0}#legalRoot .stp:first-child::before{display:none}
+#legalRoot .stp.past::before,#legalRoot .stp.cur::before{background:var(--acc)}
+#legalRoot .stp i{width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--bds);z-index:1}
+#legalRoot .stp.past i{background:var(--acc);border-color:var(--acc)}
+#legalRoot .stp.cur i{background:var(--surface);border:4px solid var(--acc);width:16px;height:16px;margin-top:-1px;box-shadow:0 0 0 4px var(--accs)}
+#legalRoot .stp.cur span{color:var(--ink);font-weight:700}
+#legalRoot .stp.apt i{border-color:var(--gi)}#legalRoot .stp em{font-style:normal;font-size:9.5px;font-weight:700;color:var(--gi);background:var(--gb);border-radius:4px;padding:0 4px}
+#legalRoot .stp:not(:disabled):hover span{color:var(--acc)}
+#legalRoot .conf{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--alt2);border:1px solid var(--bd);border-radius:9px;padding:9px 11px;margin-top:8px;font-size:13px}
+#legalRoot .conf.col2{display:grid;grid-template-columns:1fr 1fr;gap:6px}#legalRoot .conf.col2 input[type=text],#legalRoot .conf.col2 #lgCarp{grid-column:1/-1}
+#legalRoot .conf input:not([type]),#legalRoot .conf #lgCarp,#legalRoot .sub input,#legalRoot .ff input,#legalRoot .ff select,#legalRoot .ff textarea,#legalRoot #lgCkl{border:1px solid var(--bd);background:var(--surface);color:var(--ink);border-radius:7px;padding:7px 9px;font:inherit;font-size:13px;flex:1;min-width:160px;box-sizing:border-box;width:100%}
+#legalRoot .bad{border-color:#b5211f!important;box-shadow:0 0 0 2px #fadedd}
+#legalRoot .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px}
+#legalRoot .tile{background:var(--bg);border-radius:10px;padding:9px 12px;display:flex;flex-direction:column;gap:2px}
+#legalRoot .tile span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;font-weight:600}#legalRoot .tile b{font-family:'JetBrains Mono',monospace;font-size:15px}#legalRoot .tile small{font-size:11px;color:var(--mut)}
+#legalRoot .kv{font-size:13px}
+#legalRoot .tl{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid var(--bd);display:flex;flex-direction:column;gap:7px;font-size:12.5px}
+#legalRoot .tl li{position:relative}#legalRoot .tl li::before{content:'';position:absolute;left:-19px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--acc)}
+#legalRoot .tl li.base::before{background:var(--bds)}#legalRoot .tl li.base{color:var(--mut)}
+#legalRoot .tl .mono{display:inline-block;min-width:78px;color:var(--mut);margin-right:6px}
+#legalRoot .drfoot{position:sticky;bottom:0;margin:18px -22px 0;padding:12px 22px;background:var(--surface);border-top:1px solid var(--bd);display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:auto}
+#legalRoot .form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+#legalRoot .ff{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);font-weight:600}#legalRoot .ff.wide{grid-column:1/-1}
+@media(max-width:600px){#legalRoot .form{grid-template-columns:1fr}#legalRoot .frow{grid-template-columns:1fr 1fr}}
+#legalRoot .rad{display:flex;gap:8px;align-items:flex-start;font-size:13px;cursor:pointer;padding:3px 0}
+#legalRoot .rad.big{border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-top:8px}#legalRoot .rad.big:has(input:checked){border-color:var(--acc);background:var(--accs)}
+#legalRoot .rad.big span{display:flex;flex-direction:column;gap:2px}#legalRoot .rad.big small{color:var(--ink2);font-size:12px}
+#legalRoot .sub{margin:6px 0 0 26px}
+#legalRoot .alerta{background:var(--wb);color:var(--wi);border-radius:7px;padding:6px 9px;font-size:12.5px;margin-top:6px}
+#lgToast{position:fixed;left:24px;bottom:22px;transform:translateY(30px);opacity:0;pointer-events:none;background:#161F1A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13.5px;box-shadow:0 10px 30px rgba(0,0,0,.3);transition:.25s;z-index:50;max-width:min(560px,92vw)}
+#lgToast.on{transform:none;opacity:1;pointer-events:auto}
+
 
   /* ===== Acceso por usuario, pestañas, historial y usuarios ===== */
   [hidden]{display:none !important;}
@@ -374,6 +537,21 @@
   .modal-text{font-size:.88rem; color:var(--ink-2); margin:0; line-height:1.5;}
   .edit-meta{font-size:.76rem; color:var(--ink-muted); margin:0 0 12px;}
   .mifi-save-note.err{color:var(--critical-ink);}
+
+/* ---- v2: casos legales en modo solo lectura y carga de datos ---- */
+#legalRoot .lg-ro-chip{display:none;font-size:.78rem;font-weight:600;color:var(--ink-muted);border:1px solid var(--line, #d9dfe0);border-radius:999px;padding:4px 10px}
+#legalRoot.lg-ro .lg-ro-chip{display:inline-block}
+#legalRoot.lg-ro #lgNewBtn,#legalRoot.lg-ro #lgCfgBtn,#legalRoot.lg-ro #lgEditBtn,#legalRoot.lg-ro #lgConclBtn,
+#legalRoot.lg-ro [data-reopen1],#legalRoot.lg-ro [data-reopen],#legalRoot.lg-ro [data-concl],#legalRoot.lg-ro #lgCartBtn{display:none!important}
+#legalRoot.lg-ro .stp,#legalRoot.lg-ro .ckl input{pointer-events:none}
+#legalRoot.lg-ro .card{cursor:pointer}
+#legalRoot.lg-ro .sect .hh small,#legalRoot.lg-ro .simple .ph,#legalRoot.lg-ro .step-lbl .hint{display:none}
+.carga-card{margin-top:18px}
+.carga-body{padding:6px 20px 18px}
+.carga-body input[type=file]{margin:8px 0 10px;font:inherit}
+.carga-resumen{background:var(--surface-2, #f4f6f5);border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:.86rem}
+.carga-resumen ul{margin:6px 0 0 18px;padding:0}
+.carga-actions{display:flex;gap:12px;align-items:center}
 </style>
 
 <div class="gh-gate" id="loginGate" hidden>
@@ -401,7 +579,7 @@
     <div>
       <p class="brand-eyebrow">MiFi · Cartera de propiedades</p>
       <h1>MIFI BIENES</h1>
-      <p class="subtitle">Fincas reposeídas, cedidas y adjudicadas a nivel nacional — buscador y resumen en vivo por provincia, corregimiento, cedente y estado. Cambia entre “Cartera activa” y “Vendidas”, elige qué columnas mostrar con “Columnas” y descarga la tabla en Excel con “Descargar Excel”.</p>
+      <p class="subtitle">Fincas reposeídas, cedidas y adjudicadas a nivel nacional — buscador y resumen en vivo por provincia, corregimiento, cedente y estado. Cambia entre “Cartera activa”, “⚖ Casos legales” y “Vendidas”, elige qué columnas mostrar con “Columnas” y descarga la tabla en Excel con “Descargar Excel”.</p>
     </div>
     <div class="meta-col">
       <div class="user-box">
@@ -425,6 +603,7 @@
 
     <div class="view-switch" id="viewSwitch" role="tablist" aria-label="Cartera">
       <button type="button" class="on" data-gview="activa" title="Fincas en inventario (hoja ORIGEN del informe)">Cartera activa<span class="vs-n" id="vsnActiva"></span></button>
+      <button type="button" id="lgViewBtn" title="Fincas y casos en proceso legal (cobros, fideicomisos, demandas y desalojos)">⚖ Casos legales<span class="vs-n" id="vsnLegal"></span></button>
       <button type="button" data-gview="vendida" title="Fincas vendidas y fuera de inventario (hoja VENDIDOS MFI del informe)">Vendidas<span class="vs-n" id="vsnVendida"></span></button>
     </div>
     <div class="search-box">
@@ -492,7 +671,12 @@
     <span class="count-pill" id="countPill"></span>
   </div>
 
-  <div class="stats" id="statsRow"></div>
+<div id="legalRoot"><section id="legalPanel" hidden>
+  <div class="lg-head"><div class="lg-sub" id="lgSub"></div><input class="lg-search" id="lgSearch" placeholder="Buscar caso, finca, deudor, abogado, carpeta…"><span class="sp"></span>
+  <span class="lg-ro-chip" title="Su usuario puede ver los casos pero no modificarlos">👁 Solo lectura</span><button class="btn" id="lgCfgBtn">⚙ Fases aptas</button><button class="btn pri" id="lgNewBtn">+ Registrar caso</button></div>
+  <div id="lgBody"></div></section>
+  <div class="ov" id="lg_ov"></div><aside class="dr" id="lg_dr"></aside><div id="lgToast"></div></div>
+    <div class="stats" id="statsRow"></div>
 
   <div class="charts">
     <div class="card">
@@ -595,14 +779,16 @@
           <div class="mifi-field"><label for="nuRol">Rol</label>
             <select id="nuRol">
               <option value="lector">Solo lectura</option>
-              <option value="editor">Edición</option>
+              <option value="editor_bienes">Edición · bienes reposeídos</option>
+              <option value="editor_legal">Edición · casos legales</option>
+              <option value="editor">Edición (todo)</option>
               <option value="admin">Administrador</option>
             </select>
           </div>
           <button class="mifi-btn mifi-btn-primary" type="submit" id="nuBtn">Crear usuario</button>
           <p class="mifi-save-note" id="nuNote" style="margin-top:10px"></p>
         </form>
-        <p class="roles-legend"><b>Solo lectura:</b> ve fincas e historial.<br><b>Edición:</b> además puede editar fincas.<br><b>Administrador:</b> además administra usuarios y puede revertir cambios.</p>
+        <p class="roles-legend"><b>Solo lectura:</b> ve fincas, casos legales e historial.<br><b>Edición · bienes reposeídos:</b> edita fincas (cartera activa y vendidas).<br><b>Edición · casos legales:</b> registra y mueve casos, fases, cartera y cierre.<br><b>Edición (todo):</b> ambas cosas.<br><b>Administrador:</b> todo, más usuarios, revertir cambios y carga completa de datos.</p>
       </div>
       <div class="table-card">
         <div class="table-head-row"><h2>Usuarios</h2><div class="table-head-actions"><span class="count-pill" id="usersCountPill"></span><button type="button" class="xlsx-btn" id="usersReload">Actualizar</button></div></div>
@@ -623,6 +809,15 @@
           <thead><tr><th>Fecha y hora</th><th>Usuario</th><th>Evento</th><th>Detalle</th></tr></thead>
           <tbody id="accBody"></tbody>
         </table>
+      </div>
+    </div>
+    <div class="table-card carga-card">
+      <div class="table-head-row"><h2>Carga completa de datos</h2><span class="count-pill">Solo administrador</span></div>
+      <div class="carga-body">
+        <p class="card-sub">Reemplaza <b>todas</b> las fincas y casos legales de la hoja con un archivo de datos preparado (<code>MIFI_datos_….json</code>). Antes de reemplazar, el servidor guarda una copia de respaldo dentro de la misma hoja de Google (pestañas “Respaldo …”). Úselo solo para migraciones o recargas completas: los cambios del día a día se hacen editando cada finca o caso.</p>
+        <input type="file" id="cargaFile" accept=".json,application/json">
+        <div id="cargaResumen" class="carga-resumen" hidden></div>
+        <div class="carga-actions"><button type="button" class="mifi-btn mifi-btn-primary" id="cargaBtn" disabled>Cargar datos</button><span class="mifi-save-note" id="cargaNote"></span></div>
       </div>
     </div>
   </section>
@@ -646,7 +841,7 @@
       <div class="mifi-field">
         <label for="editEstado">Estado</label>
         <select id="editEstado">
-          <option value="">Por confirmar</option>
+          <option value="">— (vacío)</option>
           <option value="LIBRE">Libre</option>
           <option value="OCUPADA">Ocupada</option>
           <option value="POR INSPECCIONAR">Por inspeccionar</option>
@@ -691,6 +886,20 @@
       <div class="mifi-field">
         <label for="editVlibros">Valor en libros</label>
         <input type="number" id="editVlibros" inputmode="numeric" step="any">
+      </div>
+      <div class="mifi-field-row">
+        <div class="mifi-field">
+          <label for="editFe">Fecha de entrada al portafolio</label>
+          <input type="date" id="editFe">
+        </div>
+        <div class="mifi-field" id="editFvField" hidden>
+          <label for="editFv">Fecha de venta</label>
+          <input type="date" id="editFv">
+        </div>
+      </div>
+      <div class="mifi-field">
+        <label for="editTasa">Tasa propia (% anual, opcional)</label>
+        <input type="number" id="editTasa" inputmode="decimal" step="any" min="0" placeholder="Vacío = tasa general">
       </div>
       <p class="mifi-desc-preview" id="editDescPreview"></p>
 
@@ -774,8 +983,81 @@
 
 <script>
 
+/* ===== CASOS LEGALES — los datos vienen del servidor (pestaña Casos de la hoja) ===== */
+const LG_FINCAS_DASH = { has: k => DATA.some(d => String(d.finca) === String(k)) }; // fincas que existen en la base (dinámico)
+const LG_TYPES=[
+ {k:'cobro',t:'Cobros judiciales',d:'MIFI demanda a deudores que no pagaron, para rematar su garantía.',icon:'⚖️',c:'#2a6fc4'},
+ {k:'fideicomiso',t:'Fideicomisos en ejecución',d:'La fiduciaria (FWLA) ejecuta la garantía sin pasar por juicio.',icon:'🏦',c:'#9C6F26'},
+ {k:'contra',t:'Demandas contra MIFI',d:'Terceros que demandan a MIFI o al grupo. Riesgo de pagar o perder una finca.',icon:'🛡️',c:'#b5211f'},
+ {k:'lanz',t:'Desalojos (lanzamientos)',d:'Sacar a ocupantes de fincas que ya son de MIFI.',icon:'🏠',c:'#1F5C4D'}];
+const LG_PH={
+ cobro:[['inicio','Inicio de la demanda','Se presenta la demanda y se avisa al deudor'],['bienes','Embargo y captura','Se congelan bienes o se busca el vehículo'],['disputa','El deudor se defiende','El juez resuelve objeciones del deudor'],['remate','Remate','Subasta del bien por fijar o fijada'],['adjudicado','Adjudicado','El bien ya se subastó'],['cerrado','Cerrado','Pagó, sin bienes, desistido o castigado']],
+ fideicomiso:[['iniciado','Ejecución iniciada','Carta y adelanto enviados a FWLA'],['subasta','Camino a subasta','Cliente notificado, se fija la subasta'],['negociacion','En negociación','Cliente propone arreglo; ejecución en pausa'],['singarantia','Sin bien / por castigar','Garantía ilocalizable o saldo remanente']],
+ contra:[['admision','Por admitir','El juzgado aún no acepta la demanda'],['primera','Primera instancia','El juez de primera instancia la está viendo'],['apelacion','Apelación','Ya hubo fallo; la parte perdedora apeló'],['corte','Corte Suprema','Último nivel: recurso de casación']],
+ lanz:[['presentar','Por presentar','Trámite previo antes de demandar'],['presentada','Presentada','Demanda en el juzgado o recién admitida'],['notif','Notificando','Se intenta avisar al ocupante'],['ejecutar','Desalojo fijado','Audiencia o fecha de salida definida'],['bloqueado','Trabado','Juez negó, apelación, juicio largo o jurisdicción'],['cerrar','Por cerrar','Finca ya vacía; falta cerrar el expediente'],['fin','Finalizado','Ocupante salió; finca recuperada']]};
+/* Los casos llegan del servidor al ingresar (pestaña "Casos" de la hoja de Google) y cada
+   cambio se envía de inmediato. Si dos personas editan el mismo caso a la vez, el servidor
+   rechaza el segundo guardado (control por "versión") y la pantalla recarga la versión vigente. */
+const LG_DEFAULT_CFG={apta:{cobro:['adjudicado'],fideicomiso:[],contra:[],lanz:['cerrar']},checklist:['Habilitar en la página de ventas','Inspección de la finca','Renovar fotos']};
+let LG_BASE=[];                          // casos tal como están guardados en la hoja
+let LG_SERVER_CFG=null;                  // configuración guardada en la hoja (pestaña Config)
+let LG_STATE={ov:{},nuevos:[],cfg:null}; // cambios hechos aquí que el servidor aún no confirmó
+let LG_SAVING=false, LG_SAVE_AGAIN=false;
+function lgCanEdit(){return typeof SESSION!=='undefined'&&!!SESSION&&['admin','editor','editor_legal'].includes(SESSION.user.rol);}
+function lgUser(){return (typeof SESSION!=='undefined'&&SESSION)?SESSION.user.nombre:'';}
+function lgCfg(){return LG_STATE.cfg||LG_SERVER_CFG||LG_DEFAULT_CFG;}
+function lgToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function lgSetServer(casos,cfg){LG_BASE=Array.isArray(casos)?casos:[];LG_SERVER_CFG=cfg||null;}
+function lgPending(){return Object.keys(LG_STATE.ov).length+LG_STATE.nuevos.length+(LG_STATE.cfg?1:0);}
+function lgRerender(){if(typeof onLiveDataChanged==='function')onLiveDataChanged();}
+function lgSave(){
+  if(!lgCanEdit()){LG_STATE={ov:{},nuevos:[],cfg:null};if(typeof toast==='function')toast('Su usuario no tiene permiso para editar casos legales.');setTimeout(lgRerender,0);return;}
+  lgFlush();
+}
+async function lgFlush(){
+  if(LG_SAVING){LG_SAVE_AGAIN=true;return;}
+  const items=[],sentOv={},sentNew=new Set();
+  Object.keys(LG_STATE.ov).forEach(id=>{const b=LG_BASE.find(c=>c.id===id);if(!b)return;
+    items.push({baseV:b._v||null,data:Object.assign({},b,LG_STATE.ov[id])});sentOv[id]=JSON.stringify(LG_STATE.ov[id]);});
+  LG_STATE.nuevos.forEach(n=>{items.push({baseV:null,data:Object.assign({},n,LG_STATE.ov[n.id]||{})});sentNew.add(n.id);
+    if(LG_STATE.ov[n.id])sentOv[n.id]=JSON.stringify(LG_STATE.ov[n.id]);});
+  const cfg=LG_STATE.cfg;
+  if(!items.length&&!cfg)return;
+  LG_SAVING=true;
+  const r=await api('saveCases',{cases:items,cfg:cfg||undefined});
+  LG_SAVING=false;
+  if(r.ok){
+    (r.casos||[]).forEach(c=>{const i=LG_BASE.findIndex(x=>x.id===c.id);if(i>=0)LG_BASE[i]=c;else LG_BASE.push(c);});
+    Object.keys(sentOv).forEach(id=>{if(JSON.stringify(LG_STATE.ov[id])===sentOv[id])delete LG_STATE.ov[id];});
+    LG_STATE.nuevos=LG_STATE.nuevos.filter(n=>!(sentNew.has(n.id)&&LG_BASE.some(c=>c.id===n.id)));
+    if(r.legalCfg){LG_SERVER_CFG=r.legalCfg;if(LG_STATE.cfg===cfg)LG_STATE.cfg=null;}
+    if(r.conflicts&&r.conflicts.length){
+      r.conflicts.forEach(x=>{delete LG_STATE.ov[x.id];if(x.actual){const i=LG_BASE.findIndex(c=>c.id===x.id);if(i>=0)LG_BASE[i]=x.actual;}});
+      if(typeof toast==='function')toast('Otra persona modificó '+(r.conflicts.length===1?'este caso':r.conflicts.length+' casos')+' al mismo tiempo. Se cargó su versión: revise y vuelva a aplicar su cambio.');
+    }
+    lgRerender();
+  }else if(SESSION){
+    if(typeof toast==='function')toast('No se pudo guardar el caso: '+(r.error||'error')+'. El cambio sigue en pantalla y se reintentará en el próximo guardado.');
+  }
+  if(LG_SAVE_AGAIN){LG_SAVE_AGAIN=false;lgFlush();}
+}
+window.addEventListener('beforeunload',e=>{if(SESSION&&lgPending()){e.preventDefault();e.returnValue='';}});
+function lgCases(){return LG_BASE.concat(LG_STATE.nuevos).map(c=>{const o=LG_STATE.ov[c.id];return o?Object.assign({},c,o):c;});}
+function lgIsApta(c){return !c.concl && (!c.cartera||c.cartera.t!=='otra') && (lgCfg().apta[c.tipo]||[]).includes(c.fase);}
+function lgSection(c){return c.concl?'concl':(c.cartera&&c.cartera.t==='otra')?'otra':lgIsApta(c)?'apta':'proc';}
+function lgOpenSet(){const s=new Set();lgCases().forEach(c=>{if(!c.concl&&c.finca)s.add(String(c.finca));});return s;}
+function lgLabel(c){const T=LG_TYPES.find(t=>t.k===c.tipo);return (T?T.t:'Caso')+(c.tipo==='lanz'?'':' #'+c.n);}
+function legalExtraRows(){
+  return lgCases().filter(c=>c.concl&&c.concl.destino==='mifi'&&c.finca&&!LG_FINCAS_DASH.has(String(c.finca))).map(c=>({
+    finca:isNaN(+c.finca)?c.finca:+c.finca,grupo:'activa',cedente:'MIFI (caso legal)',vendidoA:null,prov:c.concl.prov||null,corr:c.concl.corr||null,
+    tipo:c.concl.tipoInm||null,ventaR:null,merc:null,vlibros:null,vs:null,precioVenta:null,desc:null,fe:c.concl.fecha||null,fv:null,tasa:null,lanz:null,
+    estado:null,situacion:null,fa:null,obs:'Ingresó desde '+lgLabel(c)+' ('+c.concl.fecha+')',ea:null,enlace:null,_id:'legal_'+String(c.finca).replace(/[^A-Za-z0-9]/g,'_'),_legal:c.id}));
+}
+
+</script>
+<script>
 // ⚠️ CONFIGURACIÓN: dirección de la aplicación web de Google Apps Script (termina en /exec).
-const API_URL = 'https://script.google.com/macros/s/AKfycbxTMdB6HI52_0H2_PRmx40J7e1ETBZTmQuNMe6Yf2Npyl3RZvKtEpsvXvAb_wzrZzT4/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyit3Qz69LyWu2YY0hj6p01GqNYUPu2d2hyfj1bjFI_MwZ9Yb5D_ZX6awNDetyLa8nI/exec';
 
 const IDLE_LIMIT_MS = 10 * 60 * 1000;  // cierre de sesión por inactividad
 const IDLE_WARN_MS = 60 * 1000;        // aviso previo
@@ -786,7 +1068,9 @@ const SS_KEY = 'mifi_sess_v2';
    DATOS DESDE GOOGLE SHEETS (vía Google Apps Script)
    - La página NO contiene datos: se descargan solo después de un ingreso válido.
    - Cada usuario tiene su propia contraseña (verificada en el servidor).
-   - Roles: admin (todo + usuarios + revertir), editor (edita), lector (solo ve).
+   - Roles: admin (todo + usuarios + revertir + carga de datos), editor (edita fincas y casos),
+     editor_bienes (solo fincas), editor_legal (solo casos legales), lector (solo ve).
+   - Los casos legales también viven en la hoja (pestaña Casos): ya no en el navegador.
    - Cada edición queda en la pestaña "Historial" de la hoja con usuario, fecha
      y hora del servidor, valor anterior y valor nuevo.
    ===================================================================== */
@@ -797,16 +1081,22 @@ let SESSION = null;   // {token, user:{usuario,nombre,rol,rolLabel,debeCambiar}}
 let ACCESS = null;    // 'write' | 'read'
 let REV = null;
 
-const ROLE_LABELS = {admin:'Administrador', editor:'Edición', lector:'Solo lectura'};
-const FIELD_LABELS = {estado:'Estado', cedente:'Cedida / Hipotecada', vendidoA:'Vendido a', vs:'Valor sugerido', ventaR:'Venta rápida', vlibros:'Valor en libros', situacion:'Situación de venta'};
+const ROLE_LABELS = {admin:'Administrador', editor:'Edición (todo)', editor_bienes:'Edición · bienes reposeídos', editor_legal:'Edición · casos legales', lector:'Solo lectura'};
+const FINCA_EDIT_ROLES = ['admin','editor','editor_bienes'];
+const LEGAL_EDIT_ROLES = ['admin','editor','editor_legal'];
+const REVERTIBLE = new Set(['estado','cedente','vendidoA','vs','ventaR','vlibros','situacion','fe','fv','tasa']);
+const FIELD_LABELS = {estado:'Estado', cedente:'Cedida / Hipotecada', vendidoA:'Vendido a', vs:'Valor sugerido', ventaR:'Venta rápida', vlibros:'Valor en libros', situacion:'Situación de venta', fe:'Fecha de entrada', fv:'Fecha de venta', tasa:'Tasa de interés (%)', caso:'Caso legal', cfg:'Configuración casos', carga:'Carga de datos'};
 
-// Descuento (fórmula del Informe V16): 1 − precio / venta rápida; 0 % si el precio supera la venta rápida.
-function computeDescRatio(vs, ventaR){
-  if(vs===null||vs===undefined||ventaR===null||ventaR===undefined||!ventaR) return null;
-  return Math.max(0, 1 - vs/ventaR);
+// Descuento (fórmula oct-2026 — se calcula solo, ya no usa el informe ni la venta rápida):
+//  · Activas: valor sugerido ÷ valor en libros − 1 → se muestra como descuento positivo; 0 % si el sugerido ≥ libros.
+//  · Vendidas: precio de venta ÷ valor en libros − 1 → negativo = descuento (▼ rojo), positivo = incremento (▲ verde).
+function computeDescRatio(precio, vlibros, grupo){
+  if(precio===null||precio===undefined||!vlibros) return null;
+  const v = precio/vlibros - 1;
+  return grupo==='vendida' ? v : Math.max(0, -v);
 }
 function mergedRow(d){ return enrichRow(d.upd ? Object.assign({}, d, {_edited:true}) : d); }
-function getMergedData(){ return DATA.map(mergedRow); }
+function getMergedData(){ return DATA.concat(legalExtraRows()).map(mergedRow); }
 window.mifiLiveRows = getMergedData;
 
 function allCedentes(rows){
@@ -819,6 +1109,7 @@ function onLiveDataChanged(){
   populateFilters(getMergedData());
   applyFilters();
   if(typeof renderHistory==='function') renderHistory();
+  if(window.lgRefresh) window.lgRefresh();
 }
 
 /* ---------- Comunicación con el servidor ---------- */
@@ -845,11 +1136,13 @@ function saveSessionLocal(){ try{ sessionStorage.setItem(SS_KEY, JSON.stringify(
 
 function applyUser(user){
   SESSION.user = user;
-  ACCESS = (user.rol==='admin' || user.rol==='editor') ? 'write' : 'read';
+  ACCESS = FINCA_EDIT_ROLES.includes(user.rol) ? 'write' : 'read';
+  const canLegal = LEGAL_EDIT_ROLES.includes(user.rol);
+  const lr = document.getElementById('legalRoot'); if(lr) lr.classList.toggle('lg-ro', !canLegal);
   saveSessionLocal();
   const chip = document.getElementById('userChip');
-  chip.className = 'user-chip' + (ACCESS==='read' ? ' read' : '');
-  chip.textContent = (ACCESS==='read' ? '👁 ' : '✎ ') + user.nombre + ' · ' + (user.rolLabel || ROLE_LABELS[user.rol] || user.rol);
+  chip.className = 'user-chip' + (ACCESS==='read' && !canLegal ? ' read' : '');
+  chip.textContent = (ACCESS==='read' && !canLegal ? '👁 ' : '✎ ') + user.nombre + ' · ' + (user.rolLabel || ROLE_LABELS[user.rol] || user.rol);
   document.getElementById('tabUsuarios').hidden = user.rol!=='admin';
   if(user.rol!=='admin' && currentView==='usuarios') switchView('fincas');
 }
@@ -869,6 +1162,7 @@ function loadPayload(res){
   if(res.user) applyUser(res.user);
   DATA = (res.fincas || []);
   HISTORY = (res.historial || []);
+  if(res.casos) lgSetServer(res.casos, res.legalCfg);
   REV = res.rev;
   onLiveDataChanged();
   const t = new Date().toLocaleTimeString('es-PA',{hour:'2-digit', minute:'2-digit'});
@@ -896,6 +1190,8 @@ function showLogin(msg, kind){
 function endSession(msg, callServer, motivo){
   const tok = SESSION && SESSION.token;
   SESSION = null; ACCESS = null; DATA = []; HISTORY = []; REV = null;
+  lgSetServer([], null); LG_STATE = {ov:{}, nuevos:[], cfg:null};
+  if(window.lgCloseDr) window.lgCloseDr();
   OVERRIDES = {fincas:{}, customCedentes:[]};
   try{ sessionStorage.removeItem(SS_KEY); }catch(e){}
   document.querySelectorAll('.mifi-modal-backdrop').forEach(b=>{ b.hidden = true; });
@@ -912,7 +1208,8 @@ function endSession(msg, callServer, motivo){
 }
 
 async function saveFincaEdits(id, patch){
-  if(ACCESS!=='write') return {ok:false, reason:'Su usuario es de solo lectura.'};
+  if(ACCESS!=='write') return {ok:false, reason:'Su usuario no tiene permiso para editar fincas.'};
+  if(String(id).indexOf('legal_')===0) return {ok:false, reason:'Esta finca viene de un caso legal concluido y aún no está en la hoja. Pronto se podrá agregar desde aquí.'};
   const r = await api('edit', {id, patch});
   if(!r.ok) return {ok:false, reason: r.error || 'error'};
   const i = DATA.findIndex(d=>d._id===id);
@@ -957,7 +1254,7 @@ const money = n => (n===null||n===undefined) ? 'Dato no disponible' : '$' + Math
 const pct = n => (n===null||n===undefined) ? '—' : Math.round(n*100) + '%';
 const fecha = f => f ? f : 'Dato no disponible';
 
-const ESTADO_PENDIENTE_LABEL = 'Por confirmar'; // fincas sin "Estado actual" en el informe
+const ESTADO_PENDIENTE_LABEL = 'Sin estado'; // estado vacío en el informe: la tabla lo deja vacío; gráfico/filtro lo agrupan con este nombre
 // Orden de las barras del gráfico de estado
 const ESTADO_ORDEN = ['LIBRE','OCUPADA','ALQUILADA','INVADIDA','DEMANDA','NO OCUPADA','POR INSPECCIONAR','VENDIDA','__SINDATO'];
 
@@ -973,7 +1270,7 @@ function estadoLabel(key, raw){
 }
 function estadoPill(estado){
   const key = normEstadoKey(estado);
-  if(key==='__SINDATO') return `<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>${ESTADO_PENDIENTE_LABEL}</span>`;
+  if(key==='__SINDATO') return ''; // estado vacío en el Excel → celda vacía
   const meta = ESTADO_META[key];
   if(meta) return `<span class="pill ${meta.cls}"><span class="dot" style="background:${meta.dot}"></span>${meta.label}</span>`;
   return `<span class="pill pill-sindato"><span class="dot" style="background:var(--ink-muted)"></span>${esc(String(estado).trim())}</span>`;
@@ -988,6 +1285,53 @@ function isEnLanzamiento(d){
 }
 const isEnProceso = isEnLanzamiento; // compatibilidad
 
+/* ===== Intereses por finca (V17, oct-2026) — a la espera de datos =====
+   Cuando llegue la información solo hay que completar INTERES_CONFIG:
+   · tasaAnual: tasa general en decimal (ej. 0.085 = 8.5 % anual). Una finca puede tener su propia tasa (campo "Tasa de interés (%)").
+   · base: monto sobre el que corre el interés — PROVISIONAL 'vlibros' (valor en libros), por confirmar.
+   · metodo: 'simple' (base × tasa × días ÷ 365) o 'compuesto' (base × ((1+tasa)^(días/365) − 1)).
+   Activas: desde la fecha de entrada al portafolio hasta hoy.
+   Vendidas: desde la fecha de entrada hasta la fecha de venta — su total va APARTE (no se suma al de las activas). */
+const INTERES_CONFIG = {tasaAnual: null, base: 'vlibros', baseLabel: 'valor en libros', metodo: 'simple', diasAnio: 365};
+function hoyISO(){ const t = new Date(); return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); }
+function isoDays(s){ const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||'')); return m ? Date.UTC(+m[1],+m[2]-1,+m[3])/86400000 : null; }
+function fechaCorta(s){ const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||'')); return m ? m[3]+'/'+m[2]+'/'+m[1].slice(2) : (s||''); }
+function computeInteres(d){
+  const tasa = (typeof d.tasa==='number' && isFinite(d.tasa)) ? d.tasa/100 : INTERES_CONFIG.tasaAnual;
+  const base = d[INTERES_CONFIG.base];
+  const vend = d.grupo==='vendida';
+  const ini = isoDays(d.fe), fin = vend ? isoDays(d.fv) : isoDays(hoyISO());
+  const out = {monto:null, dias:null, tasa:(tasa===undefined ? null : tasa), motivo:null};
+  if(ini!==null && fin!==null) out.dias = Math.max(0, fin-ini);
+  const falta = [];
+  if(ini===null) falta.push('fecha de entrada');
+  if(vend && fin===null) falta.push('fecha de venta');
+  if(out.tasa===null) falta.push('tasa de interés');
+  if(typeof base!=='number' || !isFinite(base)) falta.push(INTERES_CONFIG.baseLabel);
+  if(falta.length){ out.motivo = 'Pendiente — falta: ' + falta.join(', '); return out; }
+  const t = out.dias / INTERES_CONFIG.diasAnio;
+  out.monto = INTERES_CONFIG.metodo==='compuesto' ? base*(Math.pow(1+out.tasa,t)-1) : base*out.tasa*t;
+  return out;
+}
+function interesTitle(d){
+  if(typeof d.interes!=='number') return d.interesMotivo || 'Pendiente';
+  return (INTERES_CONFIG.metodo==='compuesto' ? 'Interés compuesto' : 'Interés simple') + ': ' + money(d[INTERES_CONFIG.base]) + ' (' + INTERES_CONFIG.baseLabel + ') × '
+    + pct1(d.tasaEf) + ' anual × ' + d.interesDias + ' días ÷ ' + INTERES_CONFIG.diasAnio
+    + (d.grupo==='vendida' ? ' (hasta la fecha de venta)' : ' (hasta hoy)');
+}
+// Las fincas cedidas a Mario Arauz NO llevan la etiqueta "Con comprador"/vendida (confundía su estado real).
+function isMarioArauz(d){ return /MARIO\s+ARAUZ/i.test(d.cedente||''); }
+// Descuento: activas = % positivo; vendidas = ▼ rojo (descuento) / ▲ verde (incremento) vs. valor en libros.
+function descHtml(v, grupo){
+  if(v===null || v===undefined) return '—';
+  if(grupo==='vendida'){
+    if(v < -0.0005) return `<span class="desc-down" title="Se vendió por debajo del valor en libros">▼ ${pct1(-v)}</span>`;
+    if(v > 0.0005) return `<span class="desc-up" title="Se vendió por encima del valor en libros">▲ ${pct1(v)}</span>`;
+    return pct1(0);
+  }
+  return pct1(v);
+}
+
 /* ===== V16: cartera activa / vendidas, FRI y descuento calculado =====
    - grupo 'activa' = hoja ORIGEN (en inventario de BBRR de MiFi); 'vendida' = hoja VENDIDOS MFI.
    - Todas las fincas "POR ASIGNAR" quedan cedidas a FRI.
@@ -998,18 +1342,41 @@ function enrichRow(d){
   if(r.cedente==='POR ASIGNAR') r.cedente = 'FRI';
   r.grupo = r.grupo || 'activa';
   r.fri = r.cedente==='FRI';
-  r.desc = computeDescRatio(r.grupo==='vendida' ? r.precioVenta : r.vs, r.ventaR);
-  r.conComprador = r.grupo!=='vendida' && (!!r.vendidoA || /VENDID/i.test(r.obs||''));
+  r.desc = computeDescRatio(r.grupo==='vendida' ? r.precioVenta : r.vs, r.vlibros, r.grupo);
+  r.conComprador = r.grupo!=='vendida' && !isMarioArauz(r) && (!!r.vendidoA || /VENDID/i.test(r.obs||''));
+  const it = computeInteres(r);
+  r.interes = it.monto; r.interesDias = it.dias; r.tasaEf = it.tasa; r.interesMotivo = it.motivo;
   return r;
 }
-function getViewRows(){ return getMergedData().filter(d=>(d.grupo||'activa')===GVIEW); }
+function getViewRows(){ const S=GVIEW==='activa'?lgOpenSet():null; return getMergedData().filter(d=>(d.grupo||'activa')===GVIEW && !(S&&S.has(String(d.finca)))); }
 function friColOn(){ return GVIEW==='activa' && colVisible('fri'); }
 function cedenteShown(d){ return (friColOn() && d.fri) ? null : d.cedente; }
-// Descuento ponderado por venta rápida: Σ(venta rápida × descuento) / Σ venta rápida
+// Descuento ponderado por valor en libros: Σ(libros × descuento) / Σ libros
+// (en vendidas equivale a Σ precio de venta ÷ Σ valor en libros − 1)
 function weightedDesc(rows){
-  const v = rows.filter(d=>d.desc!==null && d.desc!==undefined && d.ventaR);
+  const v = rows.filter(d=>d.desc!==null && d.desc!==undefined && d.vlibros);
   if(!v.length) return null;
-  return v.reduce((a,d)=>a+d.ventaR*d.desc,0) / v.reduce((a,d)=>a+d.ventaR,0);
+  return v.reduce((a,d)=>a+d.vlibros*d.desc,0) / v.reduce((a,d)=>a+d.vlibros,0);
+}
+function interesTile(rows, vend){
+  const label = vend ? 'Intereses hasta venta' : 'Intereses acumulados';
+  const con = rows.filter(d=>typeof d.interes==='number');
+  const tot = con.reduce((a,d)=>a+d.interes,0);
+  const sinFe = rows.filter(d=>!d.fe).length, sinFv = vend ? rows.filter(d=>!d.fv).length : 0;
+  const tasaG = INTERES_CONFIG.tasaAnual;
+  const title = (vend ? 'Total de intereses de las fincas vendidas, desde su entrada al portafolio hasta la fecha de venta. Se lleva aparte del total de la cartera activa.'
+                      : 'Total de intereses de la cartera activa, desde la fecha de entrada al portafolio hasta hoy. No incluye las vendidas.')
+    + ' Base provisional: ' + INTERES_CONFIG.baseLabel + '.';
+  if(!con.length){
+    const falta = [];
+    if(tasaG===null && !rows.some(d=>typeof d.tasa==='number')) falta.push('tasa');
+    if(sinFe) falta.push('fecha de entrada');
+    if(sinFv) falta.push('fecha de venta');
+    return {label, value:'Pendiente', vcls:'pend', sub: falta.length ? 'Falta: ' + falta.join(', ') : 'sin datos', title};
+  }
+  let sub = `${con.length} de ${rows.length} fincas` + (tasaG!==null ? ' · ' + pct1(tasaG) + ' anual' : '');
+  if(vend){ const pv = con.reduce((a,d)=>a+(d.precioVenta||0),0); if(pv) sub += ' · <b>' + pct1(tot/pv) + '</b> del precio de venta'; }
+  return {label, value:'$' + Math.round(tot).toLocaleString('es-PA'), sub, cls:'', title};
 }
 function medianDesc(rows){
   const v = rows.map(d=>d.desc).filter(x=>x!==null && x!==undefined).sort((a,b)=>a-b);
@@ -1192,7 +1559,8 @@ function populateFilters(){
 
 function updateViewCounts(){
   const all = getMergedData();
-  const na = all.filter(d=>(d.grupo||'activa')==='activa').length;
+  const S = lgOpenSet(); const na = all.filter(d=>(d.grupo||'activa')==='activa' && !S.has(String(d.finca))).length;
+  const nl = document.getElementById('vsnLegal'); if(nl) nl.textContent = lgCases().filter(c=>!c.concl).length;
   const nv = all.filter(d=>d.grupo==='vendida').length;
   const a = document.getElementById('vsnActiva'), v = document.getElementById('vsnVendida');
   if(a) a.textContent = na; if(v) v.textContent = nv;
@@ -1224,8 +1592,9 @@ function renderStats(rows){
       {label:'Venta rápida', value: usd(sum('ventaR')), sub:'según avalúo', cls:''},
       {label:'Valor en libros', value: usd(sum('vlibros')), sub:'valor contable', cls:''},
       {label:'Valor de avalúo', value: usd(sum('merc')), sub:'valor de mercado', cls:'gold'},
-      {label:'Descuento de venta', value: pct1(wd), sub: md!==null ? 'Mediana: <b>'+pct1(md)+'</b>' : 'sobre venta rápida', cls:'', title:'Descuento ponderado: Σ(venta rápida × descuento) ÷ Σ venta rápida. Descuento de cada finca = 1 − precio de venta ÷ venta rápida (0 % si se vendió por encima).'},
+      {label:'Venta vs. libros', value: descHtml(wd,'vendida'), sub: md!==null ? 'Mediana: <b>'+descHtml(md,'vendida')+'</b>' : 'vs. valor en libros', cls:'', title:'Σ precio de venta ÷ Σ valor en libros − 1. ▼ rojo = se vendió por debajo del valor en libros (descuento); ▲ verde = por encima (incremento). Cada finca = precio de venta ÷ valor en libros − 1.'},
       {label:'Con CPP', value: cpp.toLocaleString('es-PA'), sub: 'pagadas: <b>'+pag+'</b>', cls:''},
+      interesTile(rows, true),
     ];
   } else {
     const libres = rows.filter(d=>normEstadoKey(d.estado)==='LIBRE').length;
@@ -1235,12 +1604,13 @@ function renderStats(rows){
       {label:'Venta rápida', value: usd(sum('ventaR')), sub:'según avalúo', cls:''},
       {label:'Valor en libros', value: usd(sum('vlibros')), sub:'valor contable', cls:''},
       {label:'Valor sugerido', value: usd(sum('vs')), sub:'precio de salida', cls:'accent'},
-      {label:'Descuento prom.', value: pct1(wd), sub: md!==null ? 'Mediana: <b>'+pct1(md)+'</b>' : 'sobre venta rápida', cls:'', title:'Descuento ponderado: Σ(venta rápida × descuento) ÷ Σ venta rápida. Descuento de cada finca = 1 − valor sugerido ÷ venta rápida (0 % si el sugerido es mayor).'},
+      {label:'Descuento prom.', value: pct1(wd), sub: md!==null ? 'Mediana: <b>'+pct1(md)+'</b>' : 'sobre valor en libros', cls:'', title:'Descuento ponderado: Σ(valor en libros × descuento) ÷ Σ valor en libros. Descuento de cada finca = valor sugerido ÷ valor en libros − 1 (0 % si el sugerido es mayor).'},
       {label:'Libres', value: libres.toLocaleString('es-PA'), sub:'disponibles', cls:'accent'},
+      interesTile(rows, false),
     ];
   }
   document.getElementById('statsRow').innerHTML = tiles.map(t=>
-    `<div class="stat"${t.title?` title="${esc(t.title)}"`:''}><p class="label">${t.label}</p><div class="value ${t.cls}">${t.value}</div><div class="sub">${t.sub}</div></div>`
+    `<div class="stat"${t.title?` title="${esc(t.title)}"`:''}><p class="label">${t.label}</p><div class="value ${t.vcls||t.cls||''}">${t.value}</div><div class="sub">${t.sub}</div></div>`
   ).join('');
 }
 
@@ -1313,7 +1683,11 @@ const FIELDS = [
   {key:'merc',     label:'Valor de avalúo',     w:8,   def:true, ext:true,  td:d=>`<td class="num">${money(d.merc)}</td>`},
   {key:'vlibros',  label:'Valor en libros',     w:8,   def:true, ext:false, td:d=>`<td class="num">${money(d.vlibros)}</td>`},
   {key:'ventaR',   label:'Venta rápida',        w:8,   def:false,ext:false, td:d=>`<td class="num">${money(d.ventaR)}</td>`},
-  {key:'desc',     label:'Desc.',               w:7.5, def:true, ext:false, labelV:'Desc. venta', td:d=>`<td class="num" title="${GVIEW==='vendida' ? '1 − precio de venta ÷ venta rápida' : '1 − valor sugerido ÷ venta rápida (0 % si el sugerido es mayor)'}">${pct(d.desc)}</td>`},
+  {key:'desc',     label:'Desc.',               w:7.5, def:true, ext:false, labelV:'Venta vs. libros', td:d=>`<td class="num" title="${GVIEW==='vendida' ? 'Precio de venta ÷ valor en libros − 1 (▼ descuento · ▲ incremento)' : 'Valor sugerido ÷ valor en libros − 1 (0 % si el sugerido es mayor)'}">${descHtml(d.desc, d.grupo)}</td>`},
+  {key:'fe',       label:'Entrada',             w:7.5, def:true, ext:false, note:'Fecha de entrada de la finca al portafolio', td:d=>`<td class="mono fecha" title="${d.fe ? 'Entrada al portafolio: '+esc(d.fe) : 'Fecha de entrada pendiente'}">${d.fe ? esc(fechaCorta(d.fe)) : '<span class="int-pend">Pendiente</span>'}</td>`},
+  {key:'fv',       label:'Fecha de venta',      w:6.5, def:true, ext:false, only:'vendida', td:d=>`<td class="mono fecha">${d.fv ? esc(fechaCorta(d.fv)) : '<span class="int-pend">Pendiente</span>'}</td>`},
+  {key:'interes',  label:'Intereses',           w:8,   def:true, ext:false, labelV:'Intereses a la venta', td:d=>`<td class="num" title="${esc(interesTitle(d))}">${typeof d.interes==='number' ? money(d.interes) : '<span class="int-pend">Pendiente</span>'}</td>`},
+  {key:'tasaEf',   label:'Tasa interés',        w:5.5, def:false,ext:false, note:'Tasa anual aplicada (la general o la propia de la finca)', td:d=>`<td class="num">${d.tasaEf!==null && d.tasaEf!==undefined ? pct1(d.tasaEf) : '—'}</td>`},
   {key:'ea',       label:'Avalúo',              w:8,   def:true, ext:true,  only:'activa', td:d=>`<td>${avaluoFlag(computeEa(d))}</td>`},
   {key:'fa',       label:'Fecha de avalúo',     w:7,   def:true, ext:true,  td:d=>`<td class="mono fecha">${fecha(d.fa)}</td>`},
   {key:'obs',      label:'Observación',         w:12,  def:false,ext:false, td:d=>`<td>${d.obs ? esc(d.obs) : '—'}</td>`},
@@ -1322,7 +1696,7 @@ const FIELDS = [
 function inView(f){ return !f.only || f.only===GVIEW; }
 function fieldLabel(f){ return (GVIEW==='vendida' && f.labelV) ? f.labelV : f.label; }
 function viewFields(){ return FIELDS.filter(inView); }
-const COLS_STORE_KEY = 'mifi_cols_v2';
+const COLS_STORE_KEY = 'mifi_cols_v3';
 let VISIBLE_COLS = (function(){
   const dflt = new Set(FIELDS.filter(f=>f.def).map(f=>f.key));
   try{
@@ -1443,7 +1817,7 @@ function renderTable(rows){
     const link = !colVisible('enlace') ? '' : d.enlace ? `<a class="link-btn" href="${esc(d.enlace)}" target="_blank" rel="noopener" title="Abrir PDF de valoración en OneDrive">🔗</a>` : '<span class="no-link pend" title="El PDF del avalúo aún no está disponible">Pendiente</span>';
     const editDisabled = ACCESS!=='write' ? ' disabled' : '';
     const editBtn = `<button type="button" class="edit-btn" data-edit-id="${esc(d._id)}" title="Editar finca ${esc(String(d.finca))}"${editDisabled}>✎</button>`;
-    return `<tr class="${d._edited?'row-edited':''}" data-id="${esc(d._id)}">
+    return `<tr class="${d._edited?'row-edited':''}" data-id="${esc(d._id)}" data-finca="${esc(String(d.finca))}">
       ${fs.map(f=>f.td(d)).join('')}
       <td><span class="row-actions">${link}${editBtn}</span></td>
     </tr>`;
@@ -1527,6 +1901,10 @@ function toast(msg){
   const inpVentaR = document.getElementById('editVentaR');
   const inpVlibros = document.getElementById('editVlibros');
   const descPreview = document.getElementById('editDescPreview');
+  const inpFe = document.getElementById('editFe');
+  const inpFv = document.getElementById('editFv');
+  const fvField = document.getElementById('editFvField');
+  const inpTasa = document.getElementById('editTasa');
   const selSituacion = document.getElementById('editSituacion');
   const sitField = document.getElementById('editSituacionField');
   let editingGrupo = 'activa';
@@ -1538,7 +1916,7 @@ function toast(msg){
   let editingId = null;
   let initialForm = null;
   function fillEstadoOptions(raw){
-    let html = '<option value="">Por confirmar</option>' + Object.keys(ESTADO_META).map(k=>`<option value="${esc(k)}">${esc(ESTADO_META[k].label)}</option>`).join('');
+    let html = '<option value="">— (vacío)</option>' + Object.keys(ESTADO_META).map(k=>`<option value="${esc(k)}">${esc(ESTADO_META[k].label)}</option>`).join('');
     const nk = normEstadoKey(raw);
     let val = '';
     if(raw && ESTADO_META[nk]) val = nk;
@@ -1547,7 +1925,8 @@ function toast(msg){
   }
   function formValues(){
     const o = {estado: selEstado.value, cedente: selCedente.value, vendidoA: inpVendidoA.value.trim(), vs: inpVs.value, ventaR: inpVentaR.value, vlibros: inpVlibros.value};
-    if(editingGrupo==='vendida') o.situacion = selSituacion.value;
+    o.fe = inpFe.value; o.tasa = inpTasa.value;
+    if(editingGrupo==='vendida'){ o.situacion = selSituacion.value; o.fv = inpFv.value; }
     return o;
   }
 
@@ -1574,16 +1953,16 @@ function toast(msg){
   }
 
   function updateDescPreview(){
-    const vs = inpVs.value!=='' ? parseFloat(inpVs.value) : null;
-    const ventaR = inpVentaR.value!=='' ? parseFloat(inpVentaR.value) : null;
+    const vl = inpVlibros.value!=='' ? parseFloat(inpVlibros.value) : null;
     if(editingGrupo==='vendida'){
       const d = getMergedData().find(r=>r._id===editingId);
-      const r2 = computeDescRatio(d ? d.precioVenta : null, ventaR);
-      descPreview.textContent = 'Descuento de venta (1 − precio de venta ÷ venta rápida): ' + (r2!==null ? pct(r2) : '—') + ' — se calcula solo.';
+      const r2 = computeDescRatio(d ? d.precioVenta : null, vl, 'vendida');
+      descPreview.innerHTML = 'Precio de venta ÷ valor en libros − 1: ' + descHtml(r2, 'vendida') + ' — se calcula solo.';
       return;
     }
-    const ratio = computeDescRatio(vs, ventaR);
-    descPreview.textContent = 'Descuento (1 − valor sugerido ÷ venta rápida; 0 % si el sugerido es mayor): ' + (ratio!==null ? pct(ratio) : '—') + ' — se calcula solo, no se edita.';
+    const vs = inpVs.value!=='' ? parseFloat(inpVs.value) : null;
+    const ratio = computeDescRatio(vs, vl, 'activa');
+    descPreview.textContent = 'Descuento (valor sugerido ÷ valor en libros − 1; 0 % si el sugerido es mayor): ' + (ratio!==null ? pct1(ratio) : '—') + ' — se calcula solo, no se edita.';
   }
 
   function openEditor(id){
@@ -1602,6 +1981,11 @@ function toast(msg){
     inpVs.value = (d.vs===null||d.vs===undefined) ? '' : d.vs;
     inpVentaR.value = (d.ventaR===null||d.ventaR===undefined) ? '' : d.ventaR;
     inpVlibros.value = (d.vlibros===null||d.vlibros===undefined) ? '' : d.vlibros;
+    inpFe.value = d.fe || '';
+    inpFv.value = d.fv || '';
+    fvField.hidden = editingGrupo!=='vendida';
+    inpTasa.value = (typeof d.tasa==='number') ? d.tasa : '';
+    inpTasa.placeholder = INTERES_CONFIG.tasaAnual!==null ? 'Vacío = tasa general (' + pct1(INTERES_CONFIG.tasaAnual) + ')' : 'Vacío = tasa general (pendiente)';
     updateDescPreview();
     lockedGrid.innerHTML = `
       <div>N° de finca</div><div><b>${esc(String(d.finca))}</b></div>
@@ -1650,6 +2034,7 @@ function toast(msg){
     newCedenteInput.value = '';
   });
 
+  inpVlibros.addEventListener('input', updateDescPreview);
   inpVs.addEventListener('input', updateDescPreview);
   inpVentaR.addEventListener('input', updateDescPreview);
   lockedGrid.addEventListener('click', e=>{
@@ -1665,7 +2050,7 @@ function toast(msg){
       return;
     }
     const cur = formValues();
-    const NUMS = {vs:1, ventaR:1, vlibros:1};
+    const NUMS = {vs:1, ventaR:1, vlibros:1, tasa:1};
     const patch = {};
     Object.keys(cur).forEach(k=>{
       if(cur[k]===initialForm[k]) return;
@@ -1742,14 +2127,18 @@ function toast(msg){
     {k:'cedente', h:'Cedida / Hipotecada',   w:20, get:d=>cedenteShown(d)},
     {k:'fri', h:'FRI',                   w:8,  get:d=>d.fri ? 'FRI' : null},
     {k:'vendidoA', h:'Vendido a', hV:'Comprador', w:20, get:d=>d.vendidoA},
-    {k:'estado', h:'Estado',                w:16, get:d=>estadoLabel(normEstadoKey(d.estado), d.estado) + (d.conComprador ? ' · Con comprador' : '')},
+    {k:'estado', h:'Estado',                w:16, get:d=>{ const k = normEstadoKey(d.estado); const b = k==='__SINDATO' ? '' : estadoLabel(k, d.estado); const t = b + (d.conComprador ? (b ? ' · ' : '') + 'Con comprador' : ''); return t || null; }},
     {k:'precioVenta', h:'Precio de venta',  w:16, get:d=>num(d.precioVenta), s:2},
     {k:'situacion', h:'Situación de venta', w:16, get:d=>d.situacion},
     {k:'vs', h:'Valor sugerido',        w:16, get:d=>num(d.vs),     s:2},
     {k:'merc', h:'Valor de avalúo',       w:16, get:d=>num(d.merc),   s:2},
     {k:'vlibros', h:'Valor en libros',       w:16, get:d=>num(d.vlibros),s:2},
     {k:'ventaR', h:'Venta rápida',          w:16, get:d=>num(d.ventaR), s:2},
-    {k:'desc', h:'Descuento', hV:'Descuento de venta', w:11, get:d=>num(d.desc),   s:3},
+    {k:'desc', h:'Descuento', hV:'Venta vs. libros', w:11, get:d=>num(d.desc),   s:3},
+    {k:'fe', h:'Fecha de entrada',      w:14, get:d=>dateSerial(d.fe), s:4},
+    {k:'fv', h:'Fecha de venta',        w:14, get:d=>dateSerial(d.fv), s:4},
+    {k:'interes', h:'Intereses', hV:'Intereses a la venta', w:16, get:d=>num(d.interes), s:2},
+    {k:'tasaEf', h:'Tasa de interés anual', w:12, get:d=>num(d.tasaEf), s:3},
     {k:'ea', h:'Estado de avalúo',      w:15, get:d=>{ try{ const e=computeEa(d); return e ? (e.estimated ? e.text+' (estimado)' : e.text) : null; }catch(err){ return d.ea; } }},
     {k:'fa', h:'Fecha de avalúo',       w:14, get:d=>dateSerial(d.fa), s:4},
     {k:'obs', h:'Observación',           w:24, get:d=>d.obs},
@@ -1839,6 +2228,279 @@ function toast(msg){
   };
   document.getElementById('exportXlsxBtn').addEventListener('click', downloadXlsx);
 })();
+</script>
+
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const C=Object.fromEntries(LG_TYPES.map(t=>[t.k,t.c]));
+const PC={cerrado:'#7C877E',fin:'#0b7d0b',adjudicado:'#0b7d0b',bloqueado:'#b5211f',singarantia:'#7C877E',negociacion:'#8a5a04',disputa:'#8a5a04'};
+const GT={finca:'🏠 Finca',vehiculo:'🚗 Vehículo',equipo:'⚙️ Equipo',ninguna:'— Sin garantía',otra:'📄 Otra'};
+const SEC=[['proc','En proceso'],['apta','✓ Aptas para comercializar'],['otra','📁 Otras carteras'],['concl','Concluidos']];
+let st={sec:'proc',tipo:'cobro',lote:'all',q:'',abog:'',warn:false};
+const fmt=n=>n==null||n===''||isNaN(+n)?'—':'B/.'+(+n>=1e6?(+n/1e6).toFixed(2)+'M':+n>=1e3?Math.round(+n/1e3)+'K':Math.round(+n));
+const fmtFull=n=>n==null||n===''||isNaN(+n)?'—':'B/.'+(+n).toLocaleString('es-PA',{maximumFractionDigits:0});
+const fd=s=>{if(!s)return null;const d=new Date(String(s).length===4?s+'-07-01T12:00':s+'T12:00');if(isNaN(d))return s;return String(s).length===4?s:d.toLocaleDateString('es-PA',{day:'numeric',month:'short',year:'2-digit'})};
+const stale=s=>!s||((new Date()-new Date(s))/864e5>180);
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ph=(t,f)=>(LG_PH[t]||[]).find(p=>p[0]===f)||[f,f||'—',''];
+const get=id=>lgCases().find(c=>c.id===id);
+function patch(id,o,hist){
+  if(!lgCanEdit()){toast('Su usuario solo puede ver los casos legales.');refresh();return;}
+  const cur=Object.assign({},LG_STATE.ov[id]||{},o);
+  if(hist){const c=get(id);cur.hist=[{f:lgToday(),t:hist,u:lgUser()}].concat((c&&c.hist)||[]);}
+  LG_STATE.ov[id]=cur;lgSave();refresh();
+}
+function amount(x){return x.tipo==='contra'?(x.monto??x.capital):x.capital}
+function carteraChip(c){const k=c.cartera||{t:'pend'};
+  if(c.concl){const d=c.concl;return d.destino==='mifi'?'<span class="chip ok">🏛 Pasó a cartera MIFI</span>':d.destino==='otra'?`<span class="chip">📁 ${E(d.carpeta||'Otra cartera')}</span>`:'<span class="chip">Cerrado sin propiedad</span>';}
+  return k.t==='mifi'?'<span class="chip ok" title="La finca ya es de MIFI">🏛 Cartera MIFI</span>':k.t==='otra'?`<span class="chip warn">📁 ${E(k.carpeta||'Otra cartera')}</span>`:k.t==='na'?'<span class="chip">Sin finca</span>':'<span class="chip mut" title="La garantía todavía no pertenece a la cartera de MIFI">Aún no es de la cartera</span>';}
+function toast(t){const el=$('lgToast');el.innerHTML=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),3600);}
+function refresh(){populateFilters();applyFilters();render();if($('lg_dr').classList.contains('on')&&$('lg_dr').dataset.id&&$('lg_dr').dataset.mode==='view')openCase($('lg_dr').dataset.id,true);}
+
+/* ---------- panel ---------- */
+function render(){
+  const all=lgCases(),by={proc:[],apta:[],otra:[],concl:[]};all.forEach(c=>by[lgSection(c)].push(c));
+  $('lgSub').innerHTML=SEC.map(([k,t])=>`<button class="${st.sec===k?'on':''} ${k}" data-sec="${k}">${t}<span class="vs-n">${by[k].length}</span></button>`).join('');
+  const q=st.q;const m=c=>!q||[c.nombre,c.corto,c.finca,c.garantia,c.abogado,c.ubi,c.corr,c.proceso,c.n,c.cartera&&c.cartera.carpeta].join(' ').toLowerCase().includes(q);
+  const items=by[st.sec].filter(m);
+  if(st.sec==='proc')$('lgBody').innerHTML=renderProc(by.proc.filter(m),by.apta);
+  else if(st.sec==='apta')$('lgBody').innerHTML=renderApta(items);
+  else if(st.sec==='otra')$('lgBody').innerHTML=renderOtra(items);
+  else $('lgBody').innerHTML=renderConcl(items);
+  bindBody();
+}
+function renderProc(list,aptas){
+  const T=LG_TYPES.find(t=>t.k===st.tipo);
+  const types=LG_TYPES.map(T=>{const it=list.filter(c=>c.tipo===T.k);let m;
+    if(T.k==='lanz')m='fincas en trámite';else if(T.k==='contra')m=fmt(it.reduce((a,x)=>a+(+x.monto||0),0))+' reclamado';else m=fmt(it.reduce((a,x)=>a+(+x.capital||0),0))+' de capital';
+    return `<button class="type ${st.tipo===T.k?'on':''}" style="--tc:${T.c}" data-k="${T.k}"><span class="t">${T.icon} ${T.t}</span><span class="d">${T.d}</span><span class="row"><span class="n">${it.length}</span><span class="m">${T.k==='lanz'?'':'casos · '}${m}</span></span></button>`}).join('');
+  let it=list.filter(c=>c.tipo===st.tipo);
+  const ab=[...new Set(it.map(x=>x.abogado).filter(Boolean))].sort();
+  if(st.tipo==='lanz'&&st.lote!=='all')it=it.filter(x=>x.lote===st.lote);
+  if(st.abog)it=it.filter(x=>x.abogado===st.abog);
+  if(st.warn)it=it.filter(x=>stale(x.ult));
+  const apt=lgCfg().apta[st.tipo]||[];
+  const lote=st.tipo==='lanz'?'<span class="seg">'+['all','I','II','III'].map(l=>`<button class="${st.lote===l?'on':''}" data-l="${l}">${l==='all'?'Todos los lotes':'Fase '+l}</button>`).join('')+'</span>':'';
+  const cols=LG_PH[st.tipo].map(([k,t,e],i)=>{
+    if(apt.includes(k)){const n=aptas.filter(c=>c.tipo===st.tipo&&c.fase===k).length;
+      return `<section class="col aptcol" data-drop="${k}"><div class="aptin"><div class="ic">✓</div><b>${E(t)}</b><span>Al llegar a esta fase el caso pasa a <u>Aptas para comercializar</u></span><button class="lnk" data-sec="apta">Ver ${n} apta${n===1?'':'s'} →</button><small>Arrastra una ficha aquí para moverla</small></div></section>`;}
+    const pc=PC[k]||T.c;const xs=it.filter(x=>x.fase===k);const tot=st.tipo==='lanz'?0:xs.reduce((a,x)=>a+(+amount(x)||0),0);
+    return `<section class="col" style="--pc:${pc}" data-drop="${k}"><div class="colh"><div class="nm"><span>${i+1} · ${E(t)}</span><span class="cnt">${xs.length}</span></div><div class="ex">${E(e)}</div>${tot?`<div class="sum">${fmt(tot)}</div>`:''}</div><div class="cards">${xs.map(x=>card(x,pc)).join('')||'<div class="empty">Sin casos</div>'}</div></section>`}).join('');
+  return `<p class="step-lbl">① Tipo de proceso</p><div class="types">${types}</div>
+  <p class="step-lbl">② Fases del proceso <span class="hint">— arrastra una ficha a otra columna para cambiarle la fase, o ábrela para ver y editar todo</span></p>
+  <div class="phasebar">${lote}<select id="lgAbog"><option value="">Todos los abogados</option>${ab.map(a=>`<option ${a===st.abog?'selected':''}>${E(a)}</option>`).join('')}</select><label class="chk"><input type="checkbox" id="lgWarn" ${st.warn?'checked':''}> Solo ⚠ sin actualizar +6 meses</label></div>
+  <div class="board">${cols}</div>`;
+}
+function card(x,pc){
+  const w=stale(x.ult);let l2;
+  if(x.tipo==='lanz')l2=`<span class="tag fase">Fase ${E(x.lote||'—')}</span><span>${E(((x.corr||x.ubi||'')).slice(0,34))}${x.prov?' · '+E(x.prov):''}</span>`;
+  else if(x.tipo==='contra')l2=`<span>${E((x.proceso||'').split(/[,(|]/)[0].slice(0,40))}</span>${x.finca?`<span class="tag">🔗 Finca ${E(x.finca)}</span>`:''}<span class="amt">${fmt(amount(x))}</span>`;
+  else l2=`<span>${GT[(x.gt||'').split('+')[0]]||''}</span><span class="amt">${fmt(amount(x))}</span>`;
+  const al=x.alertas&&x.alertas.length?`<span class="warn" title="${E(x.alertas.join(' '))}">⚠</span>`:'';
+  const ft=`<span>${E(x.abogado||'')}</span>${x.prox?`<span class="soon">📅 ${fd(x.prox)}</span>`:w?`<span class="warn" title="Sin actualización en más de 6 meses">⚠ ${x.ult?fd(x.ult):'sin fecha'}</span>`:`<span>${fd(x.ult)||''}</span>`}`;
+  const cart=x.tipo==='cobro'||x.tipo==='fideicomiso'?(x.cartera&&x.cartera.t==='mifi'?'<span class="mini ok">🏛 MIFI</span>':'<span class="mini">no es de la cartera</span>'):'';
+  return `<button class="card" draggable="true" style="--pc:${pc}" data-id="${E(x.id)}"><div class="h"><span>${x.resumen?'✎ ':''}${x.nuevo?'🆕 ':''}${E(x.corto||x.nombre)}</span><span class="num">${al}${x.tipo==='lanz'?'':'#'+E(x.n)}</span></div><div class="l2">${l2}${cart}</div><div class="ft">${ft}</div></button>`;
+}
+function renderApta(list){
+  const cl=lgCfg().checklist;
+  const intro=`<div class="intro"><b>Casos que llegaron a una fase en la que la finca ya se puede comercializar.</b> Completa los pasos de preparación y, cuando el caso termine, usa <b>Concluir</b> para que la finca pase a Cartera activa. Las fases que mandan un caso aquí se configuran en <b>⚙ Fases aptas</b>.</div>`;
+  if(!list.length)return intro+'<div class="empty big">No hay casos aptos para comercializar.</div>';
+  return intro+'<div class="apgrid">'+list.map(c=>{const T=LG_TYPES.find(t=>t.k===c.tipo);const ck=c.check||[];const done=cl.filter((_,i)=>ck[i]).length;
+    return `<article class="apcard" style="--tc:${T.c}"><div class="aph"><span class="ty">${T.icon} ${T.t}</span><span class="pill" style="--pc:#0b7d0b">${E(ph(c.tipo,c.fase)[1])}</span></div>
+    <h4>${E(c.corto||c.nombre)} <small>${c.tipo==='lanz'?'':'#'+E(c.n)}</small></h4>
+    <div class="aps">${c.finca?'Finca '+E(c.finca):E((c.garantia||'').slice(0,90))}${(c.garantia||'').length>90?'…':''}</div>
+    <div class="apc">${carteraChip(c)}</div>
+    <div class="prog"><div style="width:${cl.length?done/cl.length*100:0}%"></div></div><div class="progt">Preparación para la venta: ${done}/${cl.length}</div>
+    <ul class="ckl">${cl.map((t,i)=>`<li><label><input type="checkbox" data-ck="${E(c.id)}" data-i="${i}" ${ck[i]?'checked':''}> ${E(t)}</label></li>`).join('')}</ul>
+    <div class="apa"><button class="btn" data-open="${E(c.id)}">Ver caso</button><button class="btn pri" data-concl="${E(c.id)}">✓ Concluir</button></div></article>`}).join('')+'</div>';
+}
+function renderOtra(list){
+  const g={};list.forEach(c=>{const k=c.cartera.carpeta||'Sin nombre';(g[k]=g[k]||[]).push(c)});
+  const intro='<div class="intro">Casos asignados a una cartera distinta a la de MIFI. Se agrupan por el nombre de la carpeta asignada.</div>';
+  if(!list.length)return intro+'<div class="empty big">No hay casos asignados a otras carteras.</div>';
+  return intro+Object.keys(g).sort().map(k=>`<div class="folder"><div class="fh">📁 ${E(k)} <span class="vs-n">${g[k].length}</span></div>${g[k].map(c=>`<button class="frow" data-open="${E(c.id)}"><span>${LG_TYPES.find(t=>t.k===c.tipo).icon} <b>${E(c.corto||c.nombre)}</b> ${c.tipo==='lanz'?'':'#'+E(c.n)}</span><span>${E(ph(c.tipo,c.fase)[1])}</span><span class="amt">${fmt(amount(c))}</span><span>${E(c.abogado||'')}</span></button>`).join('')}</div>`).join('');
+}
+function renderConcl(list){
+  const intro='<div class="intro">Casos cerrados: ya no aparecen en Casos legales. Los que terminaron en la cartera de MIFI están en <b>Cartera activa</b> para dar seguimiento a la venta.</div>';
+  if(!list.length)return intro+'<div class="empty big">Sin casos concluidos.</div>';
+  list.sort((a,b)=>String(b.concl.fecha).localeCompare(String(a.concl.fecha)));
+  return intro+`<div class="tblw"><table class="ctbl"><thead><tr><th>Caso</th><th>Tipo</th><th>Destino</th><th>Fecha</th><th>Nota</th><th></th></tr></thead><tbody>${list.map(c=>`<tr><td><button class="lnk" data-open="${E(c.id)}">${E(c.corto||c.nombre)}</button></td><td>${LG_TYPES.find(t=>t.k===c.tipo).icon} ${E(LG_TYPES.find(t=>t.k===c.tipo).t)}</td><td>${carteraChip(c)}${c.concl.destino==='mifi'&&c.finca?` <button class="lnk" data-goto="${E(c.finca)}">Finca ${E(c.finca)} →</button>`:''}</td><td class="mono">${fd(c.concl.fecha)||'—'}</td><td class="note">${E(c.concl.nota||'')}</td><td><button class="btn sm" data-reopen="${E(c.id)}">↺ Reabrir</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+function bindBody(){
+  const b=$('lgBody');
+  b.querySelectorAll('.type').forEach(x=>x.onclick=()=>{st.tipo=x.dataset.k;st.lote='all';st.abog='';render()});
+  b.querySelectorAll('[data-l]').forEach(x=>x.onclick=()=>{st.lote=x.dataset.l;render()});
+  if($('lgAbog'))$('lgAbog').onchange=e=>{st.abog=e.target.value;render()};
+  if($('lgWarn'))$('lgWarn').onchange=e=>{st.warn=e.target.checked;render()};
+  b.querySelectorAll('.card').forEach(x=>{x.onclick=()=>openCase(x.dataset.id);x.ondragstart=e=>{e.dataTransfer.setData('text/plain',x.dataset.id);x.classList.add('drag')};x.ondragend=()=>x.classList.remove('drag')});
+  b.querySelectorAll('[data-drop]').forEach(col=>{col.ondragover=e=>{e.preventDefault();col.classList.add('over')};col.ondragleave=()=>col.classList.remove('over');
+    col.ondrop=e=>{e.preventDefault();col.classList.remove('over');const id=e.dataTransfer.getData('text/plain');const c=get(id);if(!c||c.fase===col.dataset.drop)return;setFase(id,col.dataset.drop,'Movido en el tablero')}});
+  b.querySelectorAll('[data-sec]').forEach(x=>x.onclick=()=>{st.sec=x.dataset.sec;render()});
+  b.querySelectorAll('[data-open]').forEach(x=>x.onclick=()=>openCase(x.dataset.open));
+  b.querySelectorAll('[data-concl]').forEach(x=>x.onclick=()=>concludeForm(x.dataset.concl));
+  b.querySelectorAll('[data-reopen]').forEach(x=>x.onclick=()=>{patch(x.dataset.reopen,{concl:null},'Caso reabierto');toast('Caso reabierto: vuelve a Casos legales.')});
+  b.querySelectorAll('[data-goto]').forEach(x=>x.onclick=()=>gotoFinca(x.dataset.goto));
+  b.querySelectorAll('[data-ck]').forEach(x=>x.onchange=()=>{const c=get(x.dataset.ck);const ck=(c.check||[]).slice();ck[+x.dataset.i]=x.checked;patch(c.id,{check:ck},(x.checked?'✓ ':'✗ ')+lgCfg().checklist[+x.dataset.i])});
+}
+function setFase(id,f,why){const c=get(id);const a=ph(c.tipo,c.fase)[1],b=ph(c.tipo,f)[1];
+  patch(id,{fase:f,ult:lgToday()},`Fase: ${a} → ${b}${why?' · '+why:''}`);
+  const nc=get(id);if(lgIsApta(nc))toast(`<b>${E(nc.corto||nc.nombre)}</b> llegó a “${E(b)}” y pasó a <b>Aptas para comercializar</b>.`);else toast(`Fase actualizada: ${E(b)}`);}
+
+/* ---------- drawer ---------- */
+function showDr(html,id,mode){const d=$('lg_dr');d.innerHTML=html;d.dataset.id=id||'';d.dataset.mode=mode;d.classList.add('on');$('lg_ov').classList.add('on');}
+function closeDr(){$('lg_dr').classList.remove('on');$('lg_ov').classList.remove('on');$('lg_dr').dataset.id='';}
+window.lgCloseDr=closeDr;
+window.lgRefresh=()=>{if(!$('legalPanel').hidden)render();const d=$('lg_dr');if(d.classList.contains('on')&&d.dataset.id&&d.dataset.mode==='view'){if(get(d.dataset.id))openCase(d.dataset.id,true);else closeDr();}};
+window.lgOpenCase=id=>{showLegal(true);const c=get(id);if(c){if(!c.concl){st.sec=lgSection(c);st.tipo=c.tipo;render();}openCase(id);}else toast('Ese caso ya no existe.');};
+function kv(k,v){return v==null||v===''||v==='—'?'':`<span>${k}</span><span>${E(v)}</span>`}
+function tile(k,v,s){return v==null||v==='—'?'':`<div class="tile"><span>${k}</span><b>${v}</b>${s?`<small>${s}</small>`:''}</div>`}
+function openCase(id,keepScroll){
+  const c=get(id);if(!c)return;const T=LG_TYPES.find(t=>t.k===c.tipo);const P=LG_PH[c.tipo];const apt=lgCfg().apta[c.tipo]||[];
+  const cur=P.findIndex(p=>p[0]===c.fase);const apta=lgIsApta(c);
+  const steps=P.map((p,i)=>`<button class="stp ${i<cur?'past':''} ${i===cur?'cur':''} ${apt.includes(p[0])?'apt':''}" data-f="${p[0]}" ${c.concl?'disabled':''} title="${E(p[2])}"><i></i><span>${E(p[1])}</span>${apt.includes(p[0])?'<em>apta</em>':''}</button>`).join('');
+  let tiles='',det='';
+  if(c.tipo==='lanz'){tiles=tile('Lote del reporte','Fase '+(c.lote||'—'))+tile('Estado del inmueble',E(c.estadoDash||'(vacío)'))+tile('Lanzamiento (Excel)',E(c.lanzExcel||'(vacío)'));
+    det=kv('Ubicación',c.ubi)+kv('Corregimiento',c.corr)+kv('Provincia',c.prov)+kv('Área',c.area)+kv('Abogado',c.abogado);}
+  else if(c.tipo==='contra'){tiles=tile('Monto reclamado',fmtFull(c.monto))+tile('Finca en juego',c.finca?E(c.finca):'Ninguna');
+    det=kv('Demandante',c.nombre)+kv('Tipo de proceso',c.proceso)+kv('Abogado',c.abogado);}
+  else{tiles=tile('Capital',fmtFull(c.capital))+tile(c.tipo==='cobro'?'Monto demandado':'Saldo enviado a FWLA',fmtFull(c.cuantia))+tile('Base de remate',c.base?fmtFull(c.base):null)+tile('Avalúo (venta rápida / mercado)',(c.vr||c.vm)?fmt(c.vr)+' / '+fmt(c.vm):null,[c.avaluador,c.fav].filter(Boolean).join(' · '));
+    det=kv('Deudor(es)',c.nombre)+kv('Inicio',fd(c.fecha))+kv('Abogado',c.abogado)+kv('Tipo de garantía',(GT[(c.gt||'').split('+')[0]]||'').replace(/^\S+ /,''))+kv('Garantía',c.garantia)+kv('Honorarios',c.hon!=null?(isNaN(+c.hon)?c.hon:fmtFull(c.hon)):null)+kv('Clasificación en el Excel',c.cat);}
+  det+=kv('Próxima fecha',fd(c.prox))+kv('Última actualización',fd(c.ult));
+  const hist=(c.hist||[]).concat([{f:c.ult||'2026-10-06',t:'Estado inicial tomado del Excel / reporte (6-oct-2026)',base:1}]);
+  const cl=lgCfg().checklist,ck=c.check||[];
+  const cart=c.cartera||{t:'pend'};
+  const html=`<button class="x" onclick="lgCloseDr()">✕</button><div class="crumb">${T.icon} ${T.t}${c.tipo==='lanz'?'':' · caso #'+E(c.n)}</div>
+  <h3>${E(c.tipo==='lanz'?'Finca '+c.finca:c.nombre)}</h3>
+  <div class="chips"><span class="pill" style="--pc:${PC[c.fase]||T.c}">${E(ph(c.tipo,c.fase)[1])}</span>${carteraChip(c)}${apta?'<span class="chip ok">✓ Apta para comercializar</span>':''}${c.prox?`<span class="chip blue">📅 ${fd(c.prox)}</span>`:''}${!c.concl&&stale(c.ult)?'<span class="chip warn">⚠ Sin actualizar +6 meses</span>':''}</div>
+  ${c.concl?`<div class="banner">Caso concluido el ${fd(c.concl.fecha)||'—'} · ${c.concl.destino==='mifi'?'la finca pasó a la cartera de MIFI':c.concl.destino==='otra'?'asignado a '+E(c.concl.carpeta):'sin propiedad'}${c.concl.nota?' — '+E(c.concl.nota):''}</div>`:''}
+  <div class="sect"><div class="hh">Fase del proceso ${c.concl?'':'<small>— toca una fase para moverlo</small>'}</div><div class="stepper">${steps}</div><div id="lgFaseConf"></div></div>
+  ${apta?`<div class="sect aptbox"><div class="hh">✓ Preparación para comercializar</div><ul class="ckl">${cl.map((t,i)=>`<li><label><input type="checkbox" data-ckd="${i}" ${ck[i]?'checked':''}> ${E(t)}</label></li>`).join('')}</ul></div>`:''}
+  <div class="sect simple"><div class="hh">En palabras simples</div>${c.resumen?E(c.resumen):'<span class="ph">Aún sin resumen. Usa “Editar datos” para escribir 2–3 líneas: qué pasó, dónde está hoy y cuál es el próximo paso.</span>'}</div>
+  ${tiles?`<div class="tiles">${tiles}</div>`:''}
+  ${(c.alertas||[]).length?`<div class="sect">${c.alertas.map(a=>`<div class="alerta">⚠ ${E(a)}</div>`).join('')}</div>`:''}
+  <div class="sect"><div class="hh">Datos del caso</div><div class="kv">${det}</div></div>
+  <div class="sect"><div class="hh">Cartera asignada <button class="lnk sm" id="lgCartBtn">Cambiar</button></div><div>${carteraChip(Object.assign({},c,{concl:null}))} ${cart.t==='pend'?'<span class="mutt">— cuando el caso termine, puedes asignarla a MIFI u otra cartera</span>':''}</div><div id="lgCartForm"></div></div>
+  <div class="sect"><div class="hh">Historial</div><ol class="tl">${hist.map(h=>`<li class="${h.base?'base':''}"><span class="mono">${fd(h.f)||'—'}</span>${E(h.t)}${h.u?` <small class="mutt">· ${E(h.u)}</small>`:''}</li>`).join('')}</ol></div>
+  ${c.texto?`<details><summary>Ver texto original del abogado</summary><p>${E(c.texto)}</p></details>`:''}
+  <div class="drfoot">${c.concl?`<button class="btn" data-reopen1>↺ Reabrir caso</button>`:`<button class="btn" id="lgEditBtn">✎ Editar datos</button><button class="btn pri" id="lgConclBtn">✓ Concluir caso</button>`}${c.finca&&(LG_FINCAS_DASH.has(String(c.finca))||(c.concl&&c.concl.destino==='mifi'))?`<button class="btn" id="lgGoBtn" ${!c.concl?'title="La finca vuelve a Cartera activa cuando el caso se concluya"':''}>Finca ${E(c.finca)} ${c.concl?'en Cartera activa →':'(en caso legal)'}</button>`:''}</div>`;
+  const sc=$('lg_dr').scrollTop;showDr(html,id,'view');if(keepScroll)$('lg_dr').scrollTop=sc;else $('lg_dr').scrollTop=0;
+  const d=$('lg_dr');
+  d.querySelectorAll('.stp').forEach(b=>b.onclick=()=>{if(b.dataset.f===c.fase)return;const lb=ph(c.tipo,b.dataset.f)[1];
+    $('lgFaseConf').innerHTML=`<div class="conf">Mover a <b>${E(lb)}</b>${apt.includes(b.dataset.f)?' <span class="chip ok">pasa a Aptas</span>':''}<input id="lgFaseNota" placeholder="Nota (opcional): ej. auto de 3-oct fija fecha de remate"><button class="btn pri sm" id="lgFaseOk">Confirmar</button><button class="btn sm" id="lgFaseNo">Cancelar</button></div>`;
+    $('lgFaseOk').onclick=()=>setFase(id,b.dataset.f,$('lgFaseNota').value.trim());$('lgFaseNo').onclick=()=>$('lgFaseConf').innerHTML='';});
+  d.querySelectorAll('[data-ckd]').forEach(x=>x.onchange=()=>{const k=(get(id).check||[]).slice();k[+x.dataset.ckd]=x.checked;patch(id,{check:k},(x.checked?'✓ ':'✗ ')+cl[+x.dataset.ckd])});
+  if($('lgEditBtn'))$('lgEditBtn').onclick=()=>editForm(id);
+  if($('lgConclBtn'))$('lgConclBtn').onclick=()=>concludeForm(id);
+  if(d.querySelector('[data-reopen1]'))d.querySelector('[data-reopen1]').onclick=()=>{patch(id,{concl:null},'Caso reabierto');toast('Caso reabierto.')};
+  if($('lgGoBtn'))$('lgGoBtn').onclick=()=>{if(get(id).concl)gotoFinca(c.finca);else toast('La finca '+E(c.finca)+' está en Casos legales mientras el caso siga abierto.')};
+  $('lgCartBtn').onclick=()=>{$('lgCartForm').innerHTML=`<div class="conf col2">${[['mifi','🏛 Cartera MIFI'],['otra','📁 Otra cartera'],['pend','Aún no es de la cartera'],['na','Sin finca / no aplica']].map(([k,t])=>`<label class="rad"><input type="radio" name="lgct" value="${k}" ${cart.t===k?'checked':''}> ${t}</label>`).join('')}<input id="lgCarp" placeholder="Nombre de la carpeta / cartera asignada" value="${E(cart.carpeta||'')}"><div><button class="btn pri sm" id="lgCartOk">Guardar</button></div></div>`;
+    $('lgCartOk').onclick=()=>{const t=d.querySelector('[name=lgct]:checked').value;const cp=$('lgCarp').value.trim();if(t==='otra'&&!cp){$('lgCarp').focus();$('lgCarp').classList.add('bad');return}
+      patch(id,{cartera:t==='otra'?{t,carpeta:cp}:{t}},'Cartera: '+(t==='mifi'?'MIFI':t==='otra'?'otra — '+cp:t==='na'?'no aplica':'aún no es de la cartera'));if(t==='otra')toast('Caso movido a <b>Otras carteras</b> → '+E(cp));}};
+}
+
+/* ---------- formulario editar / registrar ---------- */
+const FF={
+ base:[['corto','Nombre corto (lo que se ve en la ficha)','text'],['nombre','Partes / nombre completo','text'],['abogado','Abogado o firma','text'],['fase','Fase','fase'],['ult','Última actualización','date'],['prox','Próxima fecha (audiencia, remate…)','date']],
+ cobro:[['n','N° de caso','text'],['fecha','Fecha de inicio','date'],['capital','Capital (B/.)','number'],['cuantia','Monto demandado (B/.)','number'],['gt','Tipo de garantía','gt'],['garantia','Garantía (descripción, fincas, placas)','area'],['base','Base de remate (B/.)','number'],['vr','Avalúo venta rápida (B/.)','number'],['vm','Avalúo mercado (B/.)','number']],
+ fideicomiso:[['n','N° de caso','text'],['fecha','Fecha de inicio','date'],['capital','Capital (B/.)','number'],['cuantia','Saldo enviado a FWLA (B/.)','number'],['gt','Tipo de garantía','gt'],['garantia','Garantía (descripción)','area']],
+ contra:[['n','N° de caso','text'],['proceso','Tipo de proceso / juzgado','text'],['monto','Monto reclamado (B/.)','number'],['finca','Finca relacionada (si hay)','text']],
+ lanz:[['finca','N° de finca','text'],['lote','Lote del reporte (I, II, III)','text'],['ubi','Ubicación','text'],['corr','Corregimiento','text'],['prov','Provincia','text']],
+ tail:[['resumen','En palabras simples (2–3 líneas)','area'],['texto','Notas / texto del abogado','area']]};
+function field(f,v,tipo){const [k,l,t]=f;let inp;
+  if(t==='fase')inp=`<select data-k="${k}">${LG_PH[tipo].map(p=>`<option value="${p[0]}" ${v===p[0]?'selected':''}>${E(p[1])}${(lgCfg().apta[tipo]||[]).includes(p[0])?' (apta)':''}</option>`).join('')}</select>`;
+  else if(t==='gt')inp=`<select data-k="${k}">${Object.entries(GT).map(([a,b])=>`<option value="${a}" ${String(v||'').split('+')[0]===a?'selected':''}>${b}</option>`).join('')}</select>`;
+  else if(t==='area')inp=`<textarea data-k="${k}" rows="${k==='texto'?5:3}">${E(v)}</textarea>`;
+  else inp=`<input data-k="${k}" type="${t}" value="${E(v??'')}" ${t==='number'?'step="0.01"':''}>`;
+  return `<label class="ff ${t==='area'?'wide':''}"><span>${l}</span>${inp}</label>`;}
+function editForm(id,tipoNew){
+  const c=id?get(id):{tipo:tipoNew||st.tipo,fase:LG_PH[tipoNew||st.tipo][0][0],ult:lgToday()};const tipo=c.tipo;
+  const fs=FF.base.concat(FF[tipo],FF.tail);
+  const html=`<button class="x" onclick="lgCloseDr()">✕</button><div class="crumb">${id?'Editar caso':'Registrar caso nuevo'}</div><h3>${id?E(c.corto||c.nombre):'Nuevo caso legal'}</h3>
+  ${id?'':`<label class="ff wide"><span>Tipo de proceso</span><select id="lgNewTipo">${LG_TYPES.map(t=>`<option value="${t.k}" ${t.k===tipo?'selected':''}>${t.icon} ${t.t}</option>`).join('')}</select></label>`}
+  <div class="form">${fs.map(f=>field(f,c[f[0]],tipo)).join('')}</div>
+  <div class="drfoot"><button class="btn" id="lgCancel">Cancelar</button><button class="btn pri" id="lgSaveBtn">${id?'Guardar cambios':'Registrar caso'}</button></div>`;
+  showDr(html,id,'edit');$('lg_dr').scrollTop=0;
+  if($('lgNewTipo'))$('lgNewTipo').onchange=e=>editForm(null,e.target.value);
+  $('lgCancel').onclick=()=>id?openCase(id):closeDr();
+  $('lgSaveBtn').onclick=()=>{if(!lgCanEdit()){toast('Su usuario solo puede ver los casos legales.');return;}
+    const o={};$('lg_dr').querySelectorAll('[data-k]').forEach(el=>{let v=el.value.trim();const t=el.type;if(t==='number')v=v===''?null:+v;else if(v==='')v=null;o[el.dataset.k]=v;});
+    if(tipo==='lanz'){if(!o.finca){toast('Falta el N° de finca');return}o.nombre=o.nombre||'Finca '+o.finca;o.corto=o.corto||'Finca '+o.finca;o.n=o.finca;}
+    if(!o.corto&&o.nombre)o.corto=o.nombre.slice(0,40);
+    if(!o.corto){toast('Escribe al menos el nombre del caso');return}
+    if(id){const ch=[];if(o.fase!==c.fase)ch.push(`Fase: ${ph(tipo,c.fase)[1]} → ${ph(tipo,o.fase)[1]}`);const n=Object.keys(o).filter(k=>k!=='fase'&&(o[k]??null)!==(c[k]??null)).length;if(n)ch.push(n+' dato'+(n>1?'s':'')+' editado'+(n>1?'s':''));
+      patch(id,o,ch.join(' · ')||'Guardado sin cambios');openCase(id);if(lgIsApta(get(id))&&!lgIsApta(c))toast('El caso pasó a <b>Aptas para comercializar</b>.');else toast('Cambios guardados.');}
+    else{const ns=lgCases().filter(x=>x.tipo===tipo).map(x=>parseInt(x.n)).filter(n=>!isNaN(n));
+      const nid=tipo+'|nuevo'+Date.now();const x=Object.assign({id:nid,tipo,nuevo:true,n:o.n||String((ns.length?Math.max(...ns):0)+1),cartera:tipo==='lanz'?{t:'mifi'}:tipo==='contra'?(o.finca?{t:'mifi'}:{t:'na'}):{t:'pend'},hist:[{f:lgToday(),t:'Caso registrado',u:lgUser()}]},o);
+      if(tipo==='lanz')x.n=o.finca;
+      LG_STATE.nuevos.push(x);lgSave();st.sec=lgSection(x)==='apta'?'apta':'proc';st.tipo=tipo;refresh();openCase(nid);toast('Caso registrado.');}
+  };
+}
+
+/* ---------- concluir ---------- */
+function concludeForm(id){
+  const c=get(id);const needFinca=!c.finca;const cart=c.cartera||{};
+  const def=cart.t==='otra'?'otra':(cart.t==='mifi'||c.tipo==='lanz'||lgIsApta(c))?'mifi':'ninguna';
+  const html=`<button class="x" onclick="lgCloseDr()">✕</button><div class="crumb">Concluir caso</div><h3>${E(c.corto||c.nombre)}</h3>
+  <p class="mutt">Al concluir, el caso sale de Casos legales. Elige a dónde va:</p>
+  <div class="dest">
+   <label class="rad big"><input type="radio" name="lgd" value="mifi" ${def==='mifi'?'checked':''}><span><b>🏛 Pasa a la cartera de MIFI</b><small>La finca aparece en <b>Cartera activa</b> para dar seguimiento a su venta.</small></span></label>
+   <div class="sub" data-for="mifi">${needFinca?`<div class="form">${[['finca','N° de finca *','text'],['tipoInm','Tipo de inmueble','text'],['prov','Provincia','text'],['corr','Corregimiento','text']].map(f=>`<label class="ff"><span>${f[1]}</span><input data-c="${f[0]}"></label>`).join('')}</div>`:`<div class="mutt">Finca ${E(c.finca)}${LG_FINCAS_DASH.has(String(c.finca))?' — ya existe en la base; vuelve a Cartera activa.':' — se agrega a Cartera activa.'}</div>`}</div>
+   <label class="rad big"><input type="radio" name="lgd" value="otra" ${def==='otra'?'checked':''}><span><b>📁 Se asigna a otra cartera</b><small>Queda registrado con el nombre de la carpeta.</small></span></label>
+   <div class="sub" data-for="otra"><input data-c="carpeta" placeholder="Nombre de la carpeta / cartera" value="${E(cart.carpeta||'')}"></div>
+   <label class="rad big"><input type="radio" name="lgd" value="ninguna" ${def==='ninguna'?'checked':''}><span><b>Se cierra sin propiedad</b><small>Pagó, sin bienes, desistido, castigado o ganado.</small></span></label>
+  </div>
+  <div class="form"><label class="ff"><span>Fecha de cierre</span><input type="date" data-c="fecha" value="${lgToday()}"></label><label class="ff wide"><span>Nota</span><textarea data-c="nota" rows="2" placeholder="Ej.: adjudicación inscrita en el Registro Público"></textarea></label></div>
+  <div class="drfoot"><button class="btn" id="lgCancel">Cancelar</button><button class="btn pri" id="lgConclOk">✓ Concluir caso</button></div>`;
+  showDr(html,id,'concl');$('lg_dr').scrollTop=0;const d=$('lg_dr');
+  const sync=()=>{const v=d.querySelector('[name=lgd]:checked').value;d.querySelectorAll('.sub').forEach(s=>s.hidden=s.dataset.for!==v)};d.querySelectorAll('[name=lgd]').forEach(r=>r.onchange=sync);sync();
+  $('lgCancel').onclick=()=>openCase(id);
+  $('lgConclOk').onclick=()=>{const v=d.querySelector('[name=lgd]:checked').value;const g=k=>{const el=d.querySelector(`[data-c="${k}"]`);return el&&!el.closest('[hidden]')?el.value.trim():''};
+    const concl={destino:v,fecha:g('fecha')||lgToday(),nota:g('nota')};const o={};
+    if(v==='mifi'){if(needFinca){const f=g('finca');if(!f){d.querySelector('[data-c=finca]').classList.add('bad');d.querySelector('[data-c=finca]').focus();return}o.finca=f;concl.tipoInm=g('tipoInm');concl.prov=g('prov');concl.corr=g('corr');}o.cartera={t:'mifi'};}
+    if(v==='otra'){const cp=g('carpeta');if(!cp){d.querySelector('[data-c=carpeta]').classList.add('bad');return}concl.carpeta=cp;o.cartera={t:'otra',carpeta:cp};}
+    o.concl=concl;patch(id,o,'Caso concluido → '+(v==='mifi'?'cartera MIFI':v==='otra'?'otra cartera: '+concl.carpeta:'sin propiedad'));closeDr();
+    const f=o.finca||c.finca;toast(v==='mifi'&&f?`Caso concluido. <b>Finca ${E(f)}</b> pasó a <b>Cartera activa</b>. <button class="lnk inv" onclick="lgGoto('${E(f)}')">Ver →</button>`:'Caso concluido.');};
+}
+
+/* ---------- configuración ---------- */
+function cfgForm(){
+  const cfg=JSON.parse(JSON.stringify(lgCfg()));
+  const html=`<button class="x" onclick="lgCloseDr()">✕</button><div class="crumb">Configuración</div><h3>¿En qué fase un caso ya se puede comercializar?</h3>
+  <p class="mutt">Marca, para cada tipo de proceso, las fases en las que la finca ya se puede empezar a mover. Cuando un caso llega a una de ellas pasa solo a <b>Aptas para comercializar</b>. <b>Valores provisionales</b> hasta que definas los correctos.</p>
+  ${LG_TYPES.map(T=>`<div class="sect"><div class="hh">${T.icon} ${T.t}</div>${LG_PH[T.k].map(p=>`<label class="rad"><input type="checkbox" data-ap="${T.k}" value="${p[0]}" ${(cfg.apta[T.k]||[]).includes(p[0])?'checked':''}> ${E(p[1])} <small class="mutt">— ${E(p[2])}</small></label>`).join('')}</div>`).join('')}
+  <div class="sect"><div class="hh">Pasos de preparación para la venta</div><textarea id="lgCkl" rows="5">${E(cfg.checklist.join('\n'))}</textarea><small class="mutt">Un paso por línea.</small></div>
+  <div class="drfoot"><button class="btn" id="lgCancel">Cancelar</button><button class="btn pri" id="lgCfgOk">Guardar configuración</button></div>`;
+  showDr(html,'','cfg');$('lg_dr').scrollTop=0;
+  $('lgCancel').onclick=closeDr;
+  $('lgCfgOk').onclick=()=>{if(!lgCanEdit()){toast('Su usuario solo puede ver los casos legales.');return;}const a={};LG_TYPES.forEach(T=>a[T.k]=[...$('lg_dr').querySelectorAll(`[data-ap="${T.k}"]:checked`)].map(x=>x.value));
+    LG_STATE.cfg={apta:a,checklist:$('lgCkl').value.split('\n').map(s=>s.trim()).filter(Boolean)};lgSave();closeDr();refresh();toast('Configuración guardada.');};
+}
+
+/* ---------- navegación con el dashboard ---------- */
+const wrap=$('dashboardWrap');
+function showLegal(on){
+  wrap.classList.toggle('legal-mode',on);$('legalPanel').hidden=!on;
+  document.querySelectorAll('#viewSwitch [data-gview]').forEach(b=>b.classList.toggle('on',!on&&b.dataset.gview===GVIEW));
+  $('lgViewBtn').classList.toggle('on',on);if(on)render();
+}
+$('lgViewBtn').addEventListener('click',()=>showLegal(true));
+$('viewSwitch').addEventListener('click',e=>{const b=e.target.closest('[data-gview]');if(b){showLegal(false);document.querySelectorAll('#viewSwitch [data-gview]').forEach(x=>x.classList.toggle('on',x.dataset.gview===b.dataset.gview));}});
+function gotoFinca(f){closeDr();showLegal(false);
+  const row=getMergedData().find(d=>String(d.finca)===String(f));const g=row?row.grupo||'activa':'activa';
+  if(GVIEW!==g)document.querySelector(`#viewSwitch [data-gview="${g}"]`).click();else document.querySelectorAll('#viewSwitch [data-gview]').forEach(x=>x.classList.toggle('on',x.dataset.gview===g));
+  $('resetBtn').click();
+  setTimeout(()=>{const tr=document.querySelector(`#tableBody tr[data-finca="${CSS.escape(String(f))}"]`);if(!tr)return;tr.scrollIntoView({behavior:'smooth',block:'center'});tr.classList.remove('row-flash');void tr.offsetWidth;tr.classList.add('row-flash');},80);}
+window.lgGoto=gotoFinca;
+$('lgSearch').oninput=e=>{st.q=e.target.value.toLowerCase().trim();render()};
+$('lgNewBtn').onclick=()=>editForm(null,st.tipo);
+$('lgCfgBtn').onclick=cfgForm;
+$('lgSub').onclick=e=>{const b=e.target.closest('[data-sec]');if(b){st.sec=b.dataset.sec;render()}};
+$('lg_ov').onclick=closeDr;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDr()});
+updateViewCounts();applyFilters();
+})();
+
 
 /* ======================= Pestañas ======================= */
 let currentView = 'fincas';
@@ -1877,6 +2539,7 @@ function fmtHistPlain(clave, v){
   if(v===null || v===undefined || v==='') return '(vacío)';
   if(HIST_MONEY.has(clave) && typeof v==='number') return money(v);
   if(clave==='estado'){ const k = normEstadoKey(String(v)); return estadoLabel(k, v); }
+  if(clave==='tasa' && typeof v==='number') return v + ' %';
   return String(v);
 }
 function fmtHistVal(clave, v){
@@ -1938,13 +2601,13 @@ function renderHistory(){
   body.innerHTML = rows.map(h=>`<tr>
     <td class="hist-when">${esc(h.fecha)}</td>
     <td>${esc(h.nombre)}</td>
-    <td><button type="button" class="finca-link" data-goto-finca="${esc(h.filaId)}" title="Ver esta finca en la tabla">${esc(String(h.finca))}</button></td>
+    <td>${h.clave==='caso' ? `<button type="button" class="finca-link" data-goto-caso="${esc(h.filaId)}" title="Abrir este caso legal">⚖ ${esc(String(h.finca))}</button>` : (h.clave==='cfg' || h.clave==='carga') ? esc(String(h.finca)) : `<button type="button" class="finca-link" data-goto-finca="${esc(h.filaId)}" title="Ver esta finca en la tabla">${esc(String(h.finca))}</button>`}</td>
     <td>${esc(h.campo)}</td>
     <td class="hist-old">${fmtHistVal(h.clave, h.anterior)}</td>
     <td class="hist-arrow">→</td>
     <td class="hist-new">${fmtHistVal(h.clave, h.nuevo)}</td>
     <td class="hist-nota">${h.nota ? esc(h.nota) : ''}</td>
-    ${isAdmin ? `<td><button type="button" class="mini-btn" data-revert="${h.id}" title="Volver este campo a su valor anterior">Revertir</button></td>` : ''}
+    ${isAdmin ? `<td>${REVERTIBLE.has(h.clave) ? `<button type="button" class="mini-btn" data-revert="${h.id}" title="Volver este campo a su valor anterior">Revertir</button>` : ''}</td>` : ''}
   </tr>`).join('');
 }
 ['histSearch','histUser','histField','histFrom','histTo'].forEach(id=>{
@@ -1962,6 +2625,8 @@ function showFincaHistory(id){
   switchView('historial');
 }
 document.getElementById('histBody').addEventListener('click', async e=>{
+  const gc = e.target.closest('[data-goto-caso]');
+  if(gc){ switchView('fincas'); if(window.lgOpenCase) window.lgOpenCase(gc.dataset.gotoCaso); return; }
   const g = e.target.closest('[data-goto-finca]');
   if(g){
     const d = DATA.find(r=>r._id===g.dataset.gotoFinca);
@@ -2182,8 +2847,50 @@ document.getElementById('idleLogout').addEventListener('click', ()=>endSession('
 setInterval(async ()=>{
   if(!SESSION || SESSION.user.debeCambiar) return;
   const r = await api('ping');
+  if(r.ok && SESSION && lgPending() && lgCanEdit()) lgFlush();
   if(r.ok && SESSION && r.rev!==REV) refreshData();
 }, POLL_MS);
+
+/* ======================= Carga completa de datos (solo administrador) ======================= */
+let CARGA_PKG = null;
+document.getElementById('cargaFile').addEventListener('change', async e=>{
+  const f = e.target.files && e.target.files[0];
+  const box = document.getElementById('cargaResumen'), btn = document.getElementById('cargaBtn'), note = document.getElementById('cargaNote');
+  CARGA_PKG = null; btn.disabled = true; note.textContent = ''; box.hidden = true;
+  if(!f) return;
+  let pkg;
+  try{ pkg = JSON.parse(await f.text()); }catch(err){ note.className='mifi-save-note err'; note.textContent = 'El archivo no es un JSON válido.'; return; }
+  if(!pkg || pkg.formato!=='MIFI_DATOS_V2' || !Array.isArray(pkg.fincas) || !pkg.fincas.length){
+    note.className='mifi-save-note err'; note.textContent = 'Este archivo no tiene el formato de datos MIFI (MIFI_DATOS_V2).'; return;
+  }
+  const act = pkg.fincas.filter(x=>(x.grupo||'activa')==='activa').length;
+  const ven = pkg.fincas.length - act;
+  const nuevas = new Set(pkg.fincas.map(x=>String(x.finca)));
+  const actuales = new Set(DATA.map(x=>String(x.finca)));
+  const agrega = [...nuevas].filter(x=>!actuales.has(x)).length;
+  const quita = [...actuales].filter(x=>!nuevas.has(x)).length;
+  const casos = Array.isArray(pkg.casos) ? pkg.casos : null;
+  box.innerHTML = `<b>${esc(f.name)}</b>${pkg.origen ? `<br><span class="hist-nota">${esc(pkg.origen)}</span>` : ''}
+    <ul><li><b>${pkg.fincas.length}</b> fincas (${act} en cartera activa, ${ven} vendidas) — hoy hay ${DATA.length} en la hoja</li>
+    <li>${agrega} fincas nuevas · ${quita} fincas de la hoja que no están en el archivo</li>
+    <li>${casos ? `<b>${casos.length}</b> casos legales (reemplaza los ${LG_BASE.length} actuales)` : 'Sin casos legales: los casos actuales no se tocan'}</li></ul>`;
+  box.hidden = false;
+  CARGA_PKG = pkg; btn.disabled = false;
+});
+document.getElementById('cargaBtn').addEventListener('click', async ()=>{
+  if(!CARGA_PKG) return;
+  const pkg = CARGA_PKG, note = document.getElementById('cargaNote'), btn = document.getElementById('cargaBtn');
+  const ok = await askConfirm('Reemplazar todos los datos',
+    `Se reemplazarán <b>todas las fincas</b>${pkg.casos ? ' y <b>todos los casos legales</b>' : ''} de la hoja con el contenido del archivo. Se guardará un respaldo en la misma hoja antes de reemplazar.<br><br>Las ediciones hechas en el dashboard que no estén en el archivo dejarán de verse (seguirán en el historial y en el respaldo).`, 'Reemplazar datos');
+  if(!ok) return;
+  btn.disabled = true; note.className = 'mifi-save-note'; note.textContent = 'Cargando… (puede tardar hasta un minuto)';
+  const r = await api('cargaInicial', {fincas: pkg.fincas, casos: pkg.casos || null, legalCfg: pkg.legalCfg || null, origen: pkg.origen || ''});
+  if(!r.ok){ btn.disabled = false; note.className = 'mifi-save-note err'; note.textContent = r.error || 'No se pudo cargar.'; return; }
+  note.textContent = `Listo: ${r.fincas} fincas` + (pkg.casos ? ` y ${r.casos} casos` : '') + ' cargados.' + (r.respaldos && r.respaldos.length ? ' Respaldo: ' + r.respaldos.join(', ') : '');
+  CARGA_PKG = null; document.getElementById('cargaFile').value = ''; document.getElementById('cargaResumen').hidden = true;
+  toast('Datos cargados en la hoja de Google');
+  await refreshData();
+});
 
 async function initAuth(){
   let saved = null;
@@ -2202,4 +2909,3 @@ async function initAuth(){
 }
 initAuth();
 </script>
-
